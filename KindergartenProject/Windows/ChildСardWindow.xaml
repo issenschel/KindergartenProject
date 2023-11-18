@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KindergartenProject.Windows"
         mc:Ignorable="d"
-        Title="Карточка ребёнка" Height="350" Width="330">
+        Title="Карточка ребёнка" Height="350" Width="330"
+        MinHeight="350" MinWidth="330"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions/>
         <Grid.RowDefinitions>

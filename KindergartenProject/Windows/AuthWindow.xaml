@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KindergartenProject.Windows"
         mc:Ignorable="d"
-        Title="Окно авторизации" Height="250" Width="300">
+        Title="Окно авторизации" Height="250" Width="300"
+        MinHeight="250" MinWidth="300"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions/>
         <Grid.RowDefinitions>
