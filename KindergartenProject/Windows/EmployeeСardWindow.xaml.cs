@@ -23,5 +23,12 @@ namespace KindergartenProject.Windows
         {
             InitializeComponent();
         }
+
+        private void SectionButton_Click(object sender, RoutedEventArgs e)
+        {
+            EmployeesWindow employeesWindow = new EmployeesWindow();
+            employeesWindow.Show();
+            Close();
+        }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KindergartenProject.Windows"
         mc:Ignorable="d"
-        Title="EmployeeСardWindow" Height="400" Width="330">
+        Title="Карточка сотрудника" Height="400" Width="330">
     <Grid>
         <Grid.ColumnDefinitions/>
         <Grid.RowDefinitions>
@@ -20,7 +20,7 @@
             <RowDefinition Height="1.2*"/>
 
         </Grid.RowDefinitions>
-        <Button x:Name="SectionButton" Grid.Row="0" Height="30" Width="120" Content="К разделу" FontSize="15" VerticalAlignment="Top" HorizontalAlignment="Right" Background="CornflowerBlue" Foreground="WhiteSmoke">
+        <Button x:Name="SectionButton" Grid.Row="0" Height="30" Width="120" Content="К разделу" FontSize="15" VerticalAlignment="Top" HorizontalAlignment="Right" Background="CornflowerBlue" Foreground="WhiteSmoke" Click="SectionButton_Click">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KindergartenProject.Windows"
         mc:Ignorable="d"
-        Title="ModeOfTheDayWindow" Height="450" Width="800">
+        Title="Расписание занятий" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -15,7 +15,7 @@
             <RowDefinition Height="0.13*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="LogoutButton" Grid.Row="0" Grid.Column="2" Height="40" Width="120" Content="Выйти" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Right" Background="CornflowerBlue" Foreground="WhiteSmoke">
+        <Button x:Name="LogoutButton" Grid.Row="0" Grid.Column="2" Height="40" Width="120" Content="Выйти" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Right" Background="CornflowerBlue" Foreground="WhiteSmoke" Click="LogoutButton_Click">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>

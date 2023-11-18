@@ -23,5 +23,12 @@ namespace KindergartenProject.Windows
         {
             InitializeComponent();
         }
+
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            Close();
+        }
     }
 }

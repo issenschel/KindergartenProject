@@ -23,5 +23,33 @@ namespace KindergartenProject.Windows
         {
             InitializeComponent();
         }
+
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            AuthWindow authWindow = new AuthWindow();
+            authWindow.Show();
+            Close();
+        }
+
+        private void GroupsButton_Click(object sender, RoutedEventArgs e)
+        {
+            GroupsWindow groupsWindow = new GroupsWindow();
+            groupsWindow.Show();
+            Close();
+        }
+
+        private void MealScheduleButton_Click(object sender, RoutedEventArgs e)
+        {
+            MealScheduleWindow mealScheduleWindow = new MealScheduleWindow();
+            mealScheduleWindow.Show();
+            Close();
+        }
+
+        private void ModeOfTheDayButton_Click(object sender, RoutedEventArgs e)
+        {
+            ModeOfTheDayWindow modeOfTheDayWindow = new ModeOfTheDayWindow();
+            modeOfTheDayWindow.Show();
+            Close();
+        }
     }
 }

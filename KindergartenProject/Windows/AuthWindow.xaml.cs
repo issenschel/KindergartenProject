@@ -23,5 +23,19 @@ namespace KindergartenProject.Windows
         {
             InitializeComponent();
         }
+
+        private void AuthButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            Close();
+        }
+
+        private void GuestButton_Click(object sender, RoutedEventArgs e)
+        {
+            GuestWindow guestWindow = new GuestWindow();
+            guestWindow.Show();
+            Close();
+        }
     }
 }

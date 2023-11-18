@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KindergartenProject.Windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,48 @@ namespace KindergartenProject
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            AuthWindow authWindow = new AuthWindow();
+            authWindow.Show();
+            Close();
+        }
+
+        private void KidsButton_Click(object sender, RoutedEventArgs e)
+        {
+            KidsWindow kidsWindow = new KidsWindow();
+            kidsWindow.Show();
+            Close();
+        }
+
+        private void GroupButton_Click(object sender, RoutedEventArgs e)
+        {
+            GroupsWindow groupsWindow = new GroupsWindow();
+            groupsWindow.Show();
+            Close();
+        }
+
+        private void EmployeeButton_Click(object sender, RoutedEventArgs e)
+        {
+            EmployeesWindow employeesWindow = new EmployeesWindow();
+            employeesWindow.Show();
+            Close();
+        }
+
+        private void ModeOfTheDayButton_Click(object sender, RoutedEventArgs e)
+        {
+            ModeOfTheDayWindow modeOfTheDayWindow = new ModeOfTheDayWindow();
+            modeOfTheDayWindow.Show();
+            Close();
+        }
+
+        private void MealScheduleButton_Click(object sender, RoutedEventArgs e)
+        {
+            MealScheduleWindow mealScheduleWindow = new MealScheduleWindow();
+            mealScheduleWindow.Show();
+            Close();
         }
     }
 }

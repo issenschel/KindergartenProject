@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KindergartenProject.Windows"
         mc:Ignorable="d"
-        Title="GroupsWindow" Height="450" Width="800">
+        Title="Группы" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2.6*"/>
@@ -20,7 +20,7 @@
             <Image Name="LogoImage" Source="1b10b958-0f0b-4b08-a0d5-f47664ae42f4.jpg" Height="Auto" Width="Auto"/>
             <Label Name="KindergartenLabel" Content="Детский сад &quot;Тюрьма №6&quot;"  FontSize="20" Foreground="CornflowerBlue"/>
         </StackPanel>
-        <Button x:Name="MenuButton" Grid.Row="0" Grid.Column="2" Height="40" Width="170" Content="В меню" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Center" Background="CornflowerBlue" Foreground="WhiteSmoke">
+        <Button x:Name="MenuButton" Grid.Row="0" Grid.Column="2" Height="40" Width="170" Content="В меню" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Center" Background="CornflowerBlue" Foreground="WhiteSmoke" Click="MenuButton_Click">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>

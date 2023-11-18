@@ -23,5 +23,12 @@ namespace KindergartenProject.Windows
         {
             InitializeComponent();
         }
+
+        private void SectionButton_Click(object sender, RoutedEventArgs e)
+        {
+            KidsWindow kidsWindow = new KidsWindow();
+            kidsWindow.Show();
+            Close();
+        }
     }
 }

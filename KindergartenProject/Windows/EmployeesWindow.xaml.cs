@@ -23,5 +23,19 @@ namespace KindergartenProject.Windows
         {
             InitializeComponent();
         }
+
+        private void MenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            Close();
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            EmployeeСardWindow employeeСardWindow = new EmployeeСardWindow();
+            employeeСardWindow.Show();
+            Close();
+        }
     }
 }
