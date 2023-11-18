@@ -5,14 +5,71 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KindergartenProject.Windows"
         mc:Ignorable="d"
-        Title="ChildСardWindow" Height="450" Width="800">
+        Title="ChildСardWindow" Height="350" Width="330">
+    <Grid>
+        <Grid.ColumnDefinitions/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.1*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="1.2*"/>
 
-        <Grid>
-        <Button Height="30" HorizontalContentAlignment="Stretch">
-            <Grid HorizontalAlignment="Stretch">
-                <TextBlock Text="Sample Text" HorizontalAlignment="Stretch" TextAlignment="Left"></TextBlock>
-                <Canvas Width="40" Background="AliceBlue" HorizontalAlignment="Right"></Canvas>
-            </Grid>
+        </Grid.RowDefinitions>
+        <Button x:Name="SectionButton" Grid.Row="0" Height="30" Width="120" Content="К разделу" FontSize="15" VerticalAlignment="Top" HorizontalAlignment="Right" Background="CornflowerBlue" Foreground="WhiteSmoke">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0">
+            <Label Name="SurenameLabel" Content="Фамилия" FontSize="15" Margin="0,0,0,3"/>
+            <TextBox x:Name="SurenameTextBox" Width="150" Height="30" >
+                <TextBox.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,7">
+            <Label Name="NameLabel" Content="Имя" FontSize="15" Margin="43,0,0,0"/>
+            <TextBox x:Name="NameTextBox" Width="150" Height="30" Margin="0,0,0,0">
+                <TextBox.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0">
+            <Label Name="PatronymicLabel" Content="Отчество" FontSize="15" Margin="9,0,0,0"/>
+            <TextBox x:Name="PatronymicTextBox" Width="150" Height="30" Margin="0,0,0,0">
+                <TextBox.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,7">
+            <Label Name="BirthdayLabel" Content="Дата рождения" FontSize="15" Margin="0,0,0,0"/>
+            <TextBox x:Name="BirthdayTextBox" Width="150" Height="30" Margin="0,0,33,0">
+                <TextBox.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+        </StackPanel>
+        <Button x:Name="SaveButton" Grid.Row="5" Height="30" Width="120" Content="Сохранить" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Background="CornflowerBlue" Foreground="WhiteSmoke" Margin="65,0,0,0">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
         </Button>
     </Grid>
 </Window>

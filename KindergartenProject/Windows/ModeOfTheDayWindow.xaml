@@ -1,0 +1,37 @@
+﻿<Window x:Class="KindergartenProject.Windows.ModeOfTheDayWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KindergartenProject.Windows"
+        mc:Ignorable="d"
+        Title="ModeOfTheDayWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.13*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="LogoutButton" Grid.Row="0" Grid.Column="2" Height="40" Width="120" Content="Выйти" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Right" Background="CornflowerBlue" Foreground="WhiteSmoke">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+            <Label Name="GroupLabel" Content="Группа" Margin="35,0,0,0" />
+            <ComboBox x:Name="GroupComboBox" Width="127"/>
+        </StackPanel>
+        <DataGrid x:Name="ModeOfTheDayDataGrid" AutoGenerateColumns="False" Width="573" Height="347" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Занятие" />
+                <DataGridTextColumn Header="Время начала" />
+                <DataGridTextColumn Header="Время окончания" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

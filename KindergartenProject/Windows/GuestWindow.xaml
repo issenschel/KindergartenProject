@@ -1,11 +1,11 @@
-﻿<Window x:Class="KindergartenProject.MainWindow"
+﻿<Window x:Class="KindergartenProject.Windows.GuestWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:KindergartenProject"
+        xmlns:local="clr-namespace:KindergartenProject.Windows"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="600">
+        Title="GuestWindow" Height="350" Width="600">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -16,7 +16,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="2*"/>
-            <RowDefinition Height="2*"/>
+
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Grid.ColumnSpan="2" HorizontalAlignment="Left">
             <Image Name="LogoImage" Source="1b10b958-0f0b-4b08-a0d5-f47664ae42f4.jpg" Height="Auto" Width="Auto"/>
@@ -24,46 +24,31 @@
         </StackPanel>
         <Button x:Name="LogoutButton" Grid.Row="0" Grid.Column="2" Height="40" Width="120" Content="Выйти" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Right" Background="CornflowerBlue" Foreground="WhiteSmoke">
             <Button.Resources>
-                <Style TargetType="Border"> 
+                <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
             </Button.Resources>
         </Button>
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Vertical" VerticalAlignment="Center">
             <StackPanel >
-                <TextBlock x:Name="UserTextBlock" Text="Пользователь" FontSize="20" Foreground="CornflowerBlue"/>
                 <TextBlock x:Name="RoleTextBlock" Text="Роль"  FontSize="20" Foreground="CornflowerBlue"/>
             </StackPanel>
         </StackPanel>
-        <Button x:Name="KidsButton" Grid.Row="2" Grid.Column="0" Height="60" Width="170" Content="Дети" FontSize="25" Background="CornflowerBlue" Foreground="WhiteSmoke" HorizontalAlignment="Center">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="5"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
-        <Button x:Name="EmployeeButton" Grid.Row="2" Grid.Column="1" Height="60" Width="170" Content="Сотрудники" FontSize="25" Background="CornflowerBlue" Foreground="WhiteSmoke" HorizontalAlignment="Center">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="5"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
+        <Button x:Name="GroupsButton" Grid.Row="2" Grid.Column="0" Height="60" Width="170" Content="Группы" FontSize="25" Background="CornflowerBlue" Foreground="WhiteSmoke" HorizontalAlignment="Center">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="MealScheduleButton" Grid.Row="2" Grid.Column="1" Height="60" Width="170" Content="Питание" FontSize="25" Background="CornflowerBlue" Foreground="WhiteSmoke" HorizontalAlignment="Center">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
         <Button  x:Name="ModeOfTheDayButton" Grid.Row="2" Grid.Column="2" Height="60" Width="170" Content="Расписание" FontSize="25" Background="CornflowerBlue" Foreground="WhiteSmoke" HorizontalAlignment="Center">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="5"/>
-                </Style>
-            </Button.Resources>
-        </Button>
-        <Button x:Name="GroupButton" Grid.Row="4" Grid.Column="0" Height="60" Width="170" Content="Группы" FontSize="25" Background="CornflowerBlue" Foreground="WhiteSmoke" HorizontalAlignment="Center">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="5"/>
-                </Style>
-            </Button.Resources>
-        </Button>
-        <Button x:Name="MealScheduleButton" Grid.Row="4" Grid.Column="3" Height="60" Width="170" Content="Питание" FontSize="25" HorizontalAlignment="Center" Background="CornflowerBlue" Foreground="WhiteSmoke" >
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>

@@ -5,8 +5,104 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KindergartenProject.Windows"
         mc:Ignorable="d"
-        Title="EmployeeСardWindow" Height="450" Width="800">
+        Title="EmployeeСardWindow" Height="400" Width="330">
     <Grid>
-        
+        <Grid.ColumnDefinitions/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.1*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="1.2*"/>
+
+        </Grid.RowDefinitions>
+        <Button x:Name="SectionButton" Grid.Row="0" Height="30" Width="120" Content="К разделу" FontSize="15" VerticalAlignment="Top" HorizontalAlignment="Right" Background="CornflowerBlue" Foreground="WhiteSmoke">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0">
+            <Label Name="SurenameLabel" Content="Фамилия" FontSize="15" Margin="0,0,0,3"/>
+            <TextBox x:Name="SurenameTextBox" Width="150" Height="30" >
+                <TextBox.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0">
+            <Label Name="NameLabel" Content="Имя" FontSize="15" Margin="43,0,0,0"/>
+            <TextBox x:Name="NameTextBox" Width="150" Height="30" Margin="0,0,0,0">
+                <TextBox.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0">
+            <Label Name="PatronymicLabel" Content="Отчество" FontSize="15" Margin="9,0,0,0"/>
+            <TextBox x:Name="PatronymicTextBox" Width="150" Height="30" Margin="0,0,0,0">
+                <TextBox.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0">
+            <Label Name="BirthdayLabel" Content="Дата рождения" FontSize="15" Margin="0,0,0,0"/>
+            <TextBox x:Name="BirthdayTextBox" Width="150" Height="30" Margin="0,0,33,0">
+                <TextBox.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="5" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0">
+            <Label Name="ExperienceLabel" Content="Опыт работы" FontSize="15" Margin="0,0,0,0"/>
+            <TextBox x:Name="ExperienceTextBox" Width="150" Height="30" Margin="0,0,20,0">
+                <TextBox.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="6" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0">
+            <Label Name="PostLabel" Content="Пост" FontSize="15" Margin="40,0,0,0"/>
+            <TextBox x:Name="PostTextBox" Width="150" Height="30" Margin="0,0,0,0">
+                <TextBox.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="7" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0">
+            <Label Name="LoginLabel" Content="Логин" FontSize="15" Margin="30,0,0,0"/>
+            <TextBox x:Name="LoginTextBox" Width="150" Height="30" Margin="0,0,0,0">
+                <TextBox.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+        </StackPanel>
+        <Button x:Name="SaveButton" Grid.Row="8" Height="30" Width="120" Content="Сохранить" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Background="CornflowerBlue" Foreground="WhiteSmoke" Margin="65,0,0,0">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
     </Grid>
 </Window>
