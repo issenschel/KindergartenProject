@@ -59,6 +59,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\ChildСardWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\EmployeesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\EmployeeСardWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\KidsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -69,6 +85,18 @@
     </Compile>
     <Compile Include="Windows\AuthWindow.xaml.cs">
       <DependentUpon>AuthWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ChildСardWindow.xaml.cs">
+      <DependentUpon>ChildСardWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\EmployeesWindow.xaml.cs">
+      <DependentUpon>EmployeesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\EmployeeСardWindow.xaml.cs">
+      <DependentUpon>EmployeeСardWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\KidsWindow.xaml.cs">
+      <DependentUpon>KidsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -100,6 +128,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\1b10b958-0f0b-4b08-a0d5-f47664ae42f4.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

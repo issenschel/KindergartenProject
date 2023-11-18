@@ -6,107 +6,69 @@
         xmlns:local="clr-namespace:KindergartenProject"
         mc:Ignorable="d"
         Title="MainWindow" Height="400" Width="600">
-
     <Grid>
-        <StackPanel x:Name="stackBlah" Orientation="Vertical">
-            <StackPanel Orientation="Horizontal">
-                <Grid Width="{Binding ActualWidth, ElementName=stackBlah}" >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-
-                    <StackPanel Grid.Column="0" HorizontalAlignment="Left" Orientation="Horizontal" >
-                        <Label Content="Детский сад &quot;Тюрьма №6&quot;"/>
-                    </StackPanel>
-                    <StackPanel Grid.Column="1" HorizontalAlignment="Right">
-                        <Button Content="Выйти" Background="DodgerBlue" Foreground="White" Height="40" Width="100" FontSize="15">
-                            <Button.Resources>
-                                <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="5"/>
-                                </Style>
-                            </Button.Resources>
-                        </Button>
-                    </StackPanel>
-                </Grid>
-            </StackPanel>
-            <StackPanel>
-                <Label Content="Пользователь"/>
-            </StackPanel>
-            <StackPanel>
-                <Label Content="Роль"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Grid Width="{Binding ActualWidth, ElementName=stackBlah}" >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <StackPanel Grid.Column="0" HorizontalAlignment="Left" Orientation="Horizontal" Margin="0,25,0,25">
-                        <Button Content="Дети" Background="DodgerBlue" Foreground="White" Height="60" Width="150" FontSize="25">
-                            <Button.Resources>
-                                <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="5"/>
-                                </Style>
-                            </Button.Resources>
-                        </Button>
-                    </StackPanel>
-                    <StackPanel Grid.Column="0" HorizontalAlignment="Center" Orientation="Horizontal" >
-                        <Button Content="Сотрудники" Background="DodgerBlue" Foreground="White" Height="60" Width="150" FontSize="25">
-                            <Button.Resources>
-                                <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="5"/>
-                                </Style>
-                            </Button.Resources>
-                        </Button>
-                    </StackPanel>
-                    <StackPanel Grid.Column="0" HorizontalAlignment="Right" Orientation="Horizontal" >
-                        <Button Content="Питание" Background="DodgerBlue" Foreground="White" Height="60" Width="150" FontSize="25">
-                            <Button.Resources>
-                                <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="5"/>
-                                </Style>
-                            </Button.Resources>
-                        </Button>
-                    </StackPanel>
-                </Grid>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Grid Width="{Binding ActualWidth, ElementName=stackBlah}" >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <StackPanel Grid.Column="0" HorizontalAlignment="Left" Orientation="Horizontal" >
-                        <Button Content="Группы" Background="DodgerBlue" Foreground="White" Height="60" Width="150" FontSize="25">
-                            <Button.Resources>
-                                <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="5"/>
-                                </Style>
-                            </Button.Resources>
-                        </Button>
-                    </StackPanel>
-                    <StackPanel Grid.Column="0" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,50,0,50">
-                        <Button Content="Занятия" Background="DodgerBlue" Foreground="White" Height="60" Width="150" FontSize="25">
-                            <Button.Resources>
-                                <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="5"/>
-                                </Style>
-                            </Button.Resources>
-                        </Button>
-                    </StackPanel>
-                </Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Grid.ColumnSpan="2" HorizontalAlignment="Left">
+            <Image Source="1b10b958-0f0b-4b08-a0d5-f47664ae42f4.jpg" Height="Auto" Width="Auto"/>
+            <Label Content="Детский сад &quot;Тюрьма №6&quot;"  FontSize="20" Foreground="CornflowerBlue"/>
+        </StackPanel>
+        <Button Grid.Row="0" Grid.Column="2" Height="40" Width="120" Content="Выйти" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Right" Background="CornflowerBlue" Foreground="WhiteSmoke">
+            <Button.Resources>
+                <Style TargetType="Border"> 
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Vertical" VerticalAlignment="Center">
+            <StackPanel >
+                <TextBlock Text="Пользователь" FontSize="20" Foreground="CornflowerBlue"/>
+                <TextBlock Text="Роль"  FontSize="20" Foreground="CornflowerBlue"/>
             </StackPanel>
         </StackPanel>
-        
+        <Button Grid.Row="2" Grid.Column="0" Height="60" Width="170" Content="Дети" FontSize="25" Background="CornflowerBlue" Foreground="WhiteSmoke" HorizontalAlignment="Center">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+        <Button Grid.Row="2" Grid.Column="1" Height="60" Width="170" Content="Сотрудники" FontSize="25" Background="CornflowerBlue" Foreground="WhiteSmoke" HorizontalAlignment="Center">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+        <Button  Grid.Row="2" Grid.Column="2" Height="60" Width="170" Content="Расписание" FontSize="25" Background="CornflowerBlue" Foreground="WhiteSmoke" HorizontalAlignment="Center">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button Grid.Row="4" Grid.Column="0" Height="60" Width="170" Content="Группы" FontSize="25" Background="CornflowerBlue" Foreground="WhiteSmoke" HorizontalAlignment="Center">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button Grid.Row="4" Grid.Column="3" Height="60" Width="170" Content="Питание" FontSize="25" HorizontalAlignment="Center" Background="CornflowerBlue" Foreground="WhiteSmoke" >
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
     </Grid>
 </Window>
