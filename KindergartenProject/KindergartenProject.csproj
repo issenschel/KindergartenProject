@@ -66,14 +66,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Windows\GroupCardWindow.xaml.cs">
+      <DependentUpon>GroupCardWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\GroupsWindow.xaml.cs">
       <DependentUpon>GroupsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\GuestWindow.xaml.cs">
       <DependentUpon>GuestWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\MealScheduleCardWindow.xaml.cs">
+      <DependentUpon>MealScheduleCardWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\MealScheduleWindow.xaml.cs">
       <DependentUpon>MealScheduleWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ModeOfTheDayCardWindow.xaml.cs">
+      <DependentUpon>ModeOfTheDayCardWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\ModeOfTheDayWindow.xaml.cs">
       <DependentUpon>ModeOfTheDayWindow.xaml</DependentUpon>
@@ -91,6 +100,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\EmployeeСardWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\GroupCardWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -133,7 +146,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Windows\MealScheduleCardWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\MealScheduleWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ModeOfTheDayCardWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

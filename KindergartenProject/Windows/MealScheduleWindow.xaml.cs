@@ -24,11 +24,33 @@ namespace KindergartenProject.Windows
             InitializeComponent();
         }
 
-        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             Close();
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            MealScheduleCardWindow mealScheduleCardWindow = new MealScheduleCardWindow();
+            mealScheduleCardWindow.Show();
+            Close();
+        }
+
+        private void UpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void UploadButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
