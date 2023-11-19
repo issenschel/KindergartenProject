@@ -17,7 +17,7 @@
             <RowDefinition Height="0.13*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="LogoutButton" Grid.Row="0" Grid.Column="2" Height="40" Width="120" Content="Выйти" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Right" Background="CornflowerBlue" Foreground="WhiteSmoke" Click="LogoutButton_Click">
+        <Button x:Name="LogoutButton" Grid.Row="0" Grid.Column="2" Height="40" Width="120" Content="Выйти" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Right" Background="#FF2C78FF" Foreground="WhiteSmoke" Click="LogoutButton_Click" FontFamily="Bahnschrift">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
@@ -25,10 +25,10 @@
             </Button.Resources>
         </Button>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-            <Label Name="GroupLabel" Content="Группа" Margin="35,0,0,0" />
-            <ComboBox x:Name="GroupComboBox" Width="127"/>
+            <Label Name="GroupLabel" Content="Группа" Margin="35,0,0,0" FontFamily="Bahnschrift" />
+            <ComboBox x:Name="GroupComboBox" Width="127" FontFamily="Bahnschrift" BorderBrush="#FF2C78FF"/>
         </StackPanel>
-        <DataGrid x:Name="ModeOfTheDayDataGrid" AutoGenerateColumns="False" Width="573" Height="347" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Grid.Row="1">
+        <DataGrid x:Name="ModeOfTheDayDataGrid" AutoGenerateColumns="False" Width="573" Height="347" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Grid.Row="1" FontFamily="Bahnschrift" BorderBrush="#FF2C78FF">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Занятие" />
                 <DataGridTextColumn Header="Время начала" />

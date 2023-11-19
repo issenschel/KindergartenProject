@@ -16,7 +16,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="GuestButton" Grid.Row="0" Height="30" Width="120" Content="Войти как гость" FontSize="15" VerticalAlignment="Top" HorizontalAlignment="Right" Background="CornflowerBlue" Foreground="WhiteSmoke" Click="GuestButton_Click">
+        <Button x:Name="GuestButton" Grid.Row="0" Height="30" Width="120" Content="Войти как гость" FontSize="15" VerticalAlignment="Top" HorizontalAlignment="Right" Background="#FF2C78FF" Foreground="WhiteSmoke" Click="GuestButton_Click" FontFamily="Bahnschrift">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
@@ -24,8 +24,8 @@
             </Button.Resources>
         </Button>
         <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Label Name="LoginLabel" Content="Логин" FontSize="15" Margin="0,0,0,3"/>
-            <TextBox x:Name="LoginTextBox" Width="150" Height="30" Margin="0,0,0,0">
+            <Label Name="LoginLabel" Content="Логин" FontSize="15" Margin="0,0,0,0" FontFamily="Bahnschrift"/>
+            <TextBox x:Name="LoginTextBox" Width="150" Height="30" Margin="0,0,0,0" VerticalContentAlignment="Center" FontSize="13">
                 <TextBox.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>
@@ -34,8 +34,8 @@
             </TextBox>
         </StackPanel>
         <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,0,10,0">
-            <Label Name="PasswordLabel" Content="Пароль" FontSize="15" Margin="0,0,0,3"/>
-            <TextBox x:Name="PasswordTextBox" Width="150" Height="30" Margin="0,0,0,0">
+            <Label Name="PasswordLabel" Content="Пароль" FontSize="15" Margin="0,0,0,0" FontFamily="Bahnschrift"/>
+            <TextBox x:Name="PasswordTextBox" Width="150" Height="30" Margin="0,0,0,0" VerticalContentAlignment="Center" FontSize="13">
                 <TextBox.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>
@@ -43,7 +43,7 @@
                 </TextBox.Resources>
             </TextBox>
         </StackPanel>
-        <Button  x:Name="AuthButton" Grid.Row="4" Height="30" Width="120" Content="Войти" FontSize="15" VerticalAlignment="Top" HorizontalAlignment="Center" Background="CornflowerBlue" Foreground="WhiteSmoke" Margin="50,0,0,0" Click="AuthButton_Click">
+        <Button  x:Name="AuthButton" Grid.Row="4" Height="30" Width="120" Content="Войти" FontSize="15" VerticalAlignment="Top" HorizontalAlignment="Center" Background="#FF2C78FF" Foreground="WhiteSmoke" Margin="50,0,0,0" Click="AuthButton_Click" FontFamily="Bahnschrift">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>

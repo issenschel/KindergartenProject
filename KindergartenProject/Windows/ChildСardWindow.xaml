@@ -19,7 +19,7 @@
             <RowDefinition Height="1.2*"/>
 
         </Grid.RowDefinitions>
-        <Button x:Name="SectionButton" Grid.Row="0" Height="30" Width="120" Content="К разделу" FontSize="15" VerticalAlignment="Top" HorizontalAlignment="Right" Background="CornflowerBlue" Foreground="WhiteSmoke" Click="SectionButton_Click">
+        <Button x:Name="SectionButton" Grid.Row="0" Height="30" Width="120" Content="К разделу" FontSize="15" VerticalAlignment="Top" HorizontalAlignment="Right" Background="#FF2C78FF" Foreground="WhiteSmoke" Click="SectionButton_Click" FontFamily="Bahnschrift">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
@@ -27,8 +27,8 @@
             </Button.Resources>
         </Button>
         <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0">
-            <Label Name="SurenameLabel" Content="Фамилия" FontSize="15" Margin="0,0,0,3"/>
-            <TextBox x:Name="SurenameTextBox" Width="150" Height="30" >
+            <Label Name="SurenameLabel" Content="Фамилия" FontSize="15" Margin="0,0,0,0" FontFamily="Bahnschrift"/>
+            <TextBox x:Name="SurenameTextBox" Width="150" Height="30" VerticalContentAlignment="Center" FontSize="13" >
                 <TextBox.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>
@@ -37,8 +37,8 @@
             </TextBox>
         </StackPanel>
         <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,7">
-            <Label Name="NameLabel" Content="Имя" FontSize="15" Margin="43,0,0,0"/>
-            <TextBox x:Name="NameTextBox" Width="150" Height="30" Margin="0,0,0,0">
+            <Label Name="NameLabel" Content="Имя" FontSize="15" Margin="43,0,0,0" FontFamily="Bahnschrift"/>
+            <TextBox x:Name="NameTextBox" Width="150" Height="30" Margin="0,0,0,0" VerticalContentAlignment="Center" FontSize="13">
                 <TextBox.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>
@@ -47,8 +47,8 @@
             </TextBox>
         </StackPanel>
         <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0">
-            <Label Name="PatronymicLabel" Content="Отчество" FontSize="15" Margin="9,0,0,0"/>
-            <TextBox x:Name="PatronymicTextBox" Width="150" Height="30" Margin="0,0,0,0">
+            <Label Name="PatronymicLabel" Content="Отчество" FontSize="15" Margin="9,0,0,0" FontFamily="Bahnschrift"/>
+            <TextBox x:Name="PatronymicTextBox" Width="150" Height="30" Margin="0,0,0,0" VerticalContentAlignment="Center" FontSize="13">
                 <TextBox.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>
@@ -57,8 +57,8 @@
             </TextBox>
         </StackPanel>
         <StackPanel Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,7">
-            <Label Name="BirthdayLabel" Content="Дата рождения" FontSize="15" Margin="0,0,0,0"/>
-            <TextBox x:Name="BirthdayTextBox" Width="150" Height="30" Margin="0,0,33,0">
+            <Label Name="BirthdayLabel" Content="Дата рождения" FontSize="15" Margin="0,0,0,0" FontFamily="Bahnschrift"/>
+            <TextBox x:Name="BirthdayTextBox" Width="150" Height="30" Margin="0,0,33,0" VerticalContentAlignment="Center" FontSize="13">
                 <TextBox.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>
@@ -66,7 +66,7 @@
                 </TextBox.Resources>
             </TextBox>
         </StackPanel>
-        <Button x:Name="SaveButton" Grid.Row="5" Height="30" Width="120" Content="Сохранить" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Background="CornflowerBlue" Foreground="WhiteSmoke" Margin="65,0,0,0">
+        <Button x:Name="SaveButton" Grid.Row="5" Height="30" Width="120" Content="Сохранить" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#FF2C78FF" Foreground="WhiteSmoke" Margin="65,0,0,0" FontFamily="Bahnschrift">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>

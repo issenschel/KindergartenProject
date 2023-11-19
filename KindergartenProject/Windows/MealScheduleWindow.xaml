@@ -17,7 +17,7 @@
             <RowDefinition Height="0.13*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="LogoutButton" Grid.Row="0" Grid.Column="2" Height="40" Width="120" Content="Выйти" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Right" Background="CornflowerBlue" Foreground="WhiteSmoke" Click="LogoutButton_Click">
+        <Button x:Name="LogoutButton" Grid.Row="0" Grid.Column="2" Height="40" Width="120" Content="Выйти" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Right" Background="#FF2C78FF" Foreground="WhiteSmoke" Click="LogoutButton_Click" FontFamily="Bahnschrift">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
@@ -25,10 +25,10 @@
             </Button.Resources>
         </Button>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-            <Label Name="DayOfTheWeekLabel" Content="День недели" Margin="30,0,0,0" />
-            <ComboBox x:Name="DayOfTheWeekComboBox" Width="127"/>
+            <Label Name="DayOfTheWeekLabel" Content="День недели" Margin="30,0,0,0" FontFamily="Bahnschrift" />
+            <ComboBox x:Name="DayOfTheWeekComboBox" Width="127" BorderBrush="#FF2C78FF" FontFamily="Bahnschrift"/>
         </StackPanel>
-        <DataGrid x:Name="MealScheduleDataGrid" AutoGenerateColumns="False" Width="572" Height="347" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+        <DataGrid x:Name="MealScheduleDataGrid" AutoGenerateColumns="False" Width="572" Height="347" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" BorderBrush="#FF2C78FF" FontFamily="Bahnschrift">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Завтрак" />
                 <DataGridTextColumn Header="Полдник" />
