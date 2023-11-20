@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:KindergartenProject.Windows"
         mc:Ignorable="d"
         Title="Карточка питания" Height="500" Width="300"
+        MinHeight="500" MinWidth="300"
         WindowStartupLocation="CenterScreen">
     <Viewbox Stretch="Fill">
         <Grid>

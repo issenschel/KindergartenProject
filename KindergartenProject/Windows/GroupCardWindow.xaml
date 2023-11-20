@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:KindergartenProject.Windows"
         mc:Ignorable="d"
         Title="GroupCardWindow" Height="400" Width="460"
+        MinHeight="400" MinWidth="460"
         WindowStartupLocation="CenterScreen">
     <Viewbox Stretch="Fill">
         <Grid>
