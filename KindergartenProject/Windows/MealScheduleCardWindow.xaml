@@ -5,93 +5,88 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KindergartenProject.Windows"
         mc:Ignorable="d"
-        Title="MealScheduleCardWindow" Height="500" Width="300">
-    <Grid>
-        <Grid.ColumnDefinitions/>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1.1*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="1.2*"/>
+        Title="Карточка питания" Height="500" Width="300"
+        WindowStartupLocation="CenterScreen">
+    <Viewbox Stretch="Fill">
+        <Grid>
+            <Grid.ColumnDefinitions/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.1*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="1.2*"/>
 
-        </Grid.RowDefinitions>
-        <Button x:Name="SectionButton" Grid.Row="0" Height="30" Width="120" Content="К разделу" FontSize="15" VerticalAlignment="Top" HorizontalAlignment="Right" Background="#FF2C78FF" Foreground="WhiteSmoke" Click="SectionButton_Click" FontFamily="Bahnschrift">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="5"/>
-                </Style>
-            </Button.Resources>
-        </Button>
-        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,35,0">
-            <Label Name="DayofWeekLabel" Content="День недели" FontSize="15" Margin="0,0,0,0" FontFamily="Bahnschrift"/>
-            <TextBox x:Name="DayofWeekTextBox" Width="150" Height="30" VerticalContentAlignment="Center" FontSize="13" >
-                <TextBox.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="5"/>
-                    </Style>
-                </TextBox.Resources>
-            </TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,7">
-            <Label Name="BreakFastLabel" Content="Завтрак" FontSize="15" Margin="0,0,0,0" FontFamily="Bahnschrift"/>
-            <TextBox x:Name="BreakFastTextBox" Width="150" Height="30" Margin="0,0,0,0" VerticalContentAlignment="Center" FontSize="13">
-                <TextBox.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="5"/>
-                    </Style>
-                </TextBox.Resources>
-            </TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,0,0">
-            <Label Name="BrunchLabel" Content="Ланч" FontSize="15" Margin="9,0,0,0" FontFamily="Bahnschrift"/>
-            <TextBox x:Name="BrunchTextBox" Width="150" Height="30" Margin="0,0,0,0" VerticalContentAlignment="Center" FontSize="13">
-                <TextBox.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="5"/>
-                    </Style>
-                </TextBox.Resources>
-            </TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12,0,0,0">
-            <Label Name="LunchLabel" Content="Обед" FontSize="15" Margin="9,0,0,0" FontFamily="Bahnschrift"/>
-            <TextBox x:Name="LunchTextBox" Width="150" Height="30" Margin="0,0,0,0" VerticalContentAlignment="Center" FontSize="13">
-                <TextBox.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="5"/>
-                    </Style>
-                </TextBox.Resources>
-            </TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="5" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,12,0">
-            <Label Name="AfternoonSnackLabel" Content="Полдник" FontSize="15" Margin="9,0,0,0" FontFamily="Bahnschrift"/>
-            <TextBox x:Name="AfternoonSnackTextBox" Width="150" Height="30" Margin="0,0,0,0" VerticalContentAlignment="Center" FontSize="13">
-                <TextBox.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="5"/>
-                    </Style>
-                </TextBox.Resources>
-            </TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="6" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12,0,0,0">
-            <Label Name="DinnerLabel" Content="Ужин" FontSize="15" Margin="9,0,0,0" FontFamily="Bahnschrift"/>
-            <TextBox x:Name="DinnerTextBox" Width="150" Height="30" Margin="0,0,0,0" VerticalContentAlignment="Center" FontSize="13">
-                <TextBox.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="5"/>
-                    </Style>
-                </TextBox.Resources>
-            </TextBox>
-        </StackPanel>
-        <Button x:Name="SaveButton" Grid.Row="7" Height="30" Width="120" Content="Сохранить" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#FF2C78FF" Foreground="WhiteSmoke" Margin="65,0,0,0" FontFamily="Bahnschrift" Click="SaveButton_Click">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="5"/>
-                </Style>
-            </Button.Resources>
-        </Button>
-    </Grid>
+            </Grid.RowDefinitions>
+            <Button x:Name="SectionButton" Grid.Row="0" Height="30" Width="120" Content="К разделу" FontSize="15" VerticalAlignment="Top" HorizontalAlignment="Right" Background="#FF2C78FF" Foreground="WhiteSmoke" Click="SectionButton_Click" FontFamily="Bahnschrift"/>
+
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,35,5">
+                <Label Name="DayofWeekLabel" Content="День недели" FontSize="15" Margin="0,0,0,0" FontFamily="Bahnschrift"/>
+                <TextBox x:Name="DayofWeekTextBox" Width="150" Height="30" VerticalContentAlignment="Center" FontSize="13" >
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,0,5">
+                <Label Name="BreakFastLabel" Content="Завтрак" FontSize="15" Margin="0,0,0,0" FontFamily="Bahnschrift"/>
+                <TextBox x:Name="BreakFastTextBox" Width="150" Height="30" Margin="0,0,0,0" VerticalContentAlignment="Center" FontSize="13">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,5,0,5">
+                <Label Name="BrunchLabel" Content="Ланч" FontSize="15" Margin="9,0,0,0" FontFamily="Bahnschrift"/>
+                <TextBox x:Name="BrunchTextBox" Width="150" Height="30" Margin="0,0,0,0" VerticalContentAlignment="Center" FontSize="13">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12,5,0,5">
+                <Label Name="LunchLabel" Content="Обед" FontSize="15" Margin="9,0,0,0" FontFamily="Bahnschrift"/>
+                <TextBox x:Name="LunchTextBox" Width="150" Height="30" Margin="0,0,0,0" VerticalContentAlignment="Center" FontSize="13">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="5" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,12,5">
+                <Label Name="AfternoonSnackLabel" Content="Полдник" FontSize="15" Margin="9,0,0,0" FontFamily="Bahnschrift"/>
+                <TextBox x:Name="AfternoonSnackTextBox" Width="150" Height="30" Margin="0,0,0,0" VerticalContentAlignment="Center" FontSize="13">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="6" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="12,5,0,5">
+                <Label Name="DinnerLabel" Content="Ужин" FontSize="15" Margin="9,0,0,0" FontFamily="Bahnschrift"/>
+                <TextBox x:Name="DinnerTextBox" Width="150" Height="30" Margin="0,0,0,0" VerticalContentAlignment="Center" FontSize="13">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+            </StackPanel>
+            <Button x:Name="SaveButton" Grid.Row="7" Height="30" Width="285" Content="Сохранить" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#FF2C78FF" Foreground="WhiteSmoke" FontFamily="Bahnschrift" Click="SaveButton_Click"/>
+
+
+        </Grid>
+    </Viewbox>
 </Window>
