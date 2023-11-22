@@ -17,31 +17,16 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Button x:Name="GuestButton" Grid.Row="0" Margin="0,0,0,5" Width="70" Content="Войти как гость" FontSize="8" VerticalAlignment="Top" HorizontalAlignment="Right" Background="#FF2C78FF" Foreground="WhiteSmoke" Click="GuestButton_Click" FontFamily="Bahnschrift"/>
-
-
+            <Button x:Name="GuestButton" Grid.Row="0" Margin="0,0,0,0" Width="Auto" Height="Auto" Content="Войти как гость" FontSize="7" VerticalAlignment="Top" HorizontalAlignment="Right" Background="#FF2C78FF" Foreground="Black" Click="GuestButton_Click" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignToolButton}"/>
             <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,10">
-                <Label Name="LoginLabel" Content="Логин" FontSize="10" Margin="0,0,0,0" FontFamily="Bahnschrift"/>
-                <TextBox x:Name="LoginTextBox" Width="110" Height="15"  Margin="0,0,0,0" VerticalContentAlignment="Center" FontSize="8">
-                    <TextBox.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="5"/>
-                        </Style>
-                    </TextBox.Resources>
-                </TextBox>
+                <TextBlock Name="LoginTextBlock" Text="Логин" FontSize="10" Margin="0,5,5,0" FontFamily="Bahnschrift"/>
+                <TextBox x:Name="LoginTextBox" Width="110" Height="Auto"  Margin="0,0,0,0"  FontFamily="Bahnschrift" VerticalContentAlignment="Bottom" FontSize="9"/>
             </StackPanel>
-            <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,0,4,15">
-                <Label Name="PasswordLabel" Content="Пароль" FontSize="10" Margin="0,0,0,0" FontFamily="Bahnschrift"/>
-                <TextBox x:Name="PasswordTextBox" Width="110" Height="15"  Margin="0,0,0,0" VerticalContentAlignment="Center" FontSize="8">
-                    <TextBox.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="5"/>
-                        </Style>
-                    </TextBox.Resources>
-                </TextBox>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,0,4,10">
+                <TextBlock Name="PasswordTextBlock" Text="Пароль" FontSize="10" Margin="0,5,5,0" FontFamily="Bahnschrift"/>
+                <PasswordBox x:Name="PasswordTextBox" Width="110" Height="Auto"  Margin="0,0,0,0" FontFamily="Bahnschrift" FontSize="9"/>
             </StackPanel>
-            <Button  x:Name="AuthButton" Grid.Row="4"  Width="158" Height="18" Content="Войти" FontSize="8" VerticalAlignment="Top" HorizontalAlignment="Center" Background="#FF2C78FF" Foreground="WhiteSmoke"  Click="AuthButton_Click" FontFamily="Bahnschrift"/>
-
+            <Button  x:Name="AuthButton" Grid.Row="4"  Width="158" Height="18" Content="Войти" FontSize="8" VerticalAlignment="Top" HorizontalAlignment="Center" Background="#FF2C78FF" Foreground="Black"  Click="AuthButton_Click" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignToolButton}"/>
         </Grid>
     </Viewbox>
 </Window>

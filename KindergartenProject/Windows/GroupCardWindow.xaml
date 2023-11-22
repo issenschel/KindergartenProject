@@ -16,47 +16,19 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
-
                 <RowDefinition Height="1.2*"/>
-
             </Grid.RowDefinitions>
-            <Button x:Name="SectionButton" Grid.Row="0" Height="20" Width="100" Content="К разделу" FontSize="15" VerticalAlignment="Top" HorizontalAlignment="Right" Background="#FF2C78FF" Foreground="WhiteSmoke" Click="SectionButton_Click" FontFamily="Bahnschrift"/>
-
-
-            <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="15,0,0,0">
-                <Label Name="GroupLabel" Content="Группа" FontSize="12" Margin="0,0,0,0" FontFamily="Bahnschrift"/>
-                <TextBox x:Name="GroupTextBox" Width="150" Height="17" VerticalContentAlignment="Center" FontSize="13" >
-                    <TextBox.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="5"/>
-                        </Style>
-                    </TextBox.Resources>
-                </TextBox>
+            <Button x:Name="SectionButton" Grid.Row="0" Height="Auto" Width="100" Margin="0,0,0,5" Content="К разделу" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Right" Background="#FF2C78FF" Foreground="Black" Click="SectionButton_Click" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignToolButton}"/>
+            <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0">
+                <TextBox x:Name="GroupTextBox" Width="200" Height="Auto"  VerticalContentAlignment="Center" FontSize="11"  FontFamily="Bahnschrift" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Text="Группа"/>
             </StackPanel>
-            <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,45,0">
-                <Label Name="PlacesLabel" Content="Свободные места" FontSize="12" Margin="0,0,0,0" FontFamily="Bahnschrift"/>
-                <TextBox x:Name="PlacesTextBox" Width="150" Height="17" Margin="0,0,0,0" VerticalContentAlignment="Center" FontSize="13">
-                    <TextBox.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="5"/>
-                        </Style>
-                    </TextBox.Resources>
-                </TextBox>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0">
+                <TextBox x:Name="PlacesTextBox" Width="200" Height="Auto" Margin="0,0,0,0" VerticalContentAlignment="Center" FontSize="11" FontFamily="Bahnschrift" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Text="Количество свободных мест"/>
             </StackPanel>
-            <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,30,0">
-                <Label Name="EmployeeLabel" Content="Воспитатель" FontSize="12" Margin="9,0,0,0" FontFamily="Bahnschrift"/>
-                <TextBox x:Name="EmployeeTextBox" Width="150" Height="17" Margin="0,0,0,0" VerticalContentAlignment="Center" FontSize="13">
-                    <TextBox.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="5"/>
-                        </Style>
-                    </TextBox.Resources>
-                </TextBox>
+            <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0">
+                <TextBox x:Name="EmployeeTextBox" Width="200" Height="Auto" Margin="0,0,0,0" VerticalContentAlignment="Center" FontSize="11" FontFamily="Bahnschrift" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Text="Воспитатель"/>
             </StackPanel>
-
-            <Button x:Name="SaveButton" Grid.Row="5" Height="20" Width="372" Content="Сохранить" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#FF2C78FF" Foreground="WhiteSmoke" Margin="0,0,0,0" FontFamily="Bahnschrift"/>
-
-
+            <Button x:Name="SaveButton" Grid.Row="5" Height="Auto" Width="372" Content="Сохранить" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#FF2C78FF" Foreground="Black" Margin="0,5,0,0" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignToolButton}"/>
         </Grid>
     </Viewbox>
 </Window>

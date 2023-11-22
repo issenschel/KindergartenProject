@@ -5,9 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KindergartenProject.Windows"
         mc:Ignorable="d"
-        Title="Расписание питания" Height="450" Width="800"
+        Title="Расписание питания" Height="500" Width="800"
         MinHeight="450" MinWidth="800"
         WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="079955cf50f8b05720f7ff9160a08034.png"/>
+    </Window.Background>
     <Viewbox Stretch="Fill">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -18,42 +21,16 @@
                 <RowDefinition Height="0.13*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <Button x:Name="MenuButton" Grid.Row="0" Grid.Column="2" Height="40" Width="120" Content="В меню" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Right" Background="#FF2C78FF" Foreground="WhiteSmoke" Click="MenuButton_Click" FontFamily="Bahnschrift"/>
-
-
+            <Button x:Name="MenuButton" Grid.Row="0" Grid.Column="2" Height="40" Width="120" Content="В меню" FontSize="25" VerticalAlignment="Top" HorizontalAlignment="Right" Background="#FF2C78FF" Foreground="Purple" Click="MenuButton_Click" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignToolButton}"/>
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-                <Label Name="DayOfTheWeekLabel" Content="День недели" Margin="30,0,0,0" FontFamily="Bahnschrift" />
-                <ComboBox x:Name="DayOfTheWeekComboBox" Width="127" BorderBrush="#FF2C78FF" FontFamily="Bahnschrift"/>
+                <TextBlock Name="DayOfTheWeekLabel" Text="День недели" Margin="30,0,0,0" FontSize="15" FontFamily="Bahnschrift" />
+                <ComboBox x:Name="DayOfTheWeekComboBox" Width="127" BorderBrush="Black" Foreground="Black" Margin="10,0,0,0" FontFamily="Bahnschrift"/>
             </StackPanel>
             <StackPanel Grid.Row="2" Grid.Column="2" Margin="0,10,0,0" >
-                <Button x:Name="AddButton" Grid.Row="1" Grid.Column="1" Height="50" Width="170" Content="Добавить" FontSize="25"  HorizontalAlignment="Left" Background="#FF2C78FF" Foreground="WhiteSmoke" Margin="0,0,0,10" Click="AddButton_Click" FontFamily="Bahnschrift">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="5"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
-                <Button x:Name="UpdateButton" Grid.Row="1" Grid.Column="1" Height="50" Width="170" Content="Обновить" FontSize="25"  HorizontalAlignment="Left" Background="#FF2C78FF" Foreground="WhiteSmoke" Margin="0,0,0,10" FontFamily="Bahnschrift" Click="UpdateButton_Click">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="5"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
-                <Button  x:Name="DeleteButton" Grid.Row="1" Grid.Column="1" Height="50" Width="170" Content="Удалить" FontSize="25" Background="#FF2C78FF"  HorizontalAlignment="Left"  Foreground="WhiteSmoke" Margin="0,0,0,10" FontFamily="Bahnschrift" Click="DeleteButton_Click">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="5"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
-                <Button x:Name="UploadButton" Grid.Row="1" Grid.Column="1" Height="50" Width="170" Content="Выгрузить" FontSize="25" Background="#FF2C78FF"  HorizontalAlignment="Left" Foreground="WhiteSmoke" FontFamily="Bahnschrift" Click="UploadButton_Click" >
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="5"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
+                <Button x:Name="AddButton" Grid.Row="1" Grid.Column="1" Height="50" Width="170" Content="Добавить" FontSize="30"  HorizontalAlignment="Left" Background="#FF2C78FF" Foreground="DarkBlue" Margin="0,0,0,10" Click="AddButton_Click" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignToolButton}"/>
+                <Button x:Name="UpdateButton" Grid.Row="1" Grid.Column="1" Height="50" Width="170" Content="Обновить" FontSize="30"  HorizontalAlignment="Left" Background="#FF2C78FF" Foreground="Green" Margin="0,0,0,10" FontFamily="Bahnschrift" Click="UpdateButton_Click" Style="{DynamicResource MaterialDesignToolButton}"/>
+                <Button  x:Name="DeleteButton" Grid.Row="1" Grid.Column="1" Height="50" Width="170" Content="Удалить" FontSize="30" Background="#FF2C78FF"  HorizontalAlignment="Left"  Foreground="Firebrick" Margin="0,0,0,10" FontFamily="Bahnschrift" Click="DeleteButton_Click" Style="{DynamicResource MaterialDesignToolButton}"/>
+                <Button x:Name="UploadButton" Grid.Row="1" Grid.Column="1" Height="50" Width="170" Content="Выгрузить" FontSize="30" Background="#FF2C78FF"  HorizontalAlignment="Left" Foreground="Yellow" FontFamily="Bahnschrift" Click="UploadButton_Click" Style="{DynamicResource MaterialDesignToolButton}" />
             </StackPanel>
             <DataGrid x:Name="MealScheduleDataGrid" AutoGenerateColumns="False" Width="572" Height="347" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,5,10,0" BorderBrush="#FF2C78FF" FontFamily="Bahnschrift">
                 <DataGrid.Columns>

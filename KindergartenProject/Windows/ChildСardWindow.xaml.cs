@@ -30,5 +30,53 @@ namespace KindergartenProject.Windows
             kidsWindow.Show();
             Close();
         }
+
+        //Очистка текста при получении фокуса
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            List<string> strings = new List<string>() { "Фамилия", "Имя", "Отчество", "Дата рождения" };
+            TextBox textBox = (TextBox)sender;
+            foreach (string s in strings)
+            { 
+                if (textBox.Text == s)
+                    textBox.Text = ""; 
+            }
+
+        }
+
+        //Возвращение исходных названий при пустом поле
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            Dictionary<String, TextBox> textBoxes = new Dictionary<String, TextBox>()
+            {
+                { "PatronymicTextBox", PatronymicTextBox },
+                { "SurenameTextBox", SurenameTextBox },
+                { "NameTextBox", NameTextBox },
+                { "BirthdayTextBox", BirthdayTextBox }
+            };
+            foreach (KeyValuePair<String, TextBox> kv in textBoxes)
+            {
+                if (string.IsNullOrWhiteSpace(kv.Value.Text))
+                {
+                    switch (kv.Key)
+                    {
+                        case "PatronymicTextBox":
+                            kv.Value.Text = "Отчество";
+                            break;
+                        case "SurenameTextBox":
+                            kv.Value.Text = "Фамилия";
+                            break;
+                        case "NameTextBox":
+                            kv.Value.Text = "Имя";
+                            break;
+                        case "BirthdayTextBox":
+                            kv.Value.Text = "Дата рождения";
+                            break;
+                    }
+                }
+            }
+
+        }
+
     }
 }

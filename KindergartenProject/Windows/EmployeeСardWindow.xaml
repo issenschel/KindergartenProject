@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KindergartenProject.Windows"
         mc:Ignorable="d"
-        Title="Карточка сотрудника" Height="400" Width="330"
-        MinHeight="400" MinWidth="330"
+        Title="Карточка сотрудника" Height="500" Width="430"
+        MinHeight="500" MinWidth="430"
         WindowStartupLocation="CenterScreen">
     <Viewbox Stretch="Fill">
         <Grid>
@@ -21,84 +21,30 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="1.2*"/>
-
             </Grid.RowDefinitions>
-            <Button x:Name="SectionButton" Grid.Row="0" Height="30" Width="80" Content="К разделу" FontSize="15" VerticalAlignment="Top" HorizontalAlignment="Right" Background="#FF2C78FF" Foreground="WhiteSmoke" Click="SectionButton_Click" FontFamily="Bahnschrift"/>
-
-
+            <Button x:Name="SectionButton" Grid.Row="0" Height="Auto" Width="Auto" Content="К разделу" FontSize="15" VerticalAlignment="Top" Margin="0,0,0,5" HorizontalAlignment="Right" Background="#FF2C78FF" Foreground="Black" Click="SectionButton_Click" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignToolButton}" />
             <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,5,5">
-                <Label Name="SurenameLabel" Content="Фамилия" FontSize="15" Margin="0,0,0,0" FontFamily="Bahnschrift"/>
-                <TextBox x:Name="SurenameTextBox" Width="150" Height="30" VerticalContentAlignment="Center" FontSize="13">
-                    <TextBox.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="5"/>
-                        </Style>
-                    </TextBox.Resources>
-                </TextBox>
+                <TextBox x:Name="SurenameTextBox" Width="150" Height="Auto" VerticalContentAlignment="Center" FontFamily="Bahnschrift" FontSize="12" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Text="Фамилия"/>
             </StackPanel>
             <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,10,5">
-                <Label Name="NameLabel" Content="Имя" FontSize="15" Margin="43,0,0,0" FontFamily="Bahnschrift" />
-                <TextBox x:Name="NameTextBox" Width="150" Height="30" Margin="0,0,0,0" VerticalContentAlignment="Center" FontSize="13">
-                    <TextBox.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="5"/>
-                        </Style>
-                    </TextBox.Resources>
-                </TextBox>
+                <TextBox x:Name="NameTextBox" Width="150" Height="Auto" Margin="0,0,0,0" FontFamily="Bahnschrift" VerticalContentAlignment="Center" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" FontSize="12" Text="Имя"/>
             </StackPanel>
             <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,10,5">
-                <Label Name="PatronymicLabel" Content="Отчество" FontSize="15" Margin="9,0,0,0" FontFamily="Bahnschrift"/>
-                <TextBox x:Name="PatronymicTextBox" Width="150" Height="30" Margin="0,0,0,0" VerticalContentAlignment="Center" FontSize="13">
-                    <TextBox.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="5"/>
-                        </Style>
-                    </TextBox.Resources>
-                </TextBox>
+                <TextBox x:Name="PatronymicTextBox" Width="150" Height="Auto" FontFamily="Bahnschrift" Margin="0,0,0,0" VerticalContentAlignment="Center" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" FontSize="12" Text="Отчество"/>
             </StackPanel>
             <StackPanel Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,10,5">
-                <Label Name="BirthdayLabel" Content="Дата рождения" FontSize="15" Margin="0,0,0,0" FontFamily="Bahnschrift"/>
-                <TextBox x:Name="BirthdayTextBox" Width="150" Height="30" Margin="0,0,33,0" VerticalContentAlignment="Center" FontSize="13">
-                    <TextBox.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="5"/>
-                        </Style>
-                    </TextBox.Resources>
-                </TextBox>
+                <TextBox x:Name="BirthdayTextBox" Width="150" Height="Auto" FontFamily="Bahnschrift"  Margin="0,0,0,0" VerticalContentAlignment="Center" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" FontSize="12" Text="Дата рождения"/>
             </StackPanel>
             <StackPanel Grid.Row="5" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,10,5">
-                <Label Name="ExperienceLabel" Content="Опыт работы" FontSize="15" Margin="0,0,0,0" FontFamily="Bahnschrift"/>
-                <TextBox x:Name="ExperienceTextBox" Width="150" Height="30" Margin="0,0,20,0" VerticalContentAlignment="Center" FontSize="13">
-                    <TextBox.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="5"/>
-                        </Style>
-                    </TextBox.Resources>
-                </TextBox>
+                <TextBox x:Name="ExperienceTextBox" Width="150" Height="Auto" FontFamily="Bahnschrift" Margin="0,0,0,0" VerticalContentAlignment="Center" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"  FontSize="12" Text="Опыт работы"/>
             </StackPanel>
             <StackPanel Grid.Row="6" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,10,5">
-                <Label Name="PostLabel" Content="Пост" FontSize="15" Margin="40,0,0,0" FontFamily="Bahnschrift"/>
-                <TextBox x:Name="PostTextBox" Width="150" Height="30" Margin="0,0,0,0" VerticalContentAlignment="Center" FontSize="13">
-                    <TextBox.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="5"/>
-                        </Style>
-                    </TextBox.Resources>
-                </TextBox>
+                <TextBox x:Name="PostTextBox" Width="150" Height="Auto" FontFamily="Bahnschrift" Margin="0,0,0,0" VerticalContentAlignment="Center" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" FontSize="12" Text="Пост"/>
             </StackPanel>
             <StackPanel Grid.Row="7" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,10,5">
-                <Label Name="LoginLabel" Content="Логин" FontSize="15" Margin="30,0,0,0" FontFamily="Bahnschrift"/>
-                <TextBox x:Name="LoginTextBox" Width="150" Height="30" Margin="0,0,0,0" VerticalContentAlignment="Center" FontSize="13">
-                    <TextBox.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="5"/>
-                        </Style>
-                    </TextBox.Resources>
-                </TextBox>
+                <TextBox x:Name="LoginTextBox" Width="150" Height="Auto" Margin="0,0,0,0" VerticalContentAlignment="Center" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" FontSize="12" Text="Логин" FontFamily="Bahnschrift"/>
             </StackPanel>
-            <Button x:Name="SaveButton" Grid.Row="8" Height="30" Width="310" Content="Сохранить" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#FF2C78FF" Foreground="WhiteSmoke"  FontFamily="Bahnschrift"/>
-
-
+            <Button x:Name="SaveButton" Grid.Row="8" Height="30" Width="310" Content="Сохранить" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#FF2C78FF" Foreground="Black" Margin="0,5,0,0"  FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignToolButton}"/>
         </Grid>
     </Viewbox>
 </Window>

@@ -8,6 +8,9 @@
         Title="Группы" Height="450" Width="800"
         MinHeight="450" MinWidth="800"
         WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="1642038772_4-abrakadabra-fun-p-fon-voleibolnaya-ploshchadka-7.jpg"/>
+    </Window.Background>
     <Viewbox Stretch="Fill">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -19,42 +22,16 @@
 
                 <RowDefinition Height="4*"/>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Grid.ColumnSpan="2">
-                <Image Name="LogoImage" Source="1b10b958-0f0b-4b08-a0d5-f47664ae42f4.jpg" Height="40" Width="Auto"/>
-                <Label Name="KindergartenLabel" Content="Детский сад &quot;Тюрьма №6&quot;"  FontSize="20" Foreground="#FF2C78FF" FontFamily="Bahnschrift"/>
+            <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Grid.ColumnSpan="2" HorizontalAlignment="Left">
+                <Image Name="LogoImage" Source="e374da0d461a5728985dc98c50252111.jpg" Height="16" Width="Auto" Margin="0,0,0,20"/>
+                <TextBlock Name="KindergartenTextBlock" Text="Детский сад &quot;Тюрьма №6&quot;"  FontSize="15" Foreground="DeepSkyBlue" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignHeadline6TextBlock}"/>
             </StackPanel>
-            <Button x:Name="MenuButton" Grid.Row="0" Grid.Column="2" Height="40" Width="130" Content="В меню" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Center" Background="#FF2C78FF" Foreground="WhiteSmoke" Click="MenuButton_Click" FontFamily="Bahnschrift"/>
-
-
+            <Button x:Name="MenuButton" Grid.Row="0" Grid.Column="2" Height="40" Width="130" Content="В меню" FontSize="25" VerticalAlignment="Top" HorizontalAlignment="Center" Background="#FF2C78FF" Foreground="Purple" Click="MenuButton_Click" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignToolButton}"/>
             <StackPanel Grid.Row="2" Grid.Column="2" Margin="0,0,0,25" VerticalAlignment="Center">
-                <Button x:Name="AddButton" Grid.Row="1" Grid.Column="1" Height="50" Width="130" Content="Добавить" FontSize="25"  HorizontalAlignment="Left" Background="#FF2C78FF" Foreground="WhiteSmoke" Margin="0,0,0,10" Click="AddButton_Click" FontFamily="Bahnschrift">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="5"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
-                <Button x:Name="UpdateButton" Grid.Row="1" Grid.Column="1" Height="50" Width="130" Content="Обновить" FontSize="25"  HorizontalAlignment="Left" Background="#FF2C78FF" Foreground="WhiteSmoke" Margin="0,0,0,10" FontFamily="Bahnschrift" Click="UpdateButton_Click">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="5"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
-                <Button  x:Name="DeleteButton" Grid.Row="1" Grid.Column="1" Height="50" Width="130" Content="Удалить" FontSize="25" Background="#FF2C78FF"  HorizontalAlignment="Left"  Foreground="WhiteSmoke" Margin="0,0,0,10" FontFamily="Bahnschrift" Click="DeleteButton_Click">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="5"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
-                <Button x:Name="UploadButton" Grid.Row="1" Grid.Column="1" Height="50" Width="130" Content="Выгрузить" FontSize="25" Background="#FF2C78FF"  HorizontalAlignment="Left" Foreground="WhiteSmoke" FontFamily="Bahnschrift" Click="UploadButton_Click" >
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="5"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
+                <Button x:Name="AddButton" Grid.Row="1" Grid.Column="1" Height="50" Width="130" Content="Добавить" FontSize="25"  HorizontalAlignment="Left" Background="#FF2C78FF" Foreground="DarkBlue" Margin="0,0,0,10" Click="AddButton_Click" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignToolButton}"/>
+                <Button x:Name="UpdateButton" Grid.Row="1" Grid.Column="1" Height="50" Width="130" Content="Обновить" FontSize="25"  HorizontalAlignment="Left" Background="#FF2C78FF" Foreground="Green" Margin="0,0,0,10" FontFamily="Bahnschrift" Click="UpdateButton_Click" Style="{DynamicResource MaterialDesignToolButton}"/>
+                <Button  x:Name="DeleteButton" Grid.Row="1" Grid.Column="1" Height="50" Width="130" Content="Удалить" FontSize="25" Background="#FF2C78FF"  HorizontalAlignment="Left"  Foreground="Firebrick" Margin="0,0,0,10" FontFamily="Bahnschrift" Click="DeleteButton_Click" Style="{DynamicResource MaterialDesignToolButton}"/>
+                <Button x:Name="UploadButton" Grid.Row="1" Grid.Column="1" Height="50" Width="130" Content="Выгрузить" FontSize="25" Background="#FF2C78FF"  HorizontalAlignment="Left" Foreground="Yellow" FontFamily="Bahnschrift" Click="UploadButton_Click" Style="{DynamicResource MaterialDesignToolButton}" />
             </StackPanel>
             <DataGrid x:Name="GroupsDataGrid" AutoGenerateColumns="False" Width="400" Height="261" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1"  Margin="5,10,5,0" FontFamily="Bahnschrift" BorderBrush="#FF2C78FF">
                 <DataGrid.Columns>
