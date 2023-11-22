@@ -191,28 +191,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Windows\Image\snapedit_1700640760415.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Windows\Image\snapedit_1700639660622.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Windows\Image\e374da0d461a5728985dc98c50252111.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Windows\Image\1632215860_kuroko-no-basket-basketball-5028.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Windows\Image\079955cf50f8b05720f7ff9160a08034.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Windows\Image\591715ce5694d8495a2a141d3849207c.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Windows\Image\1642038772_4-abrakadabra-fun-p-fon-voleibolnaya-ploshchadka-7.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Windows\Image\1680803561_pushinka-top-p-kagami-v-potoke-ava-instagram-25.jpg" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

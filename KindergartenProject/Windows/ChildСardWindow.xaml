@@ -20,7 +20,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Button x:Name="SectionButton" Grid.Row="0" Margin="0,0,0,5" Height="Auto" Width="Auto" Content="К разделу" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Right" Background="#FF2C78FF" Foreground="Black" Click="SectionButton_Click" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignToolButton}"/>
+            <Button x:Name="SectionButton" Grid.Row="0" Margin="0,0,0,5" Height="Auto" Width="Auto" Content="К разделу" FontSize="13" VerticalAlignment="Top" HorizontalAlignment="Right" Background="#FF2C78FF" Foreground="Black" Click="SectionButton_Click" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignToolButton}"/>
             <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="0,0,0,0">
                 <TextBox x:Name="SurenameTextBox" Width="150" Height="Auto"  FontSize="11" FontFamily="Bahnschrift" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Text="Фамилия"/>
             </StackPanel>
