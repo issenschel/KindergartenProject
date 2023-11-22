@@ -9,7 +9,7 @@
         MinHeight="450" MinWidth="800"
         WindowStartupLocation="CenterScreen">
     <Window.Background>
-        <ImageBrush ImageSource="1642038772_4-abrakadabra-fun-p-fon-voleibolnaya-ploshchadka-7.jpg"/>
+        <ImageBrush ImageSource="Image/1642038772_4-abrakadabra-fun-p-fon-voleibolnaya-ploshchadka-7.jpg"/>
     </Window.Background>
     <Viewbox Stretch="Fill">
         <Grid>
@@ -23,7 +23,7 @@
                 <RowDefinition Height="4*"/>
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Grid.ColumnSpan="2" HorizontalAlignment="Left">
-                <Image Name="LogoImage" Source="e374da0d461a5728985dc98c50252111.jpg" Height="16" Width="Auto" Margin="0,0,0,20"/>
+                <Image Name="LogoImage" Source="Image/e374da0d461a5728985dc98c50252111.jpg" Height="16" Width="Auto" Margin="0,0,0,20"/>
                 <TextBlock Name="KindergartenTextBlock" Text="Детский сад &quot;Тюрьма №6&quot;"  FontSize="15" Foreground="DeepSkyBlue" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignHeadline6TextBlock}"/>
             </StackPanel>
             <Button x:Name="MenuButton" Grid.Row="0" Grid.Column="2" Height="40" Width="130" Content="В меню" FontSize="25" VerticalAlignment="Top" HorizontalAlignment="Center" Background="#FF2C78FF" Foreground="Purple" Click="MenuButton_Click" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignToolButton}"/>

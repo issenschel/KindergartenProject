@@ -9,7 +9,7 @@
         MinHeight="450" MinWidth="800"
         WindowStartupLocation="CenterScreen">
     <Window.Background>
-        <ImageBrush ImageSource="591715ce5694d8495a2a141d3849207c.jpg"/>
+        <ImageBrush ImageSource="Image/591715ce5694d8495a2a141d3849207c.jpg"/>
     </Window.Background>
     <Viewbox Stretch="Fill">
         <Grid>

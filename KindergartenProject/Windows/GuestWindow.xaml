@@ -9,7 +9,7 @@
         MinHeight="300" MinWidth="400"
         WindowStartupLocation="CenterScreen">
     <Window.Background>
-        <ImageBrush ImageSource="snapedit_1700640760415.png"/>
+        <ImageBrush ImageSource="Image/snapedit_1700640760415.png"/>
     </Window.Background>
     <Viewbox Stretch="Fill">
         <Grid>
@@ -24,7 +24,7 @@
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Grid.ColumnSpan="2" HorizontalAlignment="Left">
-                <Image Name="LogoImage" Source="e374da0d461a5728985dc98c50252111.jpg" Height="16" Width="Auto" Margin="0,0,0,20"/>
+                <Image Name="LogoImage" Source="Image/e374da0d461a5728985dc98c50252111.jpg" Height="16" Width="Auto" Margin="0,0,0,20"/>
                 <TextBlock Name="KindergartenTextBlock" Text="Детский сад &quot;Джаберкидс&quot;"  FontSize="12" Foreground="ForestGreen" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignHeadline6TextBlock}"/>
             </StackPanel>
             <Button x:Name="LogoutButton" Grid.Row="0" Grid.Column="2" Height="Auto" Width="Auto"  Margin="0,0,0,0"  Content="Выйти" FontSize="12" VerticalAlignment="Top" HorizontalAlignment="Right" Background="#FF2C78FF" Foreground="Green" Click="LogoutButton_Click" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignToolButton}"/>
