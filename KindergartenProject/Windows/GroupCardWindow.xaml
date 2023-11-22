@@ -18,7 +18,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="1.2*"/>
             </Grid.RowDefinitions>
-            <Button x:Name="SectionButton" Grid.Row="0" Height="Auto" Width="Auto" Margin="0,0,0,5" Content="К разделу" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Right" Background="#FF2C78FF" Foreground="Black" Click="SectionButton_Click" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignToolButton}"/>
+            <Button x:Name="SectionButton" Grid.Row="0" Height="Auto" Width="Auto" Margin="0,0,0,0" Content="К разделу" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Right" Background="#FF2C78FF" Foreground="Black" Click="SectionButton_Click" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignToolButton}"/>
             <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0">
                 <TextBox x:Name="GroupTextBox" Width="200" Height="Auto"  VerticalContentAlignment="Center" FontSize="11"  FontFamily="Bahnschrift" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Text="Группа"/>
             </StackPanel>
@@ -28,7 +28,7 @@
             <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0">
                 <TextBox x:Name="EmployeeTextBox" Width="200" Height="Auto" Margin="0,0,0,0" VerticalContentAlignment="Center" FontSize="11" FontFamily="Bahnschrift" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Text="Воспитатель"/>
             </StackPanel>
-            <Button x:Name="SaveButton" Grid.Row="5" Height="Auto" Width="372" Content="Сохранить" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#FF2C78FF" Foreground="Black" Margin="0,5,0,0" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignToolButton}"/>
+            <Button x:Name="SaveButton" Grid.Row="5" Height="Auto" Width="372" Content="Сохранить" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#FF2C78FF" Foreground="Black" Margin="0,0,0,0" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignToolButton}"/>
         </Grid>
     </Viewbox>
 </Window>

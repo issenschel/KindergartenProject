@@ -37,5 +37,10 @@ namespace KindergartenProject.Windows
             childСardWindow.Show();
             Close();
         }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
