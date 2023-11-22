@@ -4,11 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.7.34009.444
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KindergartenProject", "KindergartenProject\KindergartenProject.csproj", "{5919F128-4AED-4DF0-BE0D-9F7D126D344B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B3B1C2EE-5EAB-40A6-9F51-39E4F8D46D89} = {B3B1C2EE-5EAB-40A6-9F51-39E4F8D46D89}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KindergartenProject.Infrastructure", "KindergartenProject.Infrastructure\KindergartenProject.Infrastructure.csproj", "{B3B1C2EE-5EAB-40A6-9F51-39E4F8D46D89}"
-	ProjectSection(ProjectDependencies) = postProject
-		{5919F128-4AED-4DF0-BE0D-9F7D126D344B} = {5919F128-4AED-4DF0-BE0D-9F7D126D344B}
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

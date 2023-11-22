@@ -30,11 +30,11 @@
                 <Button  x:Name="DeleteButton" Grid.Row="1" Grid.Column="1" Height="50" Width="170" Content="Удалить" FontSize="25" Background="White" BorderBrush="#FF2C78FF" Foreground="#FF2C78FF"  HorizontalAlignment="Left"  Margin="0,0,0,10" FontFamily="Bahnschrift" Click="DeleteButton_Click" Style="{DynamicResource MaterialDesignOutlinedButton}"/>
                 <Button x:Name="UploadButton" Grid.Row="1" Grid.Column="1" Height="50" Width="170" Content="Выгрузить" FontSize="25" Background="White" BorderBrush="#FF2C78FF" Foreground="#FF2C78FF"  HorizontalAlignment="Left"  FontFamily="Bahnschrift" Click="UploadButton_Click" Style="{DynamicResource MaterialDesignOutlinedButton}" />
             </StackPanel>
-            <DataGrid x:Name="GroupsDataGrid" AutoGenerateColumns="False" Width="573" Height="347" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1"  Margin="0,0,5,0" FontFamily="Bahnschrift" BorderBrush="#FF2C78FF">
+            <DataGrid x:Name="GroupsDataGrid" AutoGenerateColumns="False" Width="573" Height="347" HorizontalAlignment="Center" CanUserReorderColumns="False" VerticalAlignment="Center" Grid.Row="1"  Margin="0,0,5,0" FontFamily="Bahnschrift" BorderBrush="#FF2C78FF" MinColumnWidth="50">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Группа" />
-                    <DataGridTextColumn Header="Кол-во свободных мест"/>
-                    <DataGridTextColumn Header="Воспитатель"/>
+                    <DataGridTextColumn Header="Группа" Binding="{Binding Group}" />
+                    <DataGridTextColumn Header="Кол-во свободных мест" Binding="{Binding AvailableSeats}"/>
+                    <DataGridTextColumn Header="Воспитатель" Binding="{Binding Employee}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

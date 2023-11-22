@@ -33,13 +33,13 @@
                 <Button  x:Name="DeleteButton" Grid.Row="1" Grid.Column="1" Height="50" Width="170" Content="Удалить" FontSize="25" Background="White" BorderBrush="#FF2C78FF" Foreground="#FF2C78FF" HorizontalAlignment="Left"   Margin="0,0,0,10" FontFamily="Bahnschrift" Click="DeleteButton_Click" Style="{DynamicResource MaterialDesignOutlinedButton}"/>
                 <Button x:Name="UploadButton" Grid.Row="1" Grid.Column="1" Height="50" Width="170" Content="Выгрузить" FontSize="25" Background="White" BorderBrush="#FF2C78FF" Foreground="#FF2C78FF" HorizontalAlignment="Left" FontFamily="Bahnschrift" Click="UploadButton_Click" Style="{DynamicResource MaterialDesignOutlinedButton}" />
             </StackPanel>
-            <DataGrid x:Name="MealScheduleDataGrid" AutoGenerateColumns="False" Width="572" Height="347" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,10,0" BorderBrush="#FF2C78FF" FontFamily="Bahnschrift">
+            <DataGrid x:Name="MealScheduleDataGrid" AutoGenerateColumns="False" Width="572" Height="347" CanUserReorderColumns="False" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,10,0" BorderBrush="#FF2C78FF" FontFamily="Bahnschrift" MinColumnWidth="50">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Завтрак" />
-                    <DataGridTextColumn Header="Полдник" />
-                    <DataGridTextColumn Header="Обед" />
-                    <DataGridTextColumn Header="Ланч" />
-                    <DataGridTextColumn Header="Ужин" />
+                    <DataGridTextColumn Header="Завтрак" Binding="{Binding BreakFast}"/>
+                    <DataGridTextColumn Header="Полдник" Binding="{Binding Brunch}"/>
+                    <DataGridTextColumn Header="Обед" Binding="{Binding Lunch}"/>
+                    <DataGridTextColumn Header="Ланч" Binding="{Binding AfternoonSnack}"/>
+                    <DataGridTextColumn Header="Ужин" Binding="{Binding Dinner}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

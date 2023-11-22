@@ -33,11 +33,11 @@
                 <Button  x:Name="DeleteButton" Grid.Row="1" Grid.Column="1" Height="50" Width="170" Content="Удалить" FontSize="25" Background="White" BorderBrush="#FF2C78FF" Foreground="#FF2C78FF" HorizontalAlignment="Left"  Margin="0,0,0,10" FontFamily="Bahnschrift" Click="DeleteButton_Click" Style="{DynamicResource MaterialDesignOutlinedButton}"/>
                 <Button x:Name="UploadButton" Grid.Row="1" Grid.Column="1" Height="50" Width="170" Content="Выгрузить" FontSize="25"  HorizontalAlignment="Left" Background="White" BorderBrush="#FF2C78FF" Foreground="#FF2C78FF" FontFamily="Bahnschrift" Click="UploadButton_Click" Style="{DynamicResource MaterialDesignOutlinedButton}" />
             </StackPanel>
-            <DataGrid x:Name="ModeOfTheDayDataGrid" AutoGenerateColumns="False" Width="573" Height="347" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,10,0" Grid.Row="1" FontFamily="Bahnschrift" BorderBrush="#FF2C78FF">
+            <DataGrid x:Name="ModeOfTheDayDataGrid" AutoGenerateColumns="False" Width="573" CanUserReorderColumns="False" Height="347" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,10,0" Grid.Row="1" FontFamily="Bahnschrift" BorderBrush="#FF2C78FF" MinColumnWidth="50">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Занятие" />
-                    <DataGridTextColumn Header="Время начала" />
-                    <DataGridTextColumn Header="Время окончания" />
+                    <DataGridTextColumn Header="Занятие" Binding="{Binding Occupation}" />
+                    <DataGridTextColumn Header="Время начала" Binding="{Binding StartTime}" />
+                    <DataGridTextColumn Header="Время окончания" Binding="{Binding EndTime}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

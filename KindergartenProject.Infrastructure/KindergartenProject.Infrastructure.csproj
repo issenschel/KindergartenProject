@@ -63,6 +63,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context.cs" />
+    <Compile Include="Database\DishRepository.cs" />
+    <Compile Include="Database\EmployeeRepository.cs" />
+    <Compile Include="Database\GroupRepository.cs" />
+    <Compile Include="Database\IBaseRepository.cs" />
+    <Compile Include="Database\KidRepository.cs" />
+    <Compile Include="Database\KindergartenRepository.cs" />
+    <Compile Include="Database\MealScheduleRepository.cs" />
+    <Compile Include="Database\ModeOfTheDayRepository.cs" />
+    <Compile Include="Database\NutritionRepository.cs" />
+    <Compile Include="Database\OccupationRepository.cs" />
+    <Compile Include="Database\PostRepository.cs" />
+    <Compile Include="Database\RoleRepository.cs" />
+    <Compile Include="Database\UserRepository.cs" />
     <Compile Include="DayOfTheWeek.cs" />
     <Compile Include="Dish.cs" />
     <Compile Include="Employee.cs" />
