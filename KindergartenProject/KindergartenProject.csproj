@@ -210,7 +210,12 @@
   <ItemGroup>
     <Resource Include="Windows\Image\e374da0d461a5728985dc98c50252111.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\KindergartenProject.Infrastructure\KindergartenProject.Infrastructure.csproj">
+      <Project>{b3b1c2ee-5eab-40a6-9f51-39e4f8d46d89}</Project>
+      <Name>KindergartenProject.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

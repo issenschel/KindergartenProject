@@ -11,6 +11,12 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using KindergartenProject.Infrastructure;
+using KindergartenProject.Infrastructure.ViewModels;
+using KindergartenProject.Infrastructure.Mappers;
+using KindergartenProject.Infrastructure.Database;
+
+
 
 namespace KindergartenProject.Windows
 {
@@ -19,9 +25,14 @@ namespace KindergartenProject.Windows
     /// </summary>
     public partial class KidsWindow : Window
     {
+        private KidRepository _repository;
         public KidsWindow()
         {
             InitializeComponent();
+            _repository = new KidRepository();
+            KidDataGrid.ItemsSource = _repository.GetList();
+
+
         }
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)
