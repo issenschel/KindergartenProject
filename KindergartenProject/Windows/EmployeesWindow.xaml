@@ -35,8 +35,8 @@
             <DataGrid x:Name="EmployeeDataGrid" AutoGenerateColumns="False" Width="400" Height="261" HorizontalAlignment="Center" VerticalAlignment="Top" CanUserReorderColumns="False" Grid.Row="2" Margin="0,0,0,0" FontFamily="Bahnschrift" BorderBrush="#FF2C78FF" Style="{DynamicResource MaterialDesignDataGrid}" MinColumnWidth="50">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Фио" Binding="{Binding FullName}"/>
-                    <DataGridTextColumn Header="Пост" Binding="{Binding Post}" />
-                    <DataGridTextColumn Header="Логин" Binding="{Binding Login}"/>
+                    <DataGridTextColumn Header="Пост" Binding="{Binding PostName}" />
+                    <DataGridTextColumn Header="Логин" Binding="{Binding UserName}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

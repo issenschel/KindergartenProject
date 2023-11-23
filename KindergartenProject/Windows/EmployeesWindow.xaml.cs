@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KindergartenProject.Infrastructure.Database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,13 @@ namespace KindergartenProject.Windows
     /// </summary>
     public partial class EmployeesWindow : Window
     {
+        private EmployeeRepository _repository;
+
         public EmployeesWindow()
         {
             InitializeComponent();
+            _repository = new EmployeeRepository();
+            EmployeeDataGrid.ItemsSource = _repository.GetList();
         }
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)

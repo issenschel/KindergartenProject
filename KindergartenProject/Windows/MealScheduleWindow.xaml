@@ -35,11 +35,11 @@
             </StackPanel>
             <DataGrid x:Name="MealScheduleDataGrid" AutoGenerateColumns="False" Width="572" Height="347" CanUserReorderColumns="False" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,10,0" BorderBrush="#FF2C78FF" FontFamily="Bahnschrift" MinColumnWidth="50">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Завтрак" Binding="{Binding BreakFast}"/>
-                    <DataGridTextColumn Header="Полдник" Binding="{Binding Brunch}"/>
-                    <DataGridTextColumn Header="Обед" Binding="{Binding Lunch}"/>
-                    <DataGridTextColumn Header="Ланч" Binding="{Binding AfternoonSnack}"/>
-                    <DataGridTextColumn Header="Ужин" Binding="{Binding Dinner}"/>
+                    <DataGridTextColumn Header="Завтрак" Binding="{Binding BreakFastName}"/>
+                    <DataGridTextColumn Header="Полдник" Binding="{Binding BrunchName}"/>
+                    <DataGridTextColumn Header="Обед" Binding="{Binding LunchName}"/>
+                    <DataGridTextColumn Header="Ланч" Binding="{Binding AfternoonSnackName}"/>
+                    <DataGridTextColumn Header="Ужин" Binding="{Binding DinnerName}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

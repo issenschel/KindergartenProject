@@ -35,7 +35,7 @@
             </StackPanel>
             <DataGrid x:Name="ModeOfTheDayDataGrid" AutoGenerateColumns="False" Width="573" CanUserReorderColumns="False" Height="347" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,10,0" Grid.Row="1" FontFamily="Bahnschrift" BorderBrush="#FF2C78FF" MinColumnWidth="50">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Занятие" Binding="{Binding Occupation}" />
+                    <DataGridTextColumn Header="Занятие" Binding="{Binding OccupationName}" />
                     <DataGridTextColumn Header="Время начала" Binding="{Binding StartTime}" />
                     <DataGridTextColumn Header="Время окончания" Binding="{Binding EndTime}"/>
                 </DataGrid.Columns>

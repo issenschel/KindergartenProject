@@ -12,8 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using KindergartenProject.Infrastructure;
-using KindergartenProject.Infrastructure.ViewModels;
-using KindergartenProject.Infrastructure.Mappers;
 using KindergartenProject.Infrastructure.Database;
 
 

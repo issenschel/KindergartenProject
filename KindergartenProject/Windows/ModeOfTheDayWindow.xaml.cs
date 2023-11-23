@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KindergartenProject.Infrastructure.Database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,12 @@ namespace KindergartenProject.Windows
     /// </summary>
     public partial class ModeOfTheDayWindow : Window
     {
+        private ModeOfTheDayRepository _repository;
         public ModeOfTheDayWindow()
         {
             InitializeComponent();
+            _repository = new ModeOfTheDayRepository();
+            ModeOfTheDayDataGrid.ItemsSource = _repository.GetList();
         }
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)

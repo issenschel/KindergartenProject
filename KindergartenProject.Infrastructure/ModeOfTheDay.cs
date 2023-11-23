@@ -11,9 +11,9 @@ namespace KindergartenProject.Infrastructure
     {
         public long ID { get; set; }
 
-        public long StartTime { get; set; }
+        public string StartTime { get; set; }
 
-        public long EndTime { get; set; }
+        public string EndTime { get; set; }
 
         [Column("Occupation_ID")]
         public long OccupationId { get; set; }

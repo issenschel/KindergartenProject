@@ -83,7 +83,11 @@
     <Compile Include="Kid.cs" />
     <Compile Include="Kindergarten.cs" />
     <Compile Include="Mappers\EmployeeMapper.cs" />
+    <Compile Include="Mappers\GroupMapper.cs" />
     <Compile Include="Mappers\KidMapper.cs" />
+    <Compile Include="Mappers\MealScheduleMapper.cs" />
+    <Compile Include="Mappers\ModeOfTheDayMappers.cs" />
+    <Compile Include="Mappers\NutritionMapper.cs" />
     <Compile Include="MealSchedule.cs" />
     <Compile Include="ModeOfTheDay.cs" />
     <Compile Include="Nutrition.cs" />
@@ -93,7 +97,11 @@
     <Compile Include="Role.cs" />
     <Compile Include="User.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
+    <Compile Include="ViewModels\GroupViewModel.cs" />
     <Compile Include="ViewModels\KidViewModel.cs" />
+    <Compile Include="ViewModels\MealScheduleViewModel.cs" />
+    <Compile Include="ViewModels\ModeOfTheDayViewModel.cs" />
+    <Compile Include="ViewModels\NutritionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

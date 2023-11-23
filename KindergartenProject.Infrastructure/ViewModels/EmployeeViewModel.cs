@@ -20,6 +20,8 @@ namespace KindergartenProject.Infrastructure.ViewModels
 
         public string DateOfBirth { get; set; }
 
+        public string FullName { get; set; }
+
         public long Experience { get; set; }
 
         public long PostId { get; set; }
