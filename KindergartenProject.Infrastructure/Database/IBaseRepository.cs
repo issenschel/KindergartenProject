@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace KindergartenProject.Infrastructure.Database
 {
-    internal interface IBaseRepository<TEntity>
+    internal interface IBaseRepository<TViewModel>
     {
-        TEntity GetById(long id);
-        List<TEntity> GetList();
+        TViewModel GetById(long id);
+        List<TViewModel> GetList();
+        TViewModel Update(TViewModel model);
+        TViewModel Delete(long id);
+        TViewModel Add(TViewModel model);
     }
 }

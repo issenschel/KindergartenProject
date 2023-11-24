@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KindergartenProject.Infrastructure.Database
 {
-    public class MealScheduleRepository
+    public class MealScheduleRepository : IBaseRepository<MealScheduleViewModel>
     {
         public List<MealScheduleViewModel> GetList()
         {
@@ -35,6 +35,53 @@ namespace KindergartenProject.Infrastructure.Database
             {
                 var items = context.MealsSchedules.Where(ms => ms.DayOfTheWeekId == dayId).ToList();
                 return MealScheduleMapper.Map(items);
+            }
+        }
+
+        public MealScheduleViewModel Add(MealScheduleViewModel viewModel)
+        {
+            using (var context = new Context())
+            {
+                var entity = MealScheduleMapper.Map(viewModel);
+
+                context.MealsSchedules.Add(entity);
+                context.SaveChanges();
+
+                return MealScheduleMapper.Map(entity);
+            }
+        }
+
+        public MealScheduleViewModel Update(MealScheduleViewModel viewModel)
+        {
+            using (var context = new Context())
+            {
+                var entity = context.MealsSchedules.FirstOrDefault(x => x.ID == viewModel.ID);
+                if (entity == null)
+                    return null;
+
+                entity.DayOfTheWeekId = viewModel.DayOfTheWeekId;
+                entity.NutritionId = viewModel.NutritionId;
+
+                context.SaveChanges();
+
+                return MealScheduleMapper.Map(entity);
+            }
+        }
+
+        public MealScheduleViewModel Delete(long id)
+        {
+            using (var context = new Context())
+            {
+                var entity = context.MealsSchedules.FirstOrDefault(x => x.ID == id);
+                if (entity == null)
+                    return null;
+
+                MealScheduleViewModel viewModel = MealScheduleMapper.Map(entity);
+
+                context.MealsSchedules.Remove(entity);
+                context.SaveChanges();
+
+                return viewModel;
             }
         }
     }

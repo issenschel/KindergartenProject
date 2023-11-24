@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KindergartenProject.Infrastructure.Database
 {
-    public class NutritionRepository
+    public class NutritionRepository : IBaseRepository<NutritionViewModel>
     {
         public List<NutritionViewModel> GetList()
         {
@@ -25,6 +25,56 @@ namespace KindergartenProject.Infrastructure.Database
             {
                 var item = context.Nutritions.FirstOrDefault(x => x.ID == id);
                 return NutritionMapper.Map(item);
+            }
+        }
+
+        public NutritionViewModel Add(NutritionViewModel viewModel)
+        {
+            using (var context = new Context())
+            {
+                var entity = NutritionMapper.Map(viewModel);
+
+                context.Nutritions.Add(entity);
+                context.SaveChanges();
+
+                return NutritionMapper.Map(entity);
+            }
+        }
+
+        public NutritionViewModel Update(NutritionViewModel viewModel)
+        {
+            using (var context = new Context())
+            {
+                var entity = context.Nutritions.FirstOrDefault(x => x.ID == viewModel.ID);
+                if (entity == null)
+                    return null;
+
+                entity.BreakFast = viewModel.BreakFast;
+                entity.Lunch = viewModel.Lunch;
+                entity.AfternoonSnack = viewModel.AfternoonSnack;
+                entity.Dinner = viewModel.Dinner;
+                entity.Brunch = viewModel.Brunch;
+
+                context.SaveChanges();
+
+                return NutritionMapper.Map(entity);
+            }
+        }
+
+        public NutritionViewModel Delete(long id)
+        {
+            using (var context = new Context())
+            {
+                var entity = context.Nutritions.FirstOrDefault(x => x.ID == id);
+                if (entity == null)
+                    return null;
+
+                NutritionViewModel viewModel = NutritionMapper.Map(entity);
+
+                context.Nutritions.Remove(entity);
+                context.SaveChanges();
+
+                return viewModel;
             }
         }
     }

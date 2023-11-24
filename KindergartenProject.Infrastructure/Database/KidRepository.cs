@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KindergartenProject.Infrastructure.Database
 {
-    public class KidRepository
+    public class KidRepository : IBaseRepository<KidViewModel>
     {
         public List<KidViewModel> GetList()
         {
@@ -28,6 +28,54 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
+        public KidViewModel Add(KidViewModel viewModel)
+        {
+            using (var context = new Context())
+            {
+                var entity = KidMapper.Map(viewModel);
 
+                context.Kids.Add(entity);
+                context.SaveChanges();
+
+                return KidMapper.Map(entity);
+            }
+        }
+
+        public KidViewModel Update(KidViewModel viewModel)
+        {
+            using (var context = new Context())
+            {
+                var entity = context.Kids.FirstOrDefault(x => x.ID == viewModel.ID);
+                if (entity == null)
+                    return null;
+
+                entity.Name = viewModel.Name;
+                entity.Surname = viewModel.Surname;
+                entity.Patronymic = viewModel.Patronymic;
+                entity.DateOfBirth = viewModel.DateOfBirth;
+                entity.GroupId = viewModel.GroupId;
+
+                context.SaveChanges();
+
+                return KidMapper.Map(entity);
+            }
+        }
+
+        public KidViewModel Delete(long id)
+        {
+            using (var context = new Context())
+            {
+                var entity = context.Kids.FirstOrDefault(x => x.ID == id);
+                if (entity == null)
+                    return null;
+
+                KidViewModel viewModel = KidMapper.Map(entity);
+
+                context.Kids.Remove(entity);
+                context.SaveChanges();
+
+                return viewModel;
+            }
+        }
     }
 }

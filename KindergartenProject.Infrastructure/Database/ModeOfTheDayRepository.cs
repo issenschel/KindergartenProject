@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KindergartenProject.Infrastructure.Database
 {
-    public class ModeOfTheDayRepository
+    public class ModeOfTheDayRepository : IBaseRepository<ModeOfTheDayViewModel>
     {
         public List<ModeOfTheDayViewModel> GetList()
         {
@@ -28,13 +28,61 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
-        // Метод для получения расписания занятий по ID группы
         public List<ModeOfTheDayViewModel> GetByGroupId(long groupId)
         {
             using (var context = new Context())
             {
                 var items = context.ModesOfTheDays.Where(m => m.GroupId == groupId).ToList();
                 return ModeOfTheDayMapper.Map(items);
+            }
+        }
+
+        public ModeOfTheDayViewModel Add(ModeOfTheDayViewModel viewModel)
+        {
+            using (var context = new Context())
+            {
+                var entity = ModeOfTheDayMapper.Map(viewModel);
+
+                context.ModesOfTheDays.Add(entity);
+                context.SaveChanges();
+
+                return ModeOfTheDayMapper.Map(entity);
+            }
+        }
+
+        public ModeOfTheDayViewModel Update(ModeOfTheDayViewModel viewModel)
+        {
+            using (var context = new Context())
+            {
+                var entity = context.ModesOfTheDays.FirstOrDefault(x => x.ID == viewModel.ID);
+                if (entity == null)
+                    return null;
+
+                entity.StartTime = viewModel.StartTime;
+                entity.EndTime = viewModel.EndTime;
+                entity.OccupationId = viewModel.OccupationId;
+                entity.GroupId = viewModel.GroupId;
+
+                context.SaveChanges();
+
+                return ModeOfTheDayMapper.Map(entity);
+            }
+        }
+
+        public ModeOfTheDayViewModel Delete(long id)
+        {
+            using (var context = new Context())
+            {
+                var entity = context.ModesOfTheDays.FirstOrDefault(x => x.ID == id);
+                if (entity == null)
+                    return null;
+
+                ModeOfTheDayViewModel viewModel = ModeOfTheDayMapper.Map(entity);
+
+                context.ModesOfTheDays.Remove(entity);
+                context.SaveChanges();
+
+                return viewModel;
             }
         }
     }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KindergartenProject.Infrastructure.Database
 {
-    public class RoleRepository
+    public class RoleRepository : IBaseRepository<RoleViewModel>
     {
         public List<RoleViewModel> GetList()
         {
@@ -25,6 +25,52 @@ namespace KindergartenProject.Infrastructure.Database
             {
                 var item = context.Roles.FirstOrDefault(x => x.ID == id);
                 return RoleMapper.Map(item);
+            }
+        }
+
+        public RoleViewModel Add(RoleViewModel viewModel)
+        {
+            using (var context = new Context())
+            {
+                var entity = RoleMapper.Map(viewModel);
+
+                context.Roles.Add(entity);
+                context.SaveChanges();
+
+                return RoleMapper.Map(entity);
+            }
+        }
+
+        public RoleViewModel Update(RoleViewModel viewModel)
+        {
+            using (var context = new Context())
+            {
+                var entity = context.Roles.FirstOrDefault(x => x.ID == viewModel.ID);
+                if (entity == null)
+                    return null;
+
+                entity.Name = viewModel.Name;
+
+                context.SaveChanges();
+
+                return RoleMapper.Map(entity);
+            }
+        }
+
+        public RoleViewModel Delete(long id)
+        {
+            using (var context = new Context())
+            {
+                var entity = context.Roles.FirstOrDefault(x => x.ID == id);
+                if (entity == null)
+                    return null;
+
+                RoleViewModel viewModel = RoleMapper.Map(entity);
+
+                context.Roles.Remove(entity);
+                context.SaveChanges();
+
+                return viewModel;
             }
         }
     }
