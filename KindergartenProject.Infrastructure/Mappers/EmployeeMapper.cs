@@ -32,5 +32,26 @@ namespace KindergartenProject.Infrastructure.Mappers
             var viewModels = entities.Select(x => Map(x)).ToList();
             return viewModels;
         }
+
+        public static EmployeeEntity Map(EmployeeViewModel viewModel)
+        {
+            var entity = new EmployeeEntity
+            {
+                ID = viewModel.ID,
+                Name = viewModel.Name,
+                Surname = viewModel.Surname,
+                Patronymic = viewModel.Patronymic,
+                DateOfBirth= viewModel.DateOfBirth,
+                PostId = viewModel.PostId,
+                UserId = viewModel.UserId
+            };
+            return entity;
+        }
+
+        public static List<EmployeeEntity> Map(List<EmployeeViewModel> viewModels)
+        {
+            var entities = viewModels.Select(vm => Map(vm)).ToList();
+            return entities;
+        }
     }
 }

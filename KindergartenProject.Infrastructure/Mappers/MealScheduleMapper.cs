@@ -27,5 +27,22 @@ namespace KindergartenProject.Infrastructure.Mappers
             return viewModels;
         }
 
+        public static MealScheduleEntity Map(MealScheduleViewModel viewModel)
+        {
+            var entity = new MealScheduleEntity
+            {
+                ID = viewModel.ID,
+                DayOfTheWeekId = viewModel.DayOfTheWeekId,
+                NutritionId = viewModel.NutritionId
+            };
+            return entity;
+        }
+
+        public static List<MealScheduleEntity> Map(List<MealScheduleViewModel> viewModels)
+        {
+            var entities = viewModels.Select(vm => Map(vm)).ToList();
+            return entities;
+        }
+
     }
 }

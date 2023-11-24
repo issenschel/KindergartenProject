@@ -29,5 +29,24 @@ namespace KindergartenProject.Infrastructure.Mappers
             var viewModels = entities.Select(x => Map(x)).ToList();
             return viewModels;
         }
+
+        public static ModeOfTheDayEntity Map(ModeOfTheDayViewModel viewModel)
+        {
+            var entity = new ModeOfTheDayEntity
+            {
+                ID = viewModel.ID,
+                StartTime = viewModel.StartTime,
+                EndTime = viewModel.EndTime,
+                OccupationId =viewModel.OccupationId,
+                GroupId=viewModel.GroupId
+            };
+            return entity;
+        }
+
+        public static List<ModeOfTheDayEntity> Map(List<ModeOfTheDayViewModel> viewModels)
+        {
+            var entities = viewModels.Select(vm => Map(vm)).ToList();
+            return entities;
+        }
     }
 }

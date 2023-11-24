@@ -33,5 +33,25 @@ namespace KindergartenProject.Infrastructure.Mappers
             var viewModels = entities.Select(x => Map(x)).ToList();
             return viewModels;
         }
+
+        public static NutritionEntity Map(NutritionViewModel viewModel)
+        {
+            var entity = new NutritionEntity
+            {
+                ID = viewModel.ID,
+                BreakFast = viewModel.BreakFast,
+                Brunch = viewModel.Brunch,
+                Lunch = viewModel.Lunch,
+                AfternoonSnack = viewModel.AfternoonSnack,
+                Dinner = viewModel.Dinner
+            };
+            return entity;
+        }
+
+        public static List<NutritionEntity> Map(List<NutritionViewModel> viewModels)
+        {
+            var entities = viewModels.Select(vm => Map(vm)).ToList();
+            return entities;
+        }
     }
 }

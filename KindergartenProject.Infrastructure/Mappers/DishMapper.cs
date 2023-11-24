@@ -24,5 +24,21 @@ namespace KindergartenProject.Infrastructure.Mappers
             var viewModels = entities.Select(x => Map(x)).ToList();
             return viewModels;
         }
+
+        public static DishEntity Map(DishViewModel viewModel)
+        {
+            var entity = new DishEntity
+            {
+                ID = viewModel.ID,
+                Name = viewModel.Name
+            };
+            return entity;
+        }
+
+        public static List<DishEntity> Map(List<DishViewModel> viewModels)
+        {
+            var entities = viewModels.Select(vm => Map(vm)).ToList();
+            return entities;
+        }
     }
 }
