@@ -8,23 +8,23 @@ using System.Threading.Tasks;
 
 namespace KindergartenProject.Infrastructure.Database
 {
-    public class RoleRepository
+    public class DayOfTheWeekRepository
     {
-        public List<RoleViewModel> GetList()
+        public List<DayOfTheWeekViewModel> GetList()
         {
             using (var context = new Context())
             {
-                var items = context.Roles.ToList();
-                return RoleMapper.Map(items);
+                var items = context.DaysOfTheWeeks.ToList();
+                return DayOfTheWeekMapper.Map(items);
             }
         }
 
-        public RoleViewModel GetById(long id)
+        public DayOfTheWeekViewModel GetById(long id)
         {
             using (var context = new Context())
             {
-                var item = context.Roles.FirstOrDefault(x => x.ID == id);
-                return RoleMapper.Map(item);
+                var item = context.DaysOfTheWeeks.FirstOrDefault(x => x.ID == id);
+                return DayOfTheWeekMapper.Map(item);
             }
         }
     }

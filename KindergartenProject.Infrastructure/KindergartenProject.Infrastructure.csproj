@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context.cs" />
+    <Compile Include="Database\DayOfTheWeekRepository.cs" />
     <Compile Include="Database\DishRepository.cs" />
     <Compile Include="Database\EmployeeRepository.cs" />
     <Compile Include="Database\GroupRepository.cs" />
@@ -82,12 +83,19 @@
     <Compile Include="Group.cs" />
     <Compile Include="Kid.cs" />
     <Compile Include="Kindergarten.cs" />
+    <Compile Include="Mappers\DayOfTheWeekMapper.cs" />
+    <Compile Include="Mappers\DishMapper.cs" />
     <Compile Include="Mappers\EmployeeMapper.cs" />
     <Compile Include="Mappers\GroupMapper.cs" />
     <Compile Include="Mappers\KidMapper.cs" />
+    <Compile Include="Mappers\KindergartenMapper.cs" />
     <Compile Include="Mappers\MealScheduleMapper.cs" />
     <Compile Include="Mappers\ModeOfTheDayMappers.cs" />
     <Compile Include="Mappers\NutritionMapper.cs" />
+    <Compile Include="Mappers\OccupationMapper.cs" />
+    <Compile Include="Mappers\PostMapper.cs" />
+    <Compile Include="Mappers\RoleMapper.cs" />
+    <Compile Include="Mappers\UserMapper.cs" />
     <Compile Include="MealSchedule.cs" />
     <Compile Include="ModeOfTheDay.cs" />
     <Compile Include="Nutrition.cs" />
@@ -96,12 +104,19 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="ViewModels\DayOfTheWeekViewModel.cs" />
+    <Compile Include="ViewModels\DishViewModel.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="ViewModels\GroupViewModel.cs" />
     <Compile Include="ViewModels\KidViewModel.cs" />
+    <Compile Include="ViewModels\KindergartenViewModel.cs" />
     <Compile Include="ViewModels\MealScheduleViewModel.cs" />
     <Compile Include="ViewModels\ModeOfTheDayViewModel.cs" />
     <Compile Include="ViewModels\NutritionViewModel.cs" />
+    <Compile Include="ViewModels\OccupationViewModel.cs" />
+    <Compile Include="ViewModels\PostViewModel.cs" />
+    <Compile Include="ViewModels\RoleViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

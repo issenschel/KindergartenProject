@@ -27,5 +27,15 @@ namespace KindergartenProject.Infrastructure.Database
                 return ModeOfTheDayMapper.Map(item);
             }
         }
+
+        // Метод для получения расписания занятий по ID группы
+        public List<ModeOfTheDayViewModel> GetByGroupId(long groupId)
+        {
+            using (var context = new Context())
+            {
+                var items = context.ModesOfTheDays.Where(m => m.GroupId == groupId).ToList();
+                return ModeOfTheDayMapper.Map(items);
+            }
+        }
     }
 }

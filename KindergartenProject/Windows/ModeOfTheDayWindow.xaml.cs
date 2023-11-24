@@ -1,4 +1,5 @@
 ﻿using KindergartenProject.Infrastructure.Database;
+using KindergartenProject.Infrastructure.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,13 +21,33 @@ namespace KindergartenProject.Windows
     /// </summary>
     public partial class ModeOfTheDayWindow : Window
     {
-        private ModeOfTheDayRepository _repository;
+        private ModeOfTheDayRepository _modeOfTheRepository;
+        private GroupRepository _groupRepository;
         public ModeOfTheDayWindow()
         {
             InitializeComponent();
-            _repository = new ModeOfTheDayRepository();
-            ModeOfTheDayDataGrid.ItemsSource = _repository.GetList();
+            _modeOfTheRepository = new ModeOfTheDayRepository();
+            _groupRepository = new GroupRepository();
+
+            GroupComboBox.ItemsSource = _groupRepository.GetList();
         }
+
+        private void GroupComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedGroup = GroupComboBox.SelectedItem as GroupViewModel;
+            if (selectedGroup != null)
+            {
+                // Получение ID выбранной группы
+                long selectedGroupID = selectedGroup.ID;
+
+                // Получение расписания для выбранной группы
+                var modeForSelectedGroup = _modeOfTheRepository.GetByGroupId(selectedGroupID);
+
+                // Установить источник объектов для DataGrid
+                ModeOfTheDayDataGrid.ItemsSource = modeForSelectedGroup;
+            }
+        }
+
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {

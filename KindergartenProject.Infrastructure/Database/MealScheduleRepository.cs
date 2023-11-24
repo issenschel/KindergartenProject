@@ -27,5 +27,15 @@ namespace KindergartenProject.Infrastructure.Database
                 return MealScheduleMapper.Map(item);
             }
         }
+
+        // Метод для получения расписаний питания по ID дня недели
+        public List<MealScheduleViewModel> GetByDayId(long dayId)
+        {
+            using (var context = new Context())
+            {
+                var items = context.MealsSchedules.Where(ms => ms.DayOfTheWeekId == dayId).ToList();
+                return MealScheduleMapper.Map(items);
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using KindergartenProject.Infrastructure.Database;
+using KindergartenProject.Infrastructure.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,12 +21,36 @@ namespace KindergartenProject.Windows
     /// </summary>
     public partial class MealScheduleWindow : Window
     {
-        private NutritionRepository _repository;
+        private NutritionRepository _nutritionRepository;
+        private DayOfTheWeekRepository _dayOfTheWeekRepository;
+        private MealScheduleRepository _mealScheduleRepository;
         public MealScheduleWindow()
         {
             InitializeComponent();
-            _repository = new NutritionRepository();
-            MealScheduleDataGrid.ItemsSource = _repository.GetList();
+            _nutritionRepository = new NutritionRepository();
+            _dayOfTheWeekRepository = new DayOfTheWeekRepository();
+            _mealScheduleRepository = new MealScheduleRepository();
+
+            DayOfTheWeekComboBox.ItemsSource = _dayOfTheWeekRepository.GetList();
+        }
+
+        private void DayOfTheWeekComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedDay = DayOfTheWeekComboBox.SelectedItem as DayOfTheWeekViewModel;
+            if (selectedDay != null)
+            {
+                // Получение ID выбранного дня недели
+                long selectedDayId = selectedDay.ID;
+
+                // Получение расписаний питания, которые совпадают с выбранным днем недели
+                var mealSchedules = _mealScheduleRepository.GetByDayId(selectedDayId);
+
+                // Получение питания для этих расписаний
+                var nutritionForDay = mealSchedules.Select(ms => _nutritionRepository.GetById(ms.NutritionId)).ToList();
+
+                // Установить источник объектов для DataGrid
+                MealScheduleDataGrid.ItemsSource = nutritionForDay;
+            }
         }
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)
