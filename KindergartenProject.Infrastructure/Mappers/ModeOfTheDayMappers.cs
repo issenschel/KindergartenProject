@@ -19,7 +19,7 @@ namespace KindergartenProject.Infrastructure.Mappers
                 OccupationId = entity.OccupationId,
                 OccupationName = entity.Occupation.Name,
                 GroupId = entity.GroupId,
-                GroupName = entity.Group.Name
+                GroupName = entity.Group?.Name
             };
             return viewModel;
         }

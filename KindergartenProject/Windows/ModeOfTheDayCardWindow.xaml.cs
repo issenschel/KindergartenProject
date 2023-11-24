@@ -22,6 +22,7 @@ namespace KindergartenProject.Windows
     public partial class ModeOfTheDayCardWindow : Window
     {
         private ModeOfTheDayViewModel _selectedItem = null;
+        private ModeOfTheDayRepository _repository = new ModeOfTheDayRepository();
         public ModeOfTheDayCardWindow()
         {
             InitializeComponent();
@@ -29,7 +30,50 @@ namespace KindergartenProject.Windows
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                // Заполняем или обновляем данные в _selectedItem
+                if (_selectedItem == null)
+                {
+                    _selectedItem = new ModeOfTheDayViewModel();
+                    // Тут может потребоваться установка начальных значений для новой записи
+                }
 
+                // Обновляем значения свойств объекта из текстовых полей
+                _selectedItem.GroupName = GroupTextBox.Text;
+                _selectedItem.OccupationName = OccupationTextBox.Text;
+                _selectedItem.StartTime = StartTimeTextBox.Text;
+                _selectedItem.EndTime = EndTimeTextBox.Text;
+
+                var groupId = _repository.GetGroupIdByName(GroupTextBox.Text);
+                if (!groupId.HasValue) // Если группа не найдена
+                {
+                    MessageBox.Show("Такой группы нет.", "Ошибка");
+                    return; // Выход из обработчика, чтобы предотвратить сохранение
+                }
+
+                _selectedItem.GroupId = groupId.Value;
+                // Операция создания или обновления
+                if (_selectedItem.ID == 0)
+                {
+                    // Создание нового элемента
+                    _repository.Add(_selectedItem);
+                    MessageBox.Show("Запись успешно добавлена.", "Сохранение завершено", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    // Обновление существующего элемента
+                    _repository.Update(_selectedItem);
+                    MessageBox.Show("Запись успешно обновлена.", "Сохранение завершено", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+
+                // Закрытие формы после сохранения данных
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка при сохранении данных: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         public ModeOfTheDayCardWindow(ModeOfTheDayViewModel selectedItem)
@@ -37,13 +81,18 @@ namespace KindergartenProject.Windows
             InitializeComponent();
             _selectedItem = selectedItem;
 
+            if (_selectedItem != null)
+            {
+                GroupTextBox.Text = _selectedItem.GroupName;
+                OccupationTextBox.Text = _selectedItem.OccupationName;
+                StartTimeTextBox.Text = _selectedItem.StartTime;
+                EndTimeTextBox.Text = _selectedItem.EndTime;
+            }
         }
 
 
         private void SectionButton_Click(object sender, RoutedEventArgs e)
         {
-            ModeOfTheDayWindow modeOfTheDay = new ModeOfTheDayWindow();
-            modeOfTheDay.Show();
             Close();
         }
 

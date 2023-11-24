@@ -1,5 +1,6 @@
 ﻿using KindergartenProject.Infrastructure.Mappers;
 using KindergartenProject.Infrastructure.ViewModels;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,7 +42,16 @@ namespace KindergartenProject.Infrastructure.Database
         {
             using (var context = new Context())
             {
+                var occupation = context.Occupations.FirstOrDefault(o => o.Name == viewModel.OccupationName);
+                if (occupation == null)
+                {
+                    occupation = new OccupationEntity { Name = viewModel.OccupationName };
+                    context.Occupations.Add(occupation);
+                    context.SaveChanges();
+                }
+
                 var entity = ModeOfTheDayMapper.Map(viewModel);
+                entity.OccupationId = occupation.ID; // Присвоение ID новой Occupation
 
                 context.ModesOfTheDays.Add(entity);
                 context.SaveChanges();
@@ -83,6 +93,15 @@ namespace KindergartenProject.Infrastructure.Database
                 context.SaveChanges();
 
                 return viewModel;
+            }
+        }
+
+        public long? GetGroupIdByName(string groupName)
+        {
+            using (var context = new Context())
+            {
+                var group = context.Groups.FirstOrDefault(g => g.Name == groupName);
+                return group?.ID;
             }
         }
     }

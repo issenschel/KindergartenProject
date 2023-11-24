@@ -94,8 +94,12 @@ namespace KindergartenProject.Windows
                 var item = ModeOfTheDayDataGrid.SelectedItem as ModeOfTheDayViewModel;
             if (item == null)
                 MessageBox.Show("Не удалось получить данные");
-            _modeOfTheRepository.Delete(item.ID);
-            UpdateGrid();
+            else
+            {
+                _modeOfTheRepository.Delete(item.ID);
+                UpdateGrid();
+                MessageBox.Show("Удаление успешно");
+            }
         }
 
         private void UploadButton_Click(object sender, RoutedEventArgs e)
