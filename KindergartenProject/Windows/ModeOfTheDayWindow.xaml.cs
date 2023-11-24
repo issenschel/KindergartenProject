@@ -23,6 +23,8 @@ namespace KindergartenProject.Windows
     {
         private ModeOfTheDayRepository _modeOfTheRepository;
         private GroupRepository _groupRepository;
+        private GroupViewModel _selectedGroup;
+
         public ModeOfTheDayWindow()
         {
             InitializeComponent();
@@ -34,20 +36,35 @@ namespace KindergartenProject.Windows
 
         private void GroupComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var selectedGroup = GroupComboBox.SelectedItem as GroupViewModel;
-            if (selectedGroup != null)
+            _selectedGroup = GroupComboBox.SelectedItem as GroupViewModel;
+            UpdateGrid();
+        }
+
+        private void UpdateGrid()
+        {
+            // Проверяем, выбрана ли группа
+            if (_selectedGroup != null)
             {
-                // Получение ID выбранной группы
-                long selectedGroupID = selectedGroup.ID;
-
-                // Получение расписания для выбранной группы
-                var modeForSelectedGroup = _modeOfTheRepository.GetByGroupId(selectedGroupID);
-
-                // Установить источник объектов для DataGrid
+                // Получение расписания только для выбранной группы
+                var modeForSelectedGroup = _modeOfTheRepository.GetByGroupId(_selectedGroup.ID);
                 ModeOfTheDayDataGrid.ItemsSource = modeForSelectedGroup;
+            }
+            else
+            {
+                // Если группа не выбрана, можно очистить DataGrid
+                ModeOfTheDayDataGrid.ItemsSource = null;
+
             }
         }
 
+        private void ModeOfTheDayDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (ModeOfTheDayDataGrid.SelectedItem == null)
+                return;
+            var exampleCard = new ModeOfTheDayCardWindow(ModeOfTheDayDataGrid.SelectedItem as ModeOfTheDayViewModel);
+            exampleCard.ShowDialog();
+            UpdateGrid();
+        }
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
@@ -58,9 +75,11 @@ namespace KindergartenProject.Windows
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            MealScheduleCardWindow mealScheduleCardWindow = new MealScheduleCardWindow();
-            mealScheduleCardWindow.Show();
-            Close();
+            if (ModeOfTheDayDataGrid.SelectedItem != null)
+                return;
+            var exampleCard = new ModeOfTheDayCardWindow();
+            exampleCard.ShowDialog();
+            UpdateGrid();
         }
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
@@ -70,7 +89,13 @@ namespace KindergartenProject.Windows
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-
+            if (ModeOfTheDayDataGrid.SelectedItem == null)
+                MessageBox.Show("Ничего не выбрано");
+                var item = ModeOfTheDayDataGrid.SelectedItem as ModeOfTheDayViewModel;
+            if (item == null)
+                MessageBox.Show("Не удалось получить данные");
+            _modeOfTheRepository.Delete(item.ID);
+            UpdateGrid();
         }
 
         private void UploadButton_Click(object sender, RoutedEventArgs e)

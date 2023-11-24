@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using KindergartenProject.Infrastructure.Database;
+using KindergartenProject.Infrastructure.ViewModels;
 
 namespace KindergartenProject.Windows
 {
@@ -19,6 +21,7 @@ namespace KindergartenProject.Windows
     /// </summary>
     public partial class ModeOfTheDayCardWindow : Window
     {
+        private ModeOfTheDayViewModel _selectedItem = null;
         public ModeOfTheDayCardWindow()
         {
             InitializeComponent();
@@ -28,6 +31,14 @@ namespace KindergartenProject.Windows
         {
 
         }
+
+        public ModeOfTheDayCardWindow(ModeOfTheDayViewModel selectedItem)
+        {
+            InitializeComponent();
+            _selectedItem = selectedItem;
+
+        }
+
 
         private void SectionButton_Click(object sender, RoutedEventArgs e)
         {
