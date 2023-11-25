@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="Сотрудники" Height="450" Width="700"
         MinHeight="450" MinWidth="700"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        MouseDoubleClick="ModeOfTheDayDataGrid_MouseDoubleClick">
     <Viewbox Stretch="Fill">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -29,13 +30,14 @@
             <StackPanel Grid.Row="2" Grid.Column="2" Margin="5,0,5,0" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Button x:Name="AddButton" Grid.Row="1" Grid.Column="1" Height="50" Width="130" Content="Добавить" FontSize="20"   Background="White" BorderBrush="#FF2C78FF" Foreground="#FF2C78FF" Margin="0,0,0,10" Click="AddButton_Click" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignOutlinedButton}"/>
                 <Button x:Name="UpdateButton" Grid.Row="1" Grid.Column="1" Height="50" Width="130" Content="Обновить" FontSize="20"   Background="White" BorderBrush="#FF2C78FF" Foreground="#FF2C78FF" Margin="0,0,0,10" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignOutlinedButton}"/>
-                <Button  x:Name="DeleteButton" Grid.Row="1" Grid.Column="1" Height="50" Width="130" Content="Удалить" FontSize="20" Background="White" BorderBrush="#FF2C78FF" Foreground="#FF2C78FF" HorizontalAlignment="Left"   Margin="0,0,0,10" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignOutlinedButton}"/>
+                <Button  x:Name="DeleteButton" Grid.Row="1" Grid.Column="1" Height="50" Width="130" Content="Удалить" FontSize="20" Background="White" BorderBrush="#FF2C78FF" Foreground="#FF2C78FF" HorizontalAlignment="Left"   Margin="0,0,0,10" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignOutlinedButton}" Click="DeleteButton_Click"/>
                 <Button x:Name="UploadButton" Grid.Row="1" Grid.Column="1" Height="50" Width="130" Content="Выгрузить" FontSize="20" Background="White" BorderBrush="#FF2C78FF" Foreground="#FF2C78FF"  HorizontalAlignment="Left"  FontFamily="Bahnschrift" Margin="0,0,0,0" Style="{DynamicResource MaterialDesignOutlinedButton}" />
             </StackPanel>
             <DataGrid x:Name="EmployeeDataGrid" AutoGenerateColumns="False" Width="400" Height="261" HorizontalAlignment="Center" VerticalAlignment="Top" CanUserReorderColumns="False" Grid.Row="2" Margin="0,0,0,0" FontFamily="Bahnschrift" BorderBrush="#FF2C78FF" Style="{DynamicResource MaterialDesignDataGrid}" MinColumnWidth="50">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Фио" Binding="{Binding FullName}"/>
                     <DataGridTextColumn Header="Пост" Binding="{Binding PostName}" />
+                    <DataGridTextColumn Header="Опыт работы" Binding="{Binding Experience}" />
                     <DataGridTextColumn Header="Логин" Binding="{Binding UserName}"/>
                 </DataGrid.Columns>
             </DataGrid>

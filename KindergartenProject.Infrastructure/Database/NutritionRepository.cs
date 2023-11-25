@@ -76,7 +76,7 @@ namespace KindergartenProject.Infrastructure.Database
 
             if (dish != null && !dish.Name.Equals(dishName, StringComparison.OrdinalIgnoreCase))
             {
-                // Если блюдо с указанным ID существует и имя изменилось, обновляем его имя и сохраняем изменения
+                // Если блюдо с указанным ID существует и имя изменилось, обновляем. его имя и сохраняем изменения
                 dish.Name = dishName;
                 context.SaveChanges();
             }

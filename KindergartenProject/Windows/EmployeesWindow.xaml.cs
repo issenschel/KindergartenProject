@@ -1,4 +1,5 @@
 ﻿using KindergartenProject.Infrastructure.Database;
+using KindergartenProject.Infrastructure.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,8 +27,10 @@ namespace KindergartenProject.Windows
         {
             InitializeComponent();
             _repository = new EmployeeRepository();
-            EmployeeDataGrid.ItemsSource = _repository.GetList();
+            UpdateGrid();
         }
+
+
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
@@ -38,9 +41,42 @@ namespace KindergartenProject.Windows
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            EmployeeСardWindow employeeСardWindow = new EmployeeСardWindow();
-            employeeСardWindow.Show();
-            Close();
+            if (EmployeeDataGrid.SelectedItem != null)
+                return;
+            var exampleCard = new EmployeeСardWindow();
+            exampleCard.ShowDialog();
+            UpdateGrid();
         }
+
+        private void UpdateGrid()
+        {
+            EmployeeDataGrid.ItemsSource = _repository.GetList();
+        }
+
+        private void ModeOfTheDayDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (EmployeeDataGrid.SelectedItem == null)
+                return;
+            var exampleCard = new EmployeeСardWindow(EmployeeDataGrid.SelectedItem as EmployeeViewModel);
+            exampleCard.ShowDialog();
+            UpdateGrid();
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (EmployeeDataGrid.SelectedItem == null)
+                MessageBox.Show("Ничего не выбрано");
+            var item = EmployeeDataGrid.SelectedItem as EmployeeViewModel;
+            if (item == null)
+                MessageBox.Show("Не удалось получить данные");
+            else
+            {
+                _repository.Delete(item.ID);
+                UpdateGrid();
+                MessageBox.Show("Удаление успешно");
+            }
+        }
+
+
     }
 }

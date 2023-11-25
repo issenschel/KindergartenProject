@@ -1,4 +1,6 @@
-﻿using System;
+﻿using KindergartenProject.Infrastructure.Database;
+using KindergartenProject.Infrastructure.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,15 +21,94 @@ namespace KindergartenProject.Windows
     /// </summary>
     public partial class EmployeeСardWindow : Window
     {
+        private EmployeeViewModel _selectedItem = null;
+        private EmployeeRepository _repository = new EmployeeRepository();
         public EmployeeСardWindow()
         {
             InitializeComponent();
         }
 
+        public EmployeeСardWindow(EmployeeViewModel selectedItem)
+        {
+            InitializeComponent();
+            _selectedItem = selectedItem;
+
+            if (_selectedItem != null)
+            {
+                SurenameTextBox.Text = _selectedItem.Surname;
+                NameTextBox.Text = _selectedItem.Name;
+                PatronymicTextBox.Text = _selectedItem.Patronymic;
+                BirthdayTextBox.Text = _selectedItem.DateOfBirth;
+                PostTextBox.Text = _selectedItem.PostName;
+                ExperienceTextBox.Text = _selectedItem.Experience.ToString();
+                LoginTextBox.Text = _selectedItem.UserName;
+            }
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // Заполняем или обновляем данные в _selectedItem
+                if (_selectedItem == null)
+                {
+                    _selectedItem = new EmployeeViewModel();
+                    // Тут может потребоваться установка начальных значений для новой записи
+                }
+
+                // Обновляем значения свойств объекта из текстовых полей
+                _selectedItem.Name = NameTextBox.Text;
+                _selectedItem.Surname = SurenameTextBox.Text;
+                _selectedItem.Patronymic = PatronymicTextBox.Text;
+                _selectedItem.DateOfBirth = BirthdayTextBox.Text;
+                _selectedItem.PostName = PostTextBox.Text;
+                _selectedItem.Experience = long.Parse(ExperienceTextBox.Text);
+                _selectedItem.UserName = LoginTextBox.Text;
+
+                var postId = _repository.GetPostIdByName(PostTextBox.Text);
+                if (!postId.HasValue) // Если Сотрудник не найдена
+                {
+                    MessageBox.Show("Такого поста нет.", "Ошибка");
+                    return; // Выход из обработчика, чтобы предотвратить сохранение
+                }
+
+                _selectedItem.PostId = postId.Value;
+
+                var loginId = _repository.GetLoginIdByName(LoginTextBox.Text);
+                if (!loginId.HasValue) // Если Сотрудник не найдена
+                {
+                    MessageBox.Show("Такого логина нет.", "Ошибка");
+                    return; // Выход из обработчика, чтобы предотвратить сохранение
+                }
+
+                _selectedItem.UserId = loginId.Value;
+
+                // Операция создания или обновления
+                if (_selectedItem.ID == 0)
+                {
+                    // Создание нового элемента
+                    _repository.Add(_selectedItem);
+                    MessageBox.Show("Запись успешно добавлена.", "Сохранение завершено", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    // Обновление существующего элемента
+                    _repository.Update(_selectedItem);
+                    MessageBox.Show("Запись успешно обновлена.", "Сохранение завершено", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+
+                // Закрытие формы после сохранения данных
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка при сохранении данных: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+
         private void SectionButton_Click(object sender, RoutedEventArgs e)
         {
-            EmployeesWindow employeesWindow = new EmployeesWindow();
-            employeesWindow.Show();
             Close();
         }
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -87,6 +168,7 @@ namespace KindergartenProject.Windows
             }
 
         }
+
     }
 
 }

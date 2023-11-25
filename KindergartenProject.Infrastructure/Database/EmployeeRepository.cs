@@ -79,5 +79,23 @@ namespace KindergartenProject.Infrastructure.Database
                 return viewModel;
             }
         }
+
+        public long? GetLoginIdByName(string loginName)
+        {
+            using (var context = new Context())
+            {
+                var login = context.Users.FirstOrDefault(g => g.Login == loginName);
+                return login?.ID;
+            }
+        }
+
+        public long? GetPostIdByName(string postName)
+        {
+            using (var context = new Context())
+            {
+                var post = context.Posts.FirstOrDefault(g => g.Name == postName);
+                return post?.ID;
+            }
+        }
     }
 }
