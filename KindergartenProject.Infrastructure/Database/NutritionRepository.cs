@@ -33,34 +33,34 @@ namespace KindergartenProject.Infrastructure.Database
             using (var context = new Context())
             {
                 viewModel.BreakFast = GetOrCreateOrUpdateDishId(context, viewModel.BreakFastName);
-                if (viewModel.BreakFast == 27)
+                if (viewModel.BreakFastName == "Завтрак")
                 {
                     throw new Exception("Завтрак не может быть пустым");
                 }
 
                 viewModel.Brunch = GetOrCreateOrUpdateDishId(context, viewModel.BrunchName);
 
-                if (viewModel.Brunch == 28)
+                if (viewModel.BrunchName == "Ланч")
                 {
                     throw new Exception("Ланч не может быть пустым");
                 }
 
                 viewModel.Lunch = GetOrCreateOrUpdateDishId(context, viewModel.LunchName);
 
-                if (viewModel.Lunch == 29)
+                if (viewModel.LunchName == "Обед")
                 {
                     throw new Exception("Обед не может быть пустым");
                 }
                 viewModel.AfternoonSnack = GetOrCreateOrUpdateDishId(context, viewModel.AfternoonSnackName);
 
-                if (viewModel.AfternoonSnack == 30)
+                if (viewModel.AfternoonSnackName == "Полдник")
                 {
                     throw new Exception("Полдник не может быть пустым");
                 }
 
                 viewModel.Dinner = GetOrCreateOrUpdateDishId(context, viewModel.DinnerName);
 
-                if (viewModel.Dinner == 31)
+                if (viewModel.DinnerName == "Полдник")
                 {
                     throw new Exception("Ужин не может быть пустым");
                 }
@@ -132,34 +132,34 @@ namespace KindergartenProject.Infrastructure.Database
 
                 // Обновить существующие блюда или создать новые, если имя изменилось
                 entity.BreakFast = GetOrCreateOrUpdateDishId(context, viewModel.BreakFastName, entity.BreakFast);
-                if (entity.BreakFast == 27)
+                if (viewModel.BreakFastName == "Завтрак")
                 {
                     throw new Exception("Завтрак не может быть пустым");
                 }
 
                 entity.Brunch = GetOrCreateOrUpdateDishId(context, viewModel.BrunchName, entity.Brunch);
 
-                if (entity.Brunch == 28)
+                if (viewModel.BrunchName == "Ланч")
                 {
                     throw new Exception("Ланч не может быть пустым");
                 }
 
                 entity.Lunch = GetOrCreateOrUpdateDishId(context, viewModel.LunchName, entity.Lunch);
-                if (entity.Lunch == 29)
+                if (viewModel.LunchName == "Обед")
                 {
                     throw new Exception("Обед не может быть пустым");
                 }
 
                 entity.AfternoonSnack = GetOrCreateOrUpdateDishId(context, viewModel.AfternoonSnackName, entity.AfternoonSnack);
 
-                if (entity.AfternoonSnack == 30)
+                if (viewModel.AfternoonSnackName == "Полдник")
                 {
                     throw new Exception("Полдник не может быть пустым");
                 }
 
                 entity.Dinner = GetOrCreateOrUpdateDishId(context, viewModel.DinnerName, entity.Dinner);
 
-                if (entity.Dinner == 31)
+                if (viewModel.DinnerName == "Ужин")
                 {
                     throw new Exception("Ужин не может быть пустым");
                 }
