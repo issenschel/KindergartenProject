@@ -23,7 +23,7 @@ namespace KindergartenProject.Windows
     {
         private NutritionRepository _nutritionRepository = new NutritionRepository();
         private MealScheduleRepository _mealScheduleRepository = new MealScheduleRepository();
-        private MealScheduleViewModel _schedule; // Предположим, что эта модель передается в конструкторе если нужно обновить существующий элемент
+        private MealScheduleViewModel _schedule; 
 
         public MealScheduleCardWindow()
         {
@@ -38,7 +38,7 @@ namespace KindergartenProject.Windows
 
             if (_schedule != null && _schedule.NutritionId != 0)
             {
-                // Загрузим данные из Nutrition, предполагается что репозиторий возвращает полную ViewModel включая имена блюд если NutritionId != 0
+                // Загрузим данные из Nutrition
                 var nutrition = _nutritionRepository.GetById(_schedule.NutritionId);
                 DayofWeekTextBox.Text = _schedule.DayOfTheWeekName;
                 BreakFastTextBox.Text = nutrition.BreakFastName;
@@ -100,7 +100,6 @@ namespace KindergartenProject.Windows
                 // Создаем новое расписание, если не существует
                 _schedule = new MealScheduleViewModel
                 {
-                    // Допущение, что метод GetDayIdByName работает корректно и вернет правильный ID
                     DayOfTheWeekId = _mealScheduleRepository.GetDayIdByName(DayofWeekTextBox.Text).Value,
                     NutritionId = nutrition.ID
                 };
@@ -111,13 +110,6 @@ namespace KindergartenProject.Windows
                     return;
                 }
             }
-            else
-            {
-                // Если расписание уже существует, обновляем его (если необходимо).
-                // Так как NutritionId уже обновлен, то возможно никаких действий не требуется.
-            }
-
-            // Закрываем окно
             Close();
         }
 

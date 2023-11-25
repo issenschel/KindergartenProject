@@ -17,10 +17,10 @@ namespace KindergartenProject.Infrastructure.Mappers
                 Name = entity.Name,
                 Surname = entity.Surname,
                 Patronymic = entity.Patronymic,
-                FullName = $"{entity.Name} {entity.Surname} {entity.Patronymic}",
+                FullName = $"{entity.Surname} {entity.Name} {entity.Patronymic}",
                 DateOfBirth = entity.DateOfBirth,
                 GroupId = entity.GroupId,
-                GroupName = entity.Group.Name,
+                GroupName = entity.Group?.Name,
             };
             return viewModel;
         }

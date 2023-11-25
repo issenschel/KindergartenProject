@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using KindergartenProject.Infrastructure;
 using KindergartenProject.Infrastructure.Database;
-
+using KindergartenProject.Infrastructure.ViewModels;
 
 
 namespace KindergartenProject.Windows
@@ -28,7 +28,7 @@ namespace KindergartenProject.Windows
         {
             InitializeComponent();
             _repository = new KidRepository();
-            KidDataGrid.ItemsSource = _repository.GetList();
+            UpdateGrid();
 
 
         }
@@ -42,14 +42,46 @@ namespace KindergartenProject.Windows
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            ChildСardWindow childСardWindow = new ChildСardWindow();
-            childСardWindow.Show();
-            Close();
+            if (KidDataGrid.SelectedItem != null)
+                return;
+            var exampleCard = new ChildСardWindow();
+            exampleCard.ShowDialog();
+            UpdateGrid();
         }
+
+        private void UpdateGrid()
+        {
+            KidDataGrid.ItemsSource = _repository.GetList();
+        }
+
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void ModeOfTheDayDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (KidDataGrid.SelectedItem == null)
+                return;
+            var exampleCard = new ChildСardWindow(KidDataGrid.SelectedItem as KidViewModel);
+            exampleCard.ShowDialog();
+            UpdateGrid();
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (KidDataGrid.SelectedItem == null)
+                MessageBox.Show("Ничего не выбрано");
+            var item = KidDataGrid.SelectedItem as KidViewModel;
+            if (item == null)
+                MessageBox.Show("Не удалось получить данные");
+            else
+            {
+                _repository.Delete(item.ID);
+                UpdateGrid();
+                MessageBox.Show("Удаление успешно");
+            }
         }
     }
 }
