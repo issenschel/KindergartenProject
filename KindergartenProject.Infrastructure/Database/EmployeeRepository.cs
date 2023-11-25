@@ -89,13 +89,14 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
-        public long? GetPostIdByName(string postName)
+        public List<PostViewModel> GetPosts()
         {
             using (var context = new Context())
             {
-                var post = context.Posts.FirstOrDefault(g => g.Name == postName);
-                return post?.ID;
+                var items = context.Posts.ToList();
+                return PostMapper.Map(items);
             }
         }
+
     }
 }

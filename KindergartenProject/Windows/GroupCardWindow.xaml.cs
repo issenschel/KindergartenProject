@@ -27,6 +27,8 @@ namespace KindergartenProject.Windows
         public GroupCardWindow()
         {
             InitializeComponent();
+            var employees = _repository.GetEmployees();
+            EmployeeComboBox.ItemsSource = employees;
         }
 
         private void SectionButton_Click(object sender, RoutedEventArgs e)
@@ -43,7 +45,10 @@ namespace KindergartenProject.Windows
             {
                 GroupTextBox.Text = _selectedItem.Name;
                 PlacesTextBox.Text = _selectedItem.AvailableSeats.ToString();
-                EmployeeTextBox.Text = _selectedItem.EmployeeName;
+
+                var employees = _repository.GetEmployees();
+                EmployeeComboBox.ItemsSource = employees;
+                EmployeeComboBox.SelectedItem = employees.FirstOrDefault(p => p.ID == _selectedItem.EmployeeId);
             }
         }
 
@@ -55,22 +60,14 @@ namespace KindergartenProject.Windows
                 if (_selectedItem == null)
                 {
                     _selectedItem = new GroupViewModel();
-                    // Тут может потребоваться установка начальных значений для новой записи
                 }
 
                 // Обновляем значения свойств объекта из текстовых полей
                 _selectedItem.Name = GroupTextBox.Text;
                 _selectedItem.AvailableSeats =long.Parse(PlacesTextBox.Text);
-                _selectedItem.EmployeeName = EmployeeTextBox.Text;
+                _selectedItem.EmployeeId = (long)EmployeeComboBox.SelectedValue;
 
-                var employeeId = _repository.GetEmployeeIdByName(EmployeeTextBox.Text);
-                if (!employeeId.HasValue) // Если Сотрудник не найдена
-                {
-                    MessageBox.Show("Такого сотрудника нет.", "Ошибка");
-                    return; // Выход из обработчика, чтобы предотвратить сохранение
-                }
 
-                _selectedItem.EmployeeId = employeeId.Value;
                 // Операция создания или обновления
                 if (_selectedItem.ID == 0)
                 {
@@ -99,7 +96,7 @@ namespace KindergartenProject.Windows
         //Очистка текста при получении фокуса
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            List<string> strings = new List<string>() { "Группа", "Количество свободных мест", "Воспитатель"};
+            List<string> strings = new List<string>() { "Группа", "Количество свободных мест"};
             TextBox textBox = (TextBox)sender;
             foreach (string s in strings)
             {
@@ -116,7 +113,6 @@ namespace KindergartenProject.Windows
             {
                 { "GroupTextBox", GroupTextBox},
                 { "PlacesTextBox", PlacesTextBox},
-                { "EmployeeTextBox", EmployeeTextBox}
             };
             foreach (KeyValuePair<String, TextBox> kv in textBoxes)
             {
@@ -129,9 +125,6 @@ namespace KindergartenProject.Windows
                             break;
                         case "PlacesTextBox":
                             kv.Value.Text = "Количество свободных мест";
-                            break;
-                        case "EmployeeTextBox":
-                            kv.Value.Text = "Воспитатель";
                             break;
                     }
                 }

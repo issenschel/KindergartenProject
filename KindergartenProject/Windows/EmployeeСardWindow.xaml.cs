@@ -26,6 +26,8 @@ namespace KindergartenProject.Windows
         public EmployeeСardWindow()
         {
             InitializeComponent();
+            var posts = _repository.GetPosts();
+            PostComboBox.ItemsSource = posts;
         }
 
         public EmployeeСardWindow(EmployeeViewModel selectedItem)
@@ -39,7 +41,11 @@ namespace KindergartenProject.Windows
                 NameTextBox.Text = _selectedItem.Name;
                 PatronymicTextBox.Text = _selectedItem.Patronymic;
                 BirthdayTextBox.Text = _selectedItem.DateOfBirth;
-                PostTextBox.Text = _selectedItem.PostName;
+
+                var posts = _repository.GetPosts();
+                PostComboBox.ItemsSource = posts;
+                PostComboBox.SelectedItem = posts.FirstOrDefault(p => p.ID == _selectedItem.PostId);
+
                 ExperienceTextBox.Text = _selectedItem.Experience.ToString();
                 LoginTextBox.Text = _selectedItem.UserName;
             }
@@ -53,7 +59,6 @@ namespace KindergartenProject.Windows
                 if (_selectedItem == null)
                 {
                     _selectedItem = new EmployeeViewModel();
-                    // Тут может потребоваться установка начальных значений для новой записи
                 }
 
                 // Обновляем значения свойств объекта из текстовых полей
@@ -61,21 +66,13 @@ namespace KindergartenProject.Windows
                 _selectedItem.Surname = SurenameTextBox.Text;
                 _selectedItem.Patronymic = PatronymicTextBox.Text;
                 _selectedItem.DateOfBirth = BirthdayTextBox.Text;
-                _selectedItem.PostName = PostTextBox.Text;
+                _selectedItem.PostId = (long)PostComboBox.SelectedValue;
                 _selectedItem.Experience = long.Parse(ExperienceTextBox.Text);
                 _selectedItem.UserName = LoginTextBox.Text;
 
-                var postId = _repository.GetPostIdByName(PostTextBox.Text);
-                if (!postId.HasValue) // Если Сотрудник не найдена
-                {
-                    MessageBox.Show("Такого поста нет.", "Ошибка");
-                    return; // Выход из обработчика, чтобы предотвратить сохранение
-                }
-
-                _selectedItem.PostId = postId.Value;
 
                 var loginId = _repository.GetLoginIdByName(LoginTextBox.Text);
-                if (!loginId.HasValue) // Если Сотрудник не найдена
+                if (!loginId.HasValue) // Если Логин не найден
                 {
                     MessageBox.Show("Такого логина нет.", "Ошибка");
                     return; // Выход из обработчика, чтобы предотвратить сохранение
@@ -133,7 +130,6 @@ namespace KindergartenProject.Windows
                 { "NameTextBox", NameTextBox },
                 { "BirthdayTextBox", BirthdayTextBox },
                 { "ExperienceTextBox", ExperienceTextBox },
-                { "PostTextBox", PostTextBox },
                 { "LoginTextBox", LoginTextBox }
             };
             foreach (KeyValuePair<String, TextBox> kv in textBoxes)
@@ -157,15 +153,14 @@ namespace KindergartenProject.Windows
                         case "ExperienceTextBox":
                             kv.Value.Text = "Опыт работы";
                             break;
-                        case "PostTextBox":
-                            kv.Value.Text = "Пост";
-                            break;
                         case "LoginTextBox":
                             kv.Value.Text = "Логин";
                             break;
                     }
                 }
             }
+
+
 
         }
 

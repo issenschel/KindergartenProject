@@ -21,7 +21,7 @@ namespace KindergartenProject.Infrastructure.Mappers
                 DateOfBirth = entity.DateOfBirth,
                 Experience = entity.Experience,
                 PostId = entity.PostId,
-                PostName = entity.Post?.Name,
+                PostName = entity.Post.Name,
                 UserId = entity.UserId,
                 UserName = entity.User?.Login
             };

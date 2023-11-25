@@ -26,7 +26,7 @@
                 <TextBox x:Name="PlacesTextBox" Width="200" Height="Auto" Margin="0,0,0,0" VerticalContentAlignment="Center" FontSize="11" FontFamily="Bahnschrift" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Text="Количество свободных мест"/>
             </StackPanel>
             <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0">
-                <TextBox x:Name="EmployeeTextBox" Width="200" Height="Auto" Margin="0,0,0,0" VerticalContentAlignment="Center" FontSize="11" FontFamily="Bahnschrift" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Text="Воспитатель"/>
+                <ComboBox x:Name="EmployeeComboBox" Width="200" Height="Auto" Margin="0,0,0,0" VerticalContentAlignment="Center" FontSize="11" FontFamily="Bahnschrift" DisplayMemberPath="FullName" SelectedValuePath="ID" Text="Воспитатель"/>
             </StackPanel>
             <Button x:Name="SaveButton" Grid.Row="5" Height="Auto" Width="372" Content="Сохранить" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#FF2C78FF" Foreground="Black" Margin="0,0,0,0" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignToolButton}" Click="SaveButton_Click"/>
         </Grid>

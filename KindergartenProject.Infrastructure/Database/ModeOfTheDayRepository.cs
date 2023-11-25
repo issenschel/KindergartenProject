@@ -115,5 +115,14 @@ namespace KindergartenProject.Infrastructure.Database
                 return group?.ID;
             }
         }
+
+        public List<GroupViewModel> GetGroups()
+        {
+            using (var context = new Context())
+            {
+                var items = context.Groups.ToList();
+                return GroupMapper.Map(items);
+            }
+        }
     }
 }

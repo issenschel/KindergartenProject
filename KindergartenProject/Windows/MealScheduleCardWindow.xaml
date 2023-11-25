@@ -23,7 +23,7 @@
             </Grid.RowDefinitions>
             <Button x:Name="SectionButton" Grid.Row="0" Height="30" Width="120" Margin="0,0,0,0" Content="К разделу" FontSize="15" VerticalAlignment="Top" HorizontalAlignment="Right" Background="#FF2C78FF" Foreground="Black" Click="SectionButton_Click" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignToolButton}"/>
             <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0">
-                <TextBox x:Name="DayofWeekTextBox" Width="150" Height="auto" VerticalContentAlignment="Center" FontSize="13" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Text="День недели" FontFamily="Bahnschrift" />
+                <ComboBox x:Name="DayofWeekComboBox" Width="150" Height="auto" VerticalContentAlignment="Center" FontSize="13" DisplayMemberPath="Name" SelectedValuePath="ID" FontFamily="Bahnschrift" />
             </StackPanel>
             <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0">
                 <TextBox x:Name="BreakFastTextBox" Width="150" Height="auto" Margin="0,0,0,0" VerticalContentAlignment="Center" FontSize="13" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Text="Завтрак" FontFamily="Bahnschrift"/>

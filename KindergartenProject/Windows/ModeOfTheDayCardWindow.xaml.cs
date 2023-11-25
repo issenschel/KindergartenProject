@@ -26,6 +26,8 @@ namespace KindergartenProject.Windows
         public ModeOfTheDayCardWindow()
         {
             InitializeComponent();
+            var employees = _repository.GetGroups();
+            GroupComboBox.ItemsSource = employees;
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -36,23 +38,14 @@ namespace KindergartenProject.Windows
                 if (_selectedItem == null)
                 {
                     _selectedItem = new ModeOfTheDayViewModel();
-                    // Тут может потребоваться установка начальных значений для новой записи
                 }
 
                 // Обновляем значения свойств объекта из текстовых полей
-                _selectedItem.GroupName = GroupTextBox.Text;
                 _selectedItem.OccupationName = OccupationTextBox.Text;
                 _selectedItem.StartTime = StartTimeTextBox.Text;
                 _selectedItem.EndTime = EndTimeTextBox.Text;
+                _selectedItem.GroupId = (long)GroupComboBox.SelectedValue;
 
-                var groupId = _repository.GetGroupIdByName(GroupTextBox.Text);
-                if (!groupId.HasValue) // Если группа не найдена
-                {
-                    MessageBox.Show("Такой группы нет.", "Ошибка");
-                    return; // Выход из обработчика, чтобы предотвратить сохранение
-                }
-
-                _selectedItem.GroupId = groupId.Value;
                 // Операция создания или обновления
                 if (_selectedItem.ID == 0)
                 {
@@ -83,10 +76,13 @@ namespace KindergartenProject.Windows
 
             if (_selectedItem != null)
             {
-                GroupTextBox.Text = _selectedItem.GroupName;
                 OccupationTextBox.Text = _selectedItem.OccupationName;
                 StartTimeTextBox.Text = _selectedItem.StartTime;
                 EndTimeTextBox.Text = _selectedItem.EndTime;
+
+                var employees = _repository.GetGroups();
+                GroupComboBox.ItemsSource = employees;
+                GroupComboBox.SelectedItem = employees.FirstOrDefault(p => p.ID == _selectedItem.GroupId);
             }
         }
 
@@ -99,7 +95,7 @@ namespace KindergartenProject.Windows
         //Очистка текста при получении фокуса
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            List<string> strings = new List<string>() { "Группа", "Занятие", "Время начала", "Время окончания" };
+            List<string> strings = new List<string>() { "Занятие", "Время начала", "Время окончания" };
             TextBox textBox = (TextBox)sender;
             foreach (string s in strings)
             {
@@ -114,7 +110,6 @@ namespace KindergartenProject.Windows
         {
             Dictionary<String, TextBox> textBoxes = new Dictionary<String, TextBox>()
             {
-                { "GroupTextBox", GroupTextBox},
                 { "OccupationTextBox", OccupationTextBox},
                 { "StartTimeTextBox", StartTimeTextBox},
                 { "EndTimeTextBox", EndTimeTextBox }
@@ -125,9 +120,6 @@ namespace KindergartenProject.Windows
                 {
                     switch (kv.Key)
                     {
-                        case "GroupTextBox":
-                            kv.Value.Text = "Группа";
-                            break;
                         case "OccupationTextBox":
                             kv.Value.Text = "Занятие";
                             break;

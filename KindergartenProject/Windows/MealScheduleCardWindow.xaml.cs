@@ -22,94 +22,114 @@ namespace KindergartenProject.Windows
     public partial class MealScheduleCardWindow : Window
     {
         private NutritionRepository _nutritionRepository = new NutritionRepository();
+        private MealScheduleViewModel _selectedItem = null;
         private MealScheduleRepository _mealScheduleRepository = new MealScheduleRepository();
-        private MealScheduleViewModel _schedule; 
+
 
         public MealScheduleCardWindow()
         {
             InitializeComponent();
+            var dayOfTheWeek = _mealScheduleRepository.GetDaysOfTheWeeks();
+            DayofWeekComboBox.ItemsSource = dayOfTheWeek;
         }
 
         public MealScheduleCardWindow(MealScheduleViewModel schedule)
         {
             InitializeComponent();
 
-            _schedule = schedule;
+            _selectedItem = schedule;
 
-            if (_schedule != null && _schedule.NutritionId != 0)
+            if (_selectedItem != null && _selectedItem.NutritionId != 0)
             {
                 // Загрузим данные из Nutrition
-                var nutrition = _nutritionRepository.GetById(_schedule.NutritionId);
-                DayofWeekTextBox.Text = _schedule.DayOfTheWeekName;
+                var nutrition = _nutritionRepository.GetById(_selectedItem.NutritionId);
                 BreakFastTextBox.Text = nutrition.BreakFastName;
                 BrunchTextBox.Text = nutrition.BrunchName;
                 LunchTextBox.Text = nutrition.LunchName;
                 AfternoonSnackTextBox.Text = nutrition.AfternoonSnackName;
                 DinnerTextBox.Text = nutrition.DinnerName;
+
+                var dayOfTheWeek = _mealScheduleRepository.GetDaysOfTheWeeks();
+                DayofWeekComboBox.ItemsSource = dayOfTheWeek;
+                DayofWeekComboBox.SelectedItem = dayOfTheWeek.FirstOrDefault(p => p.ID == _selectedItem.DayOfTheWeekId);
             }
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            NutritionViewModel nutrition;
-
-            // Если _schedule не null и NutritionId установлен, то обновляем существующую запись.
-            if (_schedule != null && _schedule.NutritionId > 0)
+            try
             {
-                nutrition = _nutritionRepository.GetById(_schedule.NutritionId);
+                NutritionViewModel nutrition;
+
+                // Если _schedule не null и NutritionId установлен, то обновляем существующую запись.
+                if (_selectedItem != null && _selectedItem.NutritionId > 0)
+                {
+                    nutrition = _nutritionRepository.GetById(_selectedItem.NutritionId);
+                    if (nutrition == null)
+                    {
+                        MessageBox.Show("Информация о питании не найдена.");
+                        return;
+                    }
+
+                    // Обновляем информацию о блюдах
+                    nutrition.BreakFastName = BreakFastTextBox.Text;
+                    nutrition.BrunchName = BrunchTextBox.Text;
+                    nutrition.LunchName = LunchTextBox.Text;
+                    nutrition.AfternoonSnackName = AfternoonSnackTextBox.Text;
+                    nutrition.DinnerName = DinnerTextBox.Text;
+
+                    // Вызываем метод Update репозитория
+                    nutrition = _nutritionRepository.Update(nutrition);
+                }
+                else
+                {
+                    // Если _schedule null или NutritionId не установлен, создаем новую запись.
+                    nutrition = new NutritionViewModel
+                    {
+                        BreakFastName = BreakFastTextBox.Text,
+                        BrunchName = BrunchTextBox.Text,
+                        LunchName = LunchTextBox.Text,
+                        AfternoonSnackName = AfternoonSnackTextBox.Text,
+                        DinnerName = DinnerTextBox.Text
+                    };
+
+                    nutrition = _nutritionRepository.Add(nutrition);
+                }
+
                 if (nutrition == null)
                 {
-                    MessageBox.Show("Информация о питании не найдена.");
+                    MessageBox.Show("Ошибка при сохранении информации о питании.");
                     return;
                 }
 
-                // Обновляем информацию о блюдах
-                nutrition.BreakFastName = BreakFastTextBox.Text;
-                nutrition.BrunchName = BrunchTextBox.Text;
-                nutrition.LunchName = LunchTextBox.Text;
-                nutrition.AfternoonSnackName = AfternoonSnackTextBox.Text;
-                nutrition.DinnerName = DinnerTextBox.Text;
-
-                // Вызываем метод Update репозитория
-                nutrition = _nutritionRepository.Update(nutrition);
-            }
-            else
-            {
-                // Если _schedule null или NutritionId не установлен, создаем новую запись.
-                nutrition = new NutritionViewModel
+                // Теперь либо создаем новое расписание, либо обновляем существующее.
+                if (_selectedItem == null)
                 {
-                    BreakFastName = BreakFastTextBox.Text,
-                    BrunchName = BrunchTextBox.Text,
-                    LunchName = LunchTextBox.Text,
-                    AfternoonSnackName = AfternoonSnackTextBox.Text,
-                    DinnerName = DinnerTextBox.Text
-                };
+                    _selectedItem = new MealScheduleViewModel();
+                }
 
-                nutrition = _nutritionRepository.Add(nutrition);
-            }
+                _selectedItem.DayOfTheWeekId = (long)DayofWeekComboBox.SelectedValue;
+                _selectedItem.NutritionId = nutrition.ID;
 
-            if (nutrition == null)
-            {
-                MessageBox.Show("Ошибка при сохранении информации о питании.");
-                return;
-            }
-
-            // Теперь либо создаем новое расписание, либо обновляем существующее.
-            if (_schedule == null)
-            {
-                // Создаем новое расписание, если не существует
-                _schedule = new MealScheduleViewModel
+                if (_selectedItem.ID == 0)
                 {
-                    DayOfTheWeekId = _mealScheduleRepository.GetDayIdByName(DayofWeekTextBox.Text).Value,
-                    NutritionId = nutrition.ID
-                };
-                var result = _mealScheduleRepository.Add(_schedule);
-                if (result == null)
+                    // Создание нового элемента
+                    _mealScheduleRepository.Add(_selectedItem);
+                    MessageBox.Show("Запись успешно добавлена.", "Сохранение завершено", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
                 {
-                    MessageBox.Show("Не удалось добавить расписание питания.");
-                    return;
+                    // Обновление существующего элемента
+                    _mealScheduleRepository.Update(_selectedItem);
+                    MessageBox.Show("Запись успешно обновлена.", "Сохранение завершено", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка при сохранении данных: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+
             Close();
         }
 
@@ -120,7 +140,7 @@ namespace KindergartenProject.Windows
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            List<string> strings = new List<string>() { "День недели", "Завтрак", "Ланч", "Обед", "Полдник","Ужин"};
+            List<string> strings = new List<string>() { "Завтрак", "Ланч", "Обед", "Полдник","Ужин"};
             TextBox textBox = (TextBox)sender;
             foreach (string s in strings)
             {
@@ -135,7 +155,6 @@ namespace KindergartenProject.Windows
         {
             Dictionary<String, TextBox> textBoxes = new Dictionary<String, TextBox>()
             {
-                { "DayofWeekTextBox", DayofWeekTextBox},
                 { "BreakFastTextBox", BreakFastTextBox},
                 { "BrunchTextBox", BrunchTextBox},
                 { "LunchTextBox", LunchTextBox },
@@ -148,9 +167,6 @@ namespace KindergartenProject.Windows
                 {
                     switch (kv.Key)
                     {
-                        case "DayofWeekTextBox":
-                            kv.Value.Text = "День недели";
-                            break;
                         case "BreakFastTextBox":
                             kv.Value.Text = "Завтрак";
                             break;
@@ -173,3 +189,4 @@ namespace KindergartenProject.Windows
         }
     }
 }
+

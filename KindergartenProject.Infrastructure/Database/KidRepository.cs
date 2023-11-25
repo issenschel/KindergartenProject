@@ -28,12 +28,12 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
-        public long? GetGroupIdByName(string groupName)
+        public List<GroupViewModel> GetGroups()
         {
             using (var context = new Context())
             {
-                var group = context.Groups.FirstOrDefault(g => g.Name == groupName);
-                return group?.ID;
+                var items = context.Groups.ToList();
+                return GroupMapper.Map(items);
             }
         }
 

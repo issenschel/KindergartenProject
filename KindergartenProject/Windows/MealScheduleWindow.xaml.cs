@@ -42,8 +42,6 @@ namespace KindergartenProject.Windows
             if (selectedNutrition == null)
                 return;
 
-            // Здесь предполагается, что у вас есть метод в _mealScheduleRepository
-            // который может получить объект MealScheduleViewModel по NutritionId
             var mealSchedule = _mealScheduleRepository.GetByNutritionId(selectedNutrition.ID);
             if (mealSchedule == null)
             {

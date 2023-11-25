@@ -76,12 +76,12 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
-        public long? GetEmployeeIdByName(string employeeName)
+        public List<EmployeeViewModel> GetEmployees()
         {
             using (var context = new Context())
             {
-                var employee = context.Employees.FirstOrDefault(g => g.Surname == employeeName);
-                return employee?.ID;
+                var items = context.Employees.ToList();
+                return EmployeeMapper.Map(items);
             }
         }
     }

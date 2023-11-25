@@ -28,6 +28,15 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
+        public List<DayOfTheWeekViewModel> GetDaysOfTheWeeks()
+        {
+            using (var context = new Context())
+            {
+                var items = context.DaysOfTheWeeks.ToList();
+                return DayOfTheWeekMapper.Map(items);
+            }
+        }
+
         // Метод для получения расписаний питания по ID дня недели
         public List<MealScheduleViewModel> GetByDayId(long dayId)
         {
@@ -38,14 +47,6 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
-        public long? GetDayIdByName(string dayName)
-        {
-            using (var context = new Context())
-            {
-                var day = context.DaysOfTheWeeks.FirstOrDefault(g => g.Name == dayName);
-                return day?.ID;
-            }
-        }
 
         public MealScheduleViewModel Add(MealScheduleViewModel viewModel)
         {
@@ -103,5 +104,6 @@ namespace KindergartenProject.Infrastructure.Database
                 return MealScheduleMapper.Map(item);
             }
         }
+
     }
 }

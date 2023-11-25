@@ -27,6 +27,8 @@ namespace KindergartenProject.Windows
         public ChildСardWindow()
         {
             InitializeComponent();
+            var groups = _repository.GetGroups();
+            GroupComboBox.ItemsSource = groups;
         }
 
         public ChildСardWindow(KidViewModel selectedItem)
@@ -40,7 +42,10 @@ namespace KindergartenProject.Windows
                 SurenameTextBox.Text = _selectedItem.Surname;
                 PatronymicTextBox.Text = _selectedItem.Patronymic;
                 BirthdayTextBox.Text = _selectedItem.DateOfBirth;
-                GroupTextBox.Text = _selectedItem.GroupName;
+
+                var groups = _repository.GetGroups();
+                GroupComboBox.ItemsSource = groups;
+                GroupComboBox.SelectedItem = groups.FirstOrDefault(p => p.ID == _selectedItem.GroupId);
             }
         }
 
@@ -52,24 +57,16 @@ namespace KindergartenProject.Windows
                 if (_selectedItem == null)
                 {
                     _selectedItem = new KidViewModel();
-                    // Тут может потребоваться установка начальных значений для новой записи
                 }
 
                 // Обновляем значения свойств объекта из текстовых полей
-                _selectedItem.GroupName = GroupTextBox.Text;
+                _selectedItem.GroupId = (long)GroupComboBox.SelectedValue;
                 _selectedItem.Surname = SurenameTextBox.Text;
                 _selectedItem.Patronymic = PatronymicTextBox.Text;
                 _selectedItem.Name = NameTextBox.Text;
                 _selectedItem.DateOfBirth = BirthdayTextBox.Text;
 
-                var groupId = _repository.GetGroupIdByName(GroupTextBox.Text);
-                if (!groupId.HasValue) // Если группа не найдена
-                {
-                    MessageBox.Show("Такой группы нет.", "Ошибка");
-                    return; // Выход из обработчика, чтобы предотвратить сохранение
-                }
 
-                _selectedItem.GroupId = groupId.Value;
                 // Операция создания или обновления
                 if (_selectedItem.ID == 0)
                 {
@@ -101,7 +98,7 @@ namespace KindergartenProject.Windows
         //Очистка текста при получении фокуса
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            List<string> strings = new List<string>() { "Фамилия", "Имя", "Отчество", "Дата рождения", "Группа" };
+            List<string> strings = new List<string>() { "Фамилия", "Имя", "Отчество", "Дата рождения" };
             TextBox textBox = (TextBox)sender;
             foreach (string s in strings)
             { 
@@ -120,7 +117,6 @@ namespace KindergartenProject.Windows
                 { "SurenameTextBox", SurenameTextBox },
                 { "NameTextBox", NameTextBox },
                 { "BirthdayTextBox", BirthdayTextBox },
-                { "GroupTextBox", GroupTextBox }
             };
             foreach (KeyValuePair<String, TextBox> kv in textBoxes)
             {
@@ -139,9 +135,6 @@ namespace KindergartenProject.Windows
                             break;
                         case "BirthdayTextBox":
                             kv.Value.Text = "Дата рождения";
-                            break;
-                        case "GroupTextBox":
-                            kv.Value.Text = "Группа";
                             break;
                     }
                 }
