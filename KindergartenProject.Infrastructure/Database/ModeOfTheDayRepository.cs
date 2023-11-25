@@ -3,6 +3,7 @@ using KindergartenProject.Infrastructure.ViewModels;
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ namespace KindergartenProject.Infrastructure.Database
 {
     public class ModeOfTheDayRepository : IBaseRepository<ModeOfTheDayViewModel>
     {
+        private DateTime date;
         public List<ModeOfTheDayViewModel> GetList()
         {
             using (var context = new Context())
@@ -46,12 +48,25 @@ namespace KindergartenProject.Infrastructure.Database
                 if (occupation == null)
                 {
                     occupation = new OccupationEntity { Name = viewModel.OccupationName };
+                    if (occupation.Name == "Занятие")
+                    {
+                        throw new Exception("Занятие не может быть пустым");
+                    }
                     context.Occupations.Add(occupation);
                     context.SaveChanges();
                 }
 
                 var entity = ModeOfTheDayMapper.Map(viewModel);
                 entity.OccupationId = occupation.ID; // Присвоение ID новой Occupation
+
+                if (!DateTime.TryParseExact(entity.StartTime, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+                {
+                    throw new Exception("Дата должна быть в формате времени (например, 14:30)");
+                }
+                if (!DateTime.TryParseExact(entity.EndTime, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+                {
+                    throw new Exception("Дата должна быть в формате времени (например, 14:30)");
+                }
 
                 context.ModesOfTheDays.Add(entity);
                 context.SaveChanges();
@@ -73,12 +88,28 @@ namespace KindergartenProject.Infrastructure.Database
                 if (occupation != null && !string.Equals(occupation.Name, viewModel.OccupationName, StringComparison.OrdinalIgnoreCase))
                 {
                     occupation.Name = viewModel.OccupationName;
+                    if (occupation.Name == "Занятие")
+                    {
+                        throw new Exception("Занятие не может быть пустым");
+                    }
                     // Здесь не вызываем context.SaveChanges(), так как это будет сделано ниже, после всех изменений.
                 }
 
-                // Обновляем время начала и окончания и GroupId
+                
                 entity.StartTime = viewModel.StartTime;
+
+                if (!DateTime.TryParseExact(entity.StartTime, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+                {
+                    throw new Exception("Дата должна быть в формате времени (например, 14:30)");
+                }
+
                 entity.EndTime = viewModel.EndTime;
+
+                if (!DateTime.TryParseExact(entity.EndTime, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+                {
+                    throw new Exception("Дата должна быть в формате времени (например, 14:30)");
+                }
+
                 entity.GroupId = viewModel.GroupId;
 
                 // Сохраняем все изменения в контексте.

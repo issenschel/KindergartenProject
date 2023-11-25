@@ -77,6 +77,13 @@ namespace KindergartenProject.Windows
             }
         }
 
-
+        private void UpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (EmployeeDataGrid.SelectedItem == null)
+                return;
+            var exampleCard = new EmployeeСardWindow(EmployeeDataGrid.SelectedItem as EmployeeViewModel);
+            exampleCard.ShowDialog();
+            UpdateGrid();
+        }
     }
 }

@@ -95,7 +95,20 @@ namespace KindergartenProject.Windows
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
+            var selectedNutrition = MealScheduleDataGrid.SelectedItem as NutritionViewModel;
+            if (selectedNutrition == null)
+                return;
 
+            var mealSchedule = _mealScheduleRepository.GetByNutritionId(selectedNutrition.ID);
+            if (mealSchedule == null)
+            {
+                MessageBox.Show("Не удалось найти связанное расписание.");
+                return;
+            }
+
+            var mealScheduleCardWindow = new MealScheduleCardWindow(mealSchedule);
+            mealScheduleCardWindow.ShowDialog();
+            UpdateGrid();
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)

@@ -61,7 +61,11 @@ namespace KindergartenProject.Windows
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-
+            if (GroupsDataGrid.SelectedItem == null)
+                return;
+            var exampleCard = new GroupCardWindow(GroupsDataGrid.SelectedItem as GroupViewModel);
+            exampleCard.ShowDialog();
+            UpdateGrid();
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)

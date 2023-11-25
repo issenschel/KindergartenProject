@@ -44,6 +44,11 @@ namespace KindergartenProject.Windows
                 _selectedItem.OccupationName = OccupationTextBox.Text;
                 _selectedItem.StartTime = StartTimeTextBox.Text;
                 _selectedItem.EndTime = EndTimeTextBox.Text;
+
+                if (GroupComboBox.SelectedValue == null || (long)GroupComboBox.SelectedValue == 0)
+                {
+                    throw new Exception("Группа должна быть выбрана");
+                }
                 _selectedItem.GroupId = (long)GroupComboBox.SelectedValue;
 
                 // Операция создания или обновления
@@ -61,7 +66,7 @@ namespace KindergartenProject.Windows
                 }
 
                 // Закрытие формы после сохранения данных
-                this.Close();
+                Close();
             }
             catch (Exception ex)
             {

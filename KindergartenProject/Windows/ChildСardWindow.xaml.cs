@@ -53,18 +53,23 @@ namespace KindergartenProject.Windows
         {
             try
             {
-                // Заполняем или обновляем данные в _selectedItem
+
                 if (_selectedItem == null)
                 {
                     _selectedItem = new KidViewModel();
                 }
 
-                // Обновляем значения свойств объекта из текстовых полей
+                if (GroupComboBox.SelectedValue == null || (long)GroupComboBox.SelectedValue == 0)
+                {
+                    throw new Exception("Группа должна быть выбрана");
+                }
+                // Заполняем или обновляем данные в _selectedItem
                 _selectedItem.GroupId = (long)GroupComboBox.SelectedValue;
                 _selectedItem.Surname = SurenameTextBox.Text;
                 _selectedItem.Patronymic = PatronymicTextBox.Text;
                 _selectedItem.Name = NameTextBox.Text;
                 _selectedItem.DateOfBirth = BirthdayTextBox.Text;
+
 
 
                 // Операция создания или обновления
@@ -82,7 +87,7 @@ namespace KindergartenProject.Windows
                 }
 
                 // Закрытие формы после сохранения данных
-                this.Close();
+                Close();
             }
             catch (Exception ex)
             {

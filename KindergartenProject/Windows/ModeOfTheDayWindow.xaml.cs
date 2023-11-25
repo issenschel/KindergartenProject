@@ -84,7 +84,11 @@ namespace KindergartenProject.Windows
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-
+            if (ModeOfTheDayDataGrid.SelectedItem == null)
+                return;
+            var exampleCard = new ModeOfTheDayCardWindow(ModeOfTheDayDataGrid.SelectedItem as ModeOfTheDayViewModel);
+            exampleCard.ShowDialog();
+            UpdateGrid();
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)

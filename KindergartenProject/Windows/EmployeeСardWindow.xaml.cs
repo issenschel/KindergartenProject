@@ -66,9 +66,20 @@ namespace KindergartenProject.Windows
                 _selectedItem.Surname = SurenameTextBox.Text;
                 _selectedItem.Patronymic = PatronymicTextBox.Text;
                 _selectedItem.DateOfBirth = BirthdayTextBox.Text;
+                _selectedItem.UserName = LoginTextBox.Text;
+
+                if (string.IsNullOrWhiteSpace(ExperienceTextBox.Text) || !long.TryParse(ExperienceTextBox.Text, out long experience))
+                {
+                    throw new Exception("Опыт должен быть заполнен числом");
+                }
+                if (PostComboBox.SelectedValue == null || (long)PostComboBox.SelectedValue == 0)
+                {
+                    throw new Exception("Пост должен быть выбран");
+                }
+
+
                 _selectedItem.PostId = (long)PostComboBox.SelectedValue;
                 _selectedItem.Experience = long.Parse(ExperienceTextBox.Text);
-                _selectedItem.UserName = LoginTextBox.Text;
 
 
                 var loginId = _repository.GetLoginIdByName(LoginTextBox.Text);
@@ -95,7 +106,7 @@ namespace KindergartenProject.Windows
                 }
 
                 // Закрытие формы после сохранения данных
-                this.Close();
+                Close();
             }
             catch (Exception ex)
             {

@@ -108,6 +108,10 @@ namespace KindergartenProject.Windows
                     _selectedItem = new MealScheduleViewModel();
                 }
 
+                if (DayofWeekComboBox.SelectedValue == null || (long)DayofWeekComboBox.SelectedValue == 0)
+                {
+                    throw new Exception("День недели должен быть выбран");
+                }
                 _selectedItem.DayOfTheWeekId = (long)DayofWeekComboBox.SelectedValue;
                 _selectedItem.NutritionId = nutrition.ID;
 
@@ -123,6 +127,7 @@ namespace KindergartenProject.Windows
                     _mealScheduleRepository.Update(_selectedItem);
                     MessageBox.Show("Запись успешно обновлена.", "Сохранение завершено", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
+                Close();
             }
             catch (Exception ex)
             {
@@ -130,7 +135,7 @@ namespace KindergartenProject.Windows
             }
 
 
-            Close();
+           
         }
 
         private void SectionButton_Click(object sender, RoutedEventArgs e)

@@ -83,5 +83,14 @@ namespace KindergartenProject.Windows
                 MessageBox.Show("Удаление успешно");
             }
         }
+
+        private void UpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (KidDataGrid.SelectedItem == null)
+                return;
+            var exampleCard = new ChildСardWindow(KidDataGrid.SelectedItem as KidViewModel);
+            exampleCard.ShowDialog();
+            UpdateGrid();
+        }
     }
 }

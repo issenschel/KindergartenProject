@@ -33,7 +33,10 @@ namespace KindergartenProject.Infrastructure.Database
             using (var context = new Context())
             {
                 var entity = GroupMapper.Map(viewModel);
-
+                if (entity.Name == "Имя")
+                {
+                    throw new Exception("Имя не может быть пустым");
+                }
                 context.Groups.Add(entity);
                 context.SaveChanges();
 
@@ -50,6 +53,10 @@ namespace KindergartenProject.Infrastructure.Database
                     return null;
 
                 entity.Name = viewModel.Name;
+                if (entity.Name == "Имя")
+                {
+                    throw new Exception("Имя не может быть пустым");
+                }
                 entity.AvailableSeats = viewModel.AvailableSeats;
                 entity.EmployeeId = viewModel.EmployeeId;
 

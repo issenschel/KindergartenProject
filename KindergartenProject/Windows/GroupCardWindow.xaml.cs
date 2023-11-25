@@ -64,6 +64,16 @@ namespace KindergartenProject.Windows
 
                 // Обновляем значения свойств объекта из текстовых полей
                 _selectedItem.Name = GroupTextBox.Text;
+
+                if (string.IsNullOrWhiteSpace(PlacesTextBox.Text) || !long.TryParse(PlacesTextBox.Text, out long places))
+                {
+                    throw new Exception("Места должны быть заполнены числом");
+                }
+                if (EmployeeComboBox.SelectedValue == null || (long)EmployeeComboBox.SelectedValue == 0)
+                {
+                    throw new Exception("Сотрудник должен быть выбран");
+                }
+
                 _selectedItem.AvailableSeats =long.Parse(PlacesTextBox.Text);
                 _selectedItem.EmployeeId = (long)EmployeeComboBox.SelectedValue;
 
@@ -83,7 +93,7 @@ namespace KindergartenProject.Windows
                 }
 
                 // Закрытие формы после сохранения данных
-                this.Close();
+                Close();
             }
             catch (Exception ex)
             {

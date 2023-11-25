@@ -2,6 +2,7 @@
 using KindergartenProject.Infrastructure.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ namespace KindergartenProject.Infrastructure.Database
 {
     public class EmployeeRepository : IBaseRepository<EmployeeViewModel>
     {
+        private DateTime date;
         public List<EmployeeViewModel> GetList()
         {
             using (var context = new Context())
@@ -33,7 +35,23 @@ namespace KindergartenProject.Infrastructure.Database
             using (var context = new Context())
             {
                 var entity = EmployeeMapper.Map(viewModel);
-
+                if (entity.Name == "Имя")
+                {
+                    throw new Exception("Имя не может быть пустым");
+                }
+                if (entity.Surname == "Фамилия")
+                {
+                    throw new Exception("Имя не может быть пустым");
+                }
+                if (entity.Patronymic == "Отчество")
+                {
+                    throw new Exception("Имя не может быть пустым");
+                }
+                
+                if (!DateTime.TryParseExact(entity.DateOfBirth, "dd.MM.yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+                {
+                    throw new Exception("Дата должна быть в формате даты (например, 25.11.2023)");
+                }
                 context.Employees.Add(entity);
                 context.SaveChanges();
 
@@ -50,10 +68,28 @@ namespace KindergartenProject.Infrastructure.Database
                     return null;
 
                 entity.Name = viewModel.Name;
+                if (entity.Name == "Имя")
+                {
+                    throw new Exception("Имя не может быть пустым");
+                }
                 entity.Surname = viewModel.Surname;
+                if (entity.Surname == "Фамилия")
+                {
+                    throw new Exception("Имя не может быть пустым");
+                }
                 entity.Patronymic = viewModel.Patronymic;
+                if (entity.Patronymic == "Отчество")
+                {
+                    throw new Exception("Имя не может быть пустым");
+                }
                 entity.DateOfBirth = viewModel.DateOfBirth;
+
+                if (!DateTime.TryParseExact(entity.DateOfBirth, "dd.MM.yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+                {
+                    throw new Exception("Дата должна быть в формате даты (например, 25.11.2023)");
+                }
                 entity.Experience = viewModel.Experience;
+
                 entity.UserId = viewModel.UserId;
                 entity.PostId = viewModel.PostId;
 

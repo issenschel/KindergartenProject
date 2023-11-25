@@ -35,6 +35,10 @@ namespace KindergartenProject.Infrastructure.Database
                 var entity = UserMapper.Map(viewModel);
 
                 context.Users.Add(entity);
+                if (string.IsNullOrEmpty(entity.Login))
+                    throw new Exception("Имя пользователя не может быть пустым");
+                if (string.IsNullOrEmpty(entity.Password))
+                    throw new Exception("Пароль не может быть пустым");
                 context.SaveChanges();
 
                 return UserMapper.Map(entity);
@@ -49,8 +53,12 @@ namespace KindergartenProject.Infrastructure.Database
                 if (entity == null)
                     return null;
 
-                entity.Login = viewModel.Login;
+                entity.Login = viewModel.Login.Trim();
+                if (string.IsNullOrEmpty(entity.Login))
+                    throw new Exception("Имя пользователя не может быть пустым");
                 entity.Password = viewModel.Password;
+                if (string.IsNullOrEmpty(entity.Password))
+                    throw new Exception("Пароль не может быть пустым");
                 entity.RoleId = viewModel.RoleId;
 
                 context.SaveChanges();
