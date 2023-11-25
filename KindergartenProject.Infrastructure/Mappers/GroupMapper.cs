@@ -17,7 +17,7 @@ namespace KindergartenProject.Infrastructure.Mappers
                 Name = entity.Name,
                 AvailableSeats = entity.AvailableSeats,
                 EmployeeId = entity.EmployeeId,
-                EmployeeName = $"{entity.Employee.Surname} {entity.Employee.Name} {entity.Employee.Patronymic}"
+                EmployeeName = $"{entity.Employee?.Surname} {entity.Employee?.Name} {entity.Employee?.Patronymic}"
             };
             return viewModel;
         }

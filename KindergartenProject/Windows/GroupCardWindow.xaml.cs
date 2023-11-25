@@ -1,4 +1,6 @@
-﻿using System;
+﻿using KindergartenProject.Infrastructure.Database;
+using KindergartenProject.Infrastructure.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +21,9 @@ namespace KindergartenProject.Windows
     /// </summary>
     public partial class GroupCardWindow : Window
     {
+        private GroupViewModel _selectedItem = null;
+        private GroupRepository _repository = new GroupRepository();
+
         public GroupCardWindow()
         {
             InitializeComponent();
@@ -26,10 +31,70 @@ namespace KindergartenProject.Windows
 
         private void SectionButton_Click(object sender, RoutedEventArgs e)
         {
-            GroupsWindow groupsWindow = new GroupsWindow();
-            groupsWindow.Show();
             Close();
         }
+
+        public GroupCardWindow(GroupViewModel selectedItem)
+        {
+            InitializeComponent();
+            _selectedItem = selectedItem;
+
+            if (_selectedItem != null)
+            {
+                GroupTextBox.Text = _selectedItem.Name;
+                PlacesTextBox.Text = _selectedItem.AvailableSeats.ToString();
+                EmployeeTextBox.Text = _selectedItem.EmployeeName;
+            }
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // Заполняем или обновляем данные в _selectedItem
+                if (_selectedItem == null)
+                {
+                    _selectedItem = new GroupViewModel();
+                    // Тут может потребоваться установка начальных значений для новой записи
+                }
+
+                // Обновляем значения свойств объекта из текстовых полей
+                _selectedItem.Name = GroupTextBox.Text;
+                _selectedItem.AvailableSeats =long.Parse(PlacesTextBox.Text);
+                _selectedItem.EmployeeName = EmployeeTextBox.Text;
+
+                var employeeId = _repository.GetEmployeeIdByName(EmployeeTextBox.Text);
+                if (!employeeId.HasValue) // Если Сотрудник не найдена
+                {
+                    MessageBox.Show("Такого сотрудника нет.", "Ошибка");
+                    return; // Выход из обработчика, чтобы предотвратить сохранение
+                }
+
+                _selectedItem.EmployeeId = employeeId.Value;
+                // Операция создания или обновления
+                if (_selectedItem.ID == 0)
+                {
+                    // Создание нового элемента
+                    _repository.Add(_selectedItem);
+                    MessageBox.Show("Запись успешно добавлена.", "Сохранение завершено", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    // Обновление существующего элемента
+                    _repository.Update(_selectedItem);
+                    MessageBox.Show("Запись успешно обновлена.", "Сохранение завершено", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+
+                // Закрытие формы после сохранения данных
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка при сохранении данных: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+
 
         //Очистка текста при получении фокуса
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)

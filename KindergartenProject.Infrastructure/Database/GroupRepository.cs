@@ -75,5 +75,14 @@ namespace KindergartenProject.Infrastructure.Database
                 return viewModel;
             }
         }
+
+        public long? GetEmployeeIdByName(string employeeName)
+        {
+            using (var context = new Context())
+            {
+                var employee = context.Employees.FirstOrDefault(g => g.Surname == employeeName);
+                return employee?.ID;
+            }
+        }
     }
 }

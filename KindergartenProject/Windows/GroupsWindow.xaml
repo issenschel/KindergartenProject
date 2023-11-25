@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="Группы" Height="450" Width="800"
         MinHeight="450" MinWidth="800"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        MouseDoubleClick="ModeOfTheDayDataGrid_MouseDoubleClick">
     <Viewbox Stretch="Fill">
         <Grid>
             <Grid.ColumnDefinitions>
