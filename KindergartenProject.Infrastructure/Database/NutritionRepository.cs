@@ -32,19 +32,17 @@ namespace KindergartenProject.Infrastructure.Database
         {
             using (var context = new Context())
             {
-                // Получаем или создаем сущности Dish для каждого блюда
-                viewModel.BreakFast = GetOrCreateDishId(context, viewModel.BreakFastName);
-                viewModel.Brunch = GetOrCreateDishId(context, viewModel.BrunchName);
-                viewModel.Lunch = GetOrCreateDishId(context, viewModel.LunchName);
-                viewModel.AfternoonSnack = GetOrCreateDishId(context, viewModel.AfternoonSnackName);
-                viewModel.Dinner = GetOrCreateDishId(context, viewModel.DinnerName);
+                viewModel.BreakFast = GetOrCreateOrUpdateDishId(context, viewModel.BreakFastName);
+                viewModel.Brunch = GetOrCreateOrUpdateDishId(context, viewModel.BrunchName);
+                viewModel.Lunch = GetOrCreateOrUpdateDishId(context, viewModel.LunchName);
+                viewModel.AfternoonSnack = GetOrCreateOrUpdateDishId(context, viewModel.AfternoonSnackName);
+                viewModel.Dinner = GetOrCreateOrUpdateDishId(context, viewModel.DinnerName);
 
-                // Проверяем, существует ли уже такое же питание
                 var existingNutrition = context.Nutritions.FirstOrDefault(n => n.BreakFast == viewModel.BreakFast &&
-                                         n.Brunch == viewModel.Brunch &&
-                                         n.Lunch == viewModel.Lunch &&
-                                         n.AfternoonSnack == viewModel.AfternoonSnack &&
-                                         n.Dinner == viewModel.Dinner);
+                                             n.Brunch == viewModel.Brunch &&
+                                             n.Lunch == viewModel.Lunch &&
+                                             n.AfternoonSnack == viewModel.AfternoonSnack &&
+                                             n.Dinner == viewModel.Dinner);
 
                 if (existingNutrition != null)
                 {
@@ -59,93 +57,57 @@ namespace KindergartenProject.Infrastructure.Database
                     context.Nutritions.Add(entity);
                     context.SaveChanges();
 
-                    return NutritionMapper.Map(entity);
+                    return NutritionMapper.Map(entity); // Исправлено здесь
                 }
             }
         }
 
-        public long GetOrCreateDishId(Context context, string dishName)
+        public long GetOrCreateOrUpdateDishId(Context context, string dishName, long? dishId = null)
         {
-            // Пытаемся найти существующее блюдо по имени
-            var dish = context.Dishes.FirstOrDefault(d => d.Name.ToLower() == dishName.ToLower());
-            if (dish != null)
+            var existingDish = context.Dishes.FirstOrDefault(d => d.Name.Equals(dishName, StringComparison.OrdinalIgnoreCase));
+
+            if (existingDish != null)
             {
-                // Если блюдо с таким именем найдено, возвращаем его ID
-                return dish.ID;
+                // Если блюдо с указанным именем уже существует, возвращаем его ID
+                return existingDish.ID;
             }
 
-            // Если блюдо не найдено, создаем новое с указанным именем
-            dish = new DishEntity { Name = dishName };
-            context.Dishes.Add(dish);
-            context.SaveChanges();
-
-            // Возвращаем ID нового блюда
-            return dish.ID;
-        }
-        public long GetOrUpdateDishId(Context context, string dishName, long? dishId = null)
-        {
-            // Пытаемся найти существующее блюдо по имени
-            var dish = dishId.HasValue ? context.Dishes.Find(dishId.Value)
-                                       : null;
+            var dish = dishId.HasValue ? context.Dishes.FirstOrDefault(d => d.ID == dishId.Value) : null;
 
             if (dish != null && !dish.Name.Equals(dishName, StringComparison.OrdinalIgnoreCase))
             {
-                // Проверяем, существует ли уже блюдо с новым именем
-                var existingDish = context.Dishes.FirstOrDefault(d => d.Name.Equals(dishName, StringComparison.OrdinalIgnoreCase));
-
-                if (existingDish != null)
-                {
-                    // Если существует, возвращаем его ID
-                    return existingDish.ID;
-                }
-                else
-                {
-                    // Если нет, обновляем текущее блюдо
-                    dish.Name = dishName;
-                    context.SaveChanges();
-                    return dish.ID;
-                }
+                // Если блюдо с указанным ID существует и имя изменилось, обновляем его имя и сохраняем изменения
+                dish.Name = dishName;
+                context.SaveChanges();
             }
             else if (dish == null)
             {
-                // Если блюдо с данным ID не найдено или не передан ID, ищем по имени
-                dish = context.Dishes.FirstOrDefault(d => d.Name.Equals(dishName, StringComparison.OrdinalIgnoreCase));
+                // Если блюдо с указанным ID не существует, создаем новое блюдо с указанным именем
+                dish = new DishEntity { ID = 0, Name = dishName }; // Указываем значение для поля ID
+                context.Dishes.Add(dish);
+                context.SaveChanges();
+            }
 
-                if (dish != null)
-                {
-                    // Если найдено существующее блюдо с таким именем, возвращаем его ID
-                    return dish.ID;
-                }
-                else
-                {
-                    // Блюдо с таким именем не найдено, создаем новое
-                    dish = new DishEntity { Name = dishName };
-                    context.Dishes.Add(dish);
-                    context.SaveChanges();
-                    return dish.ID;
-                }
-            }
-            else
-            {
-                // Если блюдо существует и имя не изменено, возвращаем существующий ID
-                return dish.ID;
-            }
+            // Возвращаем ID блюда
+            return dish.ID;
         }
+
         public NutritionViewModel Update(NutritionViewModel viewModel)
         {
             using (var context = new Context())
             {
                 var entity = context.Nutritions.FirstOrDefault(x => x.ID == viewModel.ID);
-
                 if (entity == null)
+                {
                     return null;
+                }
 
                 // Обновить существующие блюда или создать новые, если имя изменилось
-                entity.BreakFast = GetOrUpdateDishId(context, viewModel.BreakFastName, entity.BreakFast);
-                entity.Brunch = GetOrUpdateDishId(context, viewModel.BrunchName, entity.Brunch);
-                entity.Lunch = GetOrUpdateDishId(context, viewModel.LunchName, entity.Lunch);
-                entity.AfternoonSnack = GetOrUpdateDishId(context, viewModel.AfternoonSnackName, entity.AfternoonSnack);
-                entity.Dinner = GetOrUpdateDishId(context, viewModel.DinnerName, entity.Dinner);
+                entity.BreakFast = GetOrCreateOrUpdateDishId(context, viewModel.BreakFastName, entity.BreakFast);
+                entity.Brunch = GetOrCreateOrUpdateDishId(context, viewModel.BrunchName, entity.Brunch);
+                entity.Lunch = GetOrCreateOrUpdateDishId(context, viewModel.LunchName, entity.Lunch);
+                entity.AfternoonSnack = GetOrCreateOrUpdateDishId(context, viewModel.AfternoonSnackName, entity.AfternoonSnack);
+                entity.Dinner = GetOrCreateOrUpdateDishId(context, viewModel.DinnerName, entity.Dinner);
 
                 // Сохранить обновления в контексте
                 context.SaveChanges();
