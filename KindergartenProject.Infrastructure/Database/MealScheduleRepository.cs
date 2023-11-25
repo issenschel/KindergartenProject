@@ -38,6 +38,15 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
+        public long? GetDayIdByName(string dayName)
+        {
+            using (var context = new Context())
+            {
+                var day = context.DaysOfTheWeeks.FirstOrDefault(g => g.Name == dayName);
+                return day?.ID;
+            }
+        }
+
         public MealScheduleViewModel Add(MealScheduleViewModel viewModel)
         {
             using (var context = new Context())
@@ -50,6 +59,7 @@ namespace KindergartenProject.Infrastructure.Database
                 return MealScheduleMapper.Map(entity);
             }
         }
+
 
         public MealScheduleViewModel Update(MealScheduleViewModel viewModel)
         {
@@ -82,6 +92,15 @@ namespace KindergartenProject.Infrastructure.Database
                 context.SaveChanges();
 
                 return viewModel;
+            }
+        }
+
+        public MealScheduleViewModel GetByNutritionId(long nutritionId)
+        {
+            using (var context = new Context())
+            {
+                var item = context.MealsSchedules.FirstOrDefault(x => x.NutritionId == nutritionId);
+                return MealScheduleMapper.Map(item);
             }
         }
     }

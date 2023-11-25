@@ -17,13 +17,13 @@ namespace KindergartenProject.Infrastructure.Mappers
                 BreakFast = entity.BreakFast,
                 BreakFastName = entity.Dish.Name,
                 Brunch = entity.Brunch,
-                BrunchName = entity.Dish1.Name,
+                BrunchName = entity.Dish2.Name,
                 Lunch = entity.Lunch,
-                LunchName = entity.Dish2.Name,
+                LunchName = entity.Dish4.Name,
                 AfternoonSnack = entity.AfternoonSnack,
                 AfternoonSnackName = entity.Dish3.Name,
                 Dinner = entity.Dinner,
-                DinnerName = entity.Dish4.Name
+                DinnerName = entity.Dish1.Name
             };
             return viewModel;
         }

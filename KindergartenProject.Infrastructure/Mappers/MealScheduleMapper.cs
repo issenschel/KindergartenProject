@@ -15,7 +15,7 @@ namespace KindergartenProject.Infrastructure.Mappers
             {
                 ID = entity.ID,
                 DayOfTheWeekId = entity.DayOfTheWeekId,
-                DayOfTheWeekName = entity.DayOfTheWeek.Name,
+                DayOfTheWeekName = entity.DayOfTheWeek?.Name,
                 NutritionId = entity.NutritionId,
             };
             return viewModel;

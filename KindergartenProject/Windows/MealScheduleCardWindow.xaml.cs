@@ -1,4 +1,5 @@
 ﻿using KindergartenProject.Infrastructure.Database;
+using KindergartenProject.Infrastructure.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,20 +21,108 @@ namespace KindergartenProject.Windows
     /// </summary>
     public partial class MealScheduleCardWindow : Window
     {
+        private NutritionRepository _nutritionRepository = new NutritionRepository();
+        private MealScheduleRepository _mealScheduleRepository = new MealScheduleRepository();
+        private MealScheduleViewModel _schedule; // Предположим, что эта модель передается в конструкторе если нужно обновить существующий элемент
+
         public MealScheduleCardWindow()
         {
             InitializeComponent();
         }
 
+        public MealScheduleCardWindow(MealScheduleViewModel schedule)
+        {
+            InitializeComponent();
+
+            _schedule = schedule;
+
+            if (_schedule != null && _schedule.NutritionId != 0)
+            {
+                // Загрузим данные из Nutrition, предполагается что репозиторий возвращает полную ViewModel включая имена блюд если NutritionId != 0
+                var nutrition = _nutritionRepository.GetById(_schedule.NutritionId);
+                DayofWeekTextBox.Text = _schedule.DayOfTheWeekName;
+                BreakFastTextBox.Text = nutrition.BreakFastName;
+                BrunchTextBox.Text = nutrition.BrunchName;
+                LunchTextBox.Text = nutrition.LunchName;
+                AfternoonSnackTextBox.Text = nutrition.AfternoonSnackName;
+                DinnerTextBox.Text = nutrition.DinnerName;
+            }
+        }
+
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+            NutritionViewModel nutrition;
 
+            // Если _schedule не null и NutritionId установлен, то обновляем существующую запись.
+            if (_schedule != null && _schedule.NutritionId > 0)
+            {
+                nutrition = _nutritionRepository.GetById(_schedule.NutritionId);
+                if (nutrition == null)
+                {
+                    MessageBox.Show("Информация о питании не найдена.");
+                    return;
+                }
+
+                // Обновляем информацию о блюдах
+                nutrition.BreakFastName = BreakFastTextBox.Text;
+                nutrition.BrunchName = BrunchTextBox.Text;
+                nutrition.LunchName = LunchTextBox.Text;
+                nutrition.AfternoonSnackName = AfternoonSnackTextBox.Text;
+                nutrition.DinnerName = DinnerTextBox.Text;
+
+                // Вызываем метод Update репозитория
+                nutrition = _nutritionRepository.Update(nutrition);
+            }
+            else
+            {
+                // Если _schedule null или NutritionId не установлен, создаем новую запись.
+                nutrition = new NutritionViewModel
+                {
+                    BreakFastName = BreakFastTextBox.Text,
+                    BrunchName = BrunchTextBox.Text,
+                    LunchName = LunchTextBox.Text,
+                    AfternoonSnackName = AfternoonSnackTextBox.Text,
+                    DinnerName = DinnerTextBox.Text
+                };
+
+                nutrition = _nutritionRepository.Add(nutrition);
+            }
+
+            if (nutrition == null)
+            {
+                MessageBox.Show("Ошибка при сохранении информации о питании.");
+                return;
+            }
+
+            // Теперь либо создаем новое расписание, либо обновляем существующее.
+            if (_schedule == null)
+            {
+                // Создаем новое расписание, если не существует
+                _schedule = new MealScheduleViewModel
+                {
+                    // Допущение, что метод GetDayIdByName работает корректно и вернет правильный ID
+                    DayOfTheWeekId = _mealScheduleRepository.GetDayIdByName(DayofWeekTextBox.Text).Value,
+                    NutritionId = nutrition.ID
+                };
+                var result = _mealScheduleRepository.Add(_schedule);
+                if (result == null)
+                {
+                    MessageBox.Show("Не удалось добавить расписание питания.");
+                    return;
+                }
+            }
+            else
+            {
+                // Если расписание уже существует, обновляем его (если необходимо).
+                // Так как NutritionId уже обновлен, то возможно никаких действий не требуется.
+            }
+
+            // Закрываем окно
+            Close();
         }
 
         private void SectionButton_Click(object sender, RoutedEventArgs e)
         {
-            MealScheduleWindow mealScheduleWindow = new MealScheduleWindow();
-            mealScheduleWindow.Show();
             Close();
         }
 

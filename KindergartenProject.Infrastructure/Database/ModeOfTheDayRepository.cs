@@ -68,16 +68,27 @@ namespace KindergartenProject.Infrastructure.Database
                 if (entity == null)
                     return null;
 
+                // Сначала обновляем информацию о занятии, если она изменилась.
+                var occupation = context.Occupations.FirstOrDefault(o => o.ID == entity.OccupationId);
+                if (occupation != null && !string.Equals(occupation.Name, viewModel.OccupationName, StringComparison.OrdinalIgnoreCase))
+                {
+                    occupation.Name = viewModel.OccupationName;
+                    // Здесь не вызываем context.SaveChanges(), так как это будет сделано ниже, после всех изменений.
+                }
+
+                // Обновляем время начала и окончания и GroupId
                 entity.StartTime = viewModel.StartTime;
                 entity.EndTime = viewModel.EndTime;
-                entity.OccupationId = viewModel.OccupationId;
                 entity.GroupId = viewModel.GroupId;
 
+                // Сохраняем все изменения в контексте.
                 context.SaveChanges();
 
+                // Возвращаем обновлённый ViewModel.
                 return ModeOfTheDayMapper.Map(entity);
             }
         }
+
 
         public ModeOfTheDayViewModel Delete(long id)
         {

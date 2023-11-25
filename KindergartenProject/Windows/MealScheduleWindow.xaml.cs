@@ -24,6 +24,8 @@ namespace KindergartenProject.Windows
         private NutritionRepository _nutritionRepository;
         private DayOfTheWeekRepository _dayOfTheWeekRepository;
         private MealScheduleRepository _mealScheduleRepository;
+        private DayOfTheWeekViewModel _selectedDay;
+
         public MealScheduleWindow()
         {
             InitializeComponent();
@@ -34,22 +36,46 @@ namespace KindergartenProject.Windows
             DayOfTheWeekComboBox.ItemsSource = _dayOfTheWeekRepository.GetList();
         }
 
+        private void MealSchedule_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var selectedNutrition = MealScheduleDataGrid.SelectedItem as NutritionViewModel;
+            if (selectedNutrition == null)
+                return;
+
+            // Здесь предполагается, что у вас есть метод в _mealScheduleRepository
+            // который может получить объект MealScheduleViewModel по NutritionId
+            var mealSchedule = _mealScheduleRepository.GetByNutritionId(selectedNutrition.ID);
+            if (mealSchedule == null)
+            {
+                MessageBox.Show("Не удалось найти связанное расписание.");
+                return;
+            }
+
+            var mealScheduleCardWindow = new MealScheduleCardWindow(mealSchedule);
+            mealScheduleCardWindow.ShowDialog();
+            UpdateGrid();
+        }
+
         private void DayOfTheWeekComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var selectedDay = DayOfTheWeekComboBox.SelectedItem as DayOfTheWeekViewModel;
-            if (selectedDay != null)
+            _selectedDay = DayOfTheWeekComboBox.SelectedItem as DayOfTheWeekViewModel;
+            UpdateGrid();
+        }
+
+        private void UpdateGrid()
+        {
+            if (_selectedDay != null)
             {
-                // Получение ID выбранного дня недели
-                long selectedDayId = selectedDay.ID;
-
                 // Получение расписаний питания, которые совпадают с выбранным днем недели
-                var mealSchedules = _mealScheduleRepository.GetByDayId(selectedDayId);
-
+                var mealSchedules = _mealScheduleRepository.GetByDayId(_selectedDay.ID);
                 // Получение питания для этих расписаний
                 var nutritionForDay = mealSchedules.Select(ms => _nutritionRepository.GetById(ms.NutritionId)).ToList();
-
                 // Установить источник объектов для DataGrid
                 MealScheduleDataGrid.ItemsSource = nutritionForDay;
+            }
+            else
+            {
+                MealScheduleDataGrid.ItemsSource = null;
             }
         }
 
@@ -62,9 +88,11 @@ namespace KindergartenProject.Windows
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            MealScheduleCardWindow mealScheduleCardWindow = new MealScheduleCardWindow();
-            mealScheduleCardWindow.Show();
-            Close();
+            if (MealScheduleDataGrid.SelectedItem != null)
+                return;
+            var exampleCard = new MealScheduleCardWindow();
+            exampleCard.ShowDialog();
+            UpdateGrid();
         }
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
@@ -74,7 +102,31 @@ namespace KindergartenProject.Windows
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
+            if (MealScheduleDataGrid.SelectedItem == null)
+            {
+                MessageBox.Show("Ничего не выбрано");
+                return;
+            }
 
+            var selectedNutritionItem = MealScheduleDataGrid.SelectedItem as NutritionViewModel;
+            if (selectedNutritionItem == null)
+            {
+                MessageBox.Show("Не удалось получить данные");
+                return;
+            }
+
+            var mealScheduleToDelete = _mealScheduleRepository.GetByDayId(_selectedDay.ID)
+                .FirstOrDefault(ms => ms.NutritionId == selectedNutritionItem.ID);
+
+            if (mealScheduleToDelete == null)
+            {
+                MessageBox.Show("Не удалось найти расписание питания для удаления");
+                return;
+            }
+
+            _mealScheduleRepository.Delete(mealScheduleToDelete.ID);
+            UpdateGrid();
+            MessageBox.Show("Удаление успешно");
         }
 
         private void UploadButton_Click(object sender, RoutedEventArgs e)
