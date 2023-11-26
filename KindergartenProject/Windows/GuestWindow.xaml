@@ -27,7 +27,8 @@
             <Button x:Name="LogoutButton" Grid.Row="0" Grid.Column="2" Height="18" Width="Auto"  Margin="0,0,0,0"  Content="Выйти" FontSize="10" VerticalAlignment="Top" HorizontalAlignment="Right" Background="#FF2C78FF" Foreground="Black" Click="LogoutButton_Click" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignToolButton}"/>
             <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Vertical" VerticalAlignment="Center">
                 <StackPanel >
-                    <TextBlock x:Name="RoleTextBlock" Text="Роль"  FontSize="10" Margin="0,0,0,0" Foreground="#FF2C78FF" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignHeadline6TextBlock}"/>
+                    <TextBlock x:Name="UserTextBlock" Text="Пользователь:"  FontSize="10" Margin="0,0,0,0" Foreground="#FF2C78FF" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignHeadline6TextBlock}"/>
+                    <TextBlock x:Name="RoleTextBlock" Text="Роль:"  FontSize="10" Margin="0,0,0,0" Foreground="#FF2C78FF" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignHeadline6TextBlock}"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="3" Margin="0,25,0,17">

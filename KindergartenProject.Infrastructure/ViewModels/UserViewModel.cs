@@ -18,6 +18,6 @@ namespace KindergartenProject.Infrastructure.ViewModels
 
         public long RoleId { get; set; }
 
-        public long RoleName { get; set; }
+        public string RoleName { get; set; }
     }
 }

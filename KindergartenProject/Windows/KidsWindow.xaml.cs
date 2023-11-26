@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using KindergartenProject.Infrastructure;
+using KindergartenProject.Infrastructure.Consts;
 using KindergartenProject.Infrastructure.Database;
 using KindergartenProject.Infrastructure.ViewModels;
 
@@ -24,10 +25,12 @@ namespace KindergartenProject.Windows
     public partial class KidsWindow : Window
     {
         private KidRepository _repository;
+        long roleId = (long)Application.Current.Resources[UserInfoConsts.RoleId];
         public KidsWindow()
         {
             InitializeComponent();
             _repository = new KidRepository();
+            GrantAccessByRole();
             UpdateGrid();
 
 
@@ -62,11 +65,14 @@ namespace KindergartenProject.Windows
 
         private void ModeOfTheDayDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (KidDataGrid.SelectedItem == null)
-                return;
-            var exampleCard = new ChildСardWindow(KidDataGrid.SelectedItem as KidViewModel);
-            exampleCard.ShowDialog();
-            UpdateGrid();
+            if (roleId == 3)
+            {
+                if (KidDataGrid.SelectedItem == null)
+                    return;
+                var exampleCard = new ChildСardWindow(KidDataGrid.SelectedItem as KidViewModel);
+                exampleCard.ShowDialog();
+                UpdateGrid();
+            }
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
@@ -91,6 +97,16 @@ namespace KindergartenProject.Windows
             var exampleCard = new ChildСardWindow(KidDataGrid.SelectedItem as KidViewModel);
             exampleCard.ShowDialog();
             UpdateGrid();
+        }
+
+        private void GrantAccessByRole()
+        {
+            if (roleId == 2)
+            {
+                AddButton.Visibility = Visibility.Collapsed;
+                DeleteButton.Visibility = Visibility.Collapsed;
+                UpdateButton.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }

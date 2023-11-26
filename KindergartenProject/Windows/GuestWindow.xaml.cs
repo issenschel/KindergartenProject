@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KindergartenProject.Infrastructure.Consts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,10 +23,18 @@ namespace KindergartenProject.Windows
         public GuestWindow()
         {
             InitializeComponent();
+
+            UserTextBlock.Text = $"Пользователь: {Application.Current.Resources[UserInfoConsts.UserName]}";
+            RoleTextBlock.Text = $"Роль: {Application.Current.Resources[UserInfoConsts.RoleName]}";
+
         }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
+            Application.Current.Resources.Remove(UserInfoConsts.UserName);
+            Application.Current.Resources.Remove(UserInfoConsts.RoleId);
+            Application.Current.Resources.Remove(UserInfoConsts.RoleName);
+            1
             AuthWindow authWindow = new AuthWindow();
             authWindow.Show();
             Close();

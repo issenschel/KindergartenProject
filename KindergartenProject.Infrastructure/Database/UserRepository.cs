@@ -83,5 +83,21 @@ namespace KindergartenProject.Infrastructure.Database
                 return viewModel;
             }
         }
+
+
+        public UserViewModel Login(string login, string password)
+        {
+            using (var context = new Context())
+            {
+                var user = context.Users.FirstOrDefault(x => x.Login == login && x.Password == password);
+
+                if (user != null)
+                {
+                    return UserMapper.Map(user);
+                }
+
+                return null;
+            }
+        }
     }
 }

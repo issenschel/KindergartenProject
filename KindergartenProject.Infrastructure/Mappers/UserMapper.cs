@@ -17,7 +17,7 @@ namespace KindergartenProject.Infrastructure.Mappers
                 Login = entity.Login,
                 Password = entity.Password,
                 RoleId = entity.RoleId,
-                RoleName = entity.Role.ID
+                RoleName = entity.Role.Name
             };
             return viewModel;
         }

@@ -1,4 +1,5 @@
-﻿using KindergartenProject.Infrastructure.Database;
+﻿using KindergartenProject.Infrastructure.Consts;
+using KindergartenProject.Infrastructure.Database;
 using KindergartenProject.Infrastructure.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -24,13 +25,14 @@ namespace KindergartenProject.Windows
         private ModeOfTheDayRepository _modeOfTheRepository;
         private GroupRepository _groupRepository;
         private GroupViewModel _selectedGroup;
+        long roleId = (long)Application.Current.Resources[UserInfoConsts.RoleId];
 
         public ModeOfTheDayWindow()
         {
             InitializeComponent();
             _modeOfTheRepository = new ModeOfTheDayRepository();
             _groupRepository = new GroupRepository();
-
+            GrantAccessByRole();
             GroupComboBox.ItemsSource = _groupRepository.GetList();
         }
 
@@ -59,18 +61,30 @@ namespace KindergartenProject.Windows
 
         private void ModeOfTheDayDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (ModeOfTheDayDataGrid.SelectedItem == null)
-                return;
-            var exampleCard = new ModeOfTheDayCardWindow(ModeOfTheDayDataGrid.SelectedItem as ModeOfTheDayViewModel);
-            exampleCard.ShowDialog();
-            UpdateGrid();
+            if (roleId == 3)
+            {
+                if (ModeOfTheDayDataGrid.SelectedItem == null)
+                    return;
+                var exampleCard = new ModeOfTheDayCardWindow(ModeOfTheDayDataGrid.SelectedItem as ModeOfTheDayViewModel);
+                exampleCard.ShowDialog();
+                UpdateGrid();
+            }
         }
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            Close();
+            if (roleId == 1)
+            {
+                GuestWindow guestWindow = new GuestWindow();
+                guestWindow.Show();
+                Close();
+            }
+            else
+            {
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                Close();
+            }
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -109,6 +123,23 @@ namespace KindergartenProject.Windows
         private void UploadButton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void GrantAccessByRole()
+        {
+            if (roleId == 1)
+            {
+                AddButton.Visibility = Visibility.Collapsed;
+                DeleteButton.Visibility = Visibility.Collapsed;
+                UpdateButton.Visibility = Visibility.Collapsed;
+            }
+
+            else if (roleId == 2)
+            {
+                AddButton.Visibility = Visibility.Collapsed;
+                DeleteButton.Visibility = Visibility.Collapsed;
+                UpdateButton.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }

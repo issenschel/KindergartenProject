@@ -1,7 +1,9 @@
-﻿using KindergartenProject.Infrastructure.Database;
+﻿using KindergartenProject.Infrastructure.Consts;
+using KindergartenProject.Infrastructure.Database;
 using KindergartenProject.Infrastructure.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,18 +24,31 @@ namespace KindergartenProject.Windows
     public partial class GroupsWindow : Window
     {
         private GroupRepository _repository;
+        long roleId = (long)Application.Current.Resources[UserInfoConsts.RoleId];
+
         public GroupsWindow()
         {
             InitializeComponent();
             _repository = new GroupRepository();
+            GrantAccessByRole();
             UpdateGrid();
         }
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            Close();
+            if (roleId == 1)
+            {
+                GuestWindow guestWindow = new GuestWindow();
+                guestWindow.Show();
+                Close();
+            }
+
+            else 
+            {
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                Close();
+            }
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -52,11 +67,14 @@ namespace KindergartenProject.Windows
 
         private void ModeOfTheDayDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (GroupsDataGrid.SelectedItem == null)
-                return;
-            var exampleCard = new GroupCardWindow(GroupsDataGrid.SelectedItem as GroupViewModel);
-            exampleCard.ShowDialog();
-            UpdateGrid();
+            if (roleId == 3)
+            {
+                if (GroupsDataGrid.SelectedItem == null)
+                    return;
+                var exampleCard = new GroupCardWindow(GroupsDataGrid.SelectedItem as GroupViewModel);
+                exampleCard.ShowDialog();
+                UpdateGrid();
+            }
         }
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
@@ -86,6 +104,23 @@ namespace KindergartenProject.Windows
         private void UploadButton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void GrantAccessByRole()
+        {
+            if (roleId == 1)
+            {
+                AddButton.Visibility = Visibility.Collapsed;
+                DeleteButton.Visibility = Visibility.Collapsed;
+                UpdateButton.Visibility = Visibility.Collapsed;
+            }
+
+            else if (roleId == 2)
+            {
+                AddButton.Visibility = Visibility.Collapsed;
+                DeleteButton.Visibility = Visibility.Collapsed;
+                UpdateButton.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }

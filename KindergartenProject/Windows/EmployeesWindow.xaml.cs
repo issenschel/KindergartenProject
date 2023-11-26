@@ -1,4 +1,5 @@
-﻿using KindergartenProject.Infrastructure.Database;
+﻿using KindergartenProject.Infrastructure.Consts;
+using KindergartenProject.Infrastructure.Database;
 using KindergartenProject.Infrastructure.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -85,5 +86,6 @@ namespace KindergartenProject.Windows
             exampleCard.ShowDialog();
             UpdateGrid();
         }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using KindergartenProject.Infrastructure.Database;
+﻿using KindergartenProject.Infrastructure.Consts;
+using KindergartenProject.Infrastructure.Database;
 using KindergartenProject.Infrastructure.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ namespace KindergartenProject.Windows
         private DayOfTheWeekRepository _dayOfTheWeekRepository;
         private MealScheduleRepository _mealScheduleRepository;
         private DayOfTheWeekViewModel _selectedDay;
+        long roleId = (long)Application.Current.Resources[UserInfoConsts.RoleId];
 
         public MealScheduleWindow()
         {
@@ -32,26 +34,29 @@ namespace KindergartenProject.Windows
             _nutritionRepository = new NutritionRepository();
             _dayOfTheWeekRepository = new DayOfTheWeekRepository();
             _mealScheduleRepository = new MealScheduleRepository();
-
+            GrantAccessByRole();
             DayOfTheWeekComboBox.ItemsSource = _dayOfTheWeekRepository.GetList();
         }
 
         private void MealSchedule_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var selectedNutrition = MealScheduleDataGrid.SelectedItem as NutritionViewModel;
-            if (selectedNutrition == null)
-                return;
-
-            var mealSchedule = _mealScheduleRepository.GetByNutritionId(selectedNutrition.ID);
-            if (mealSchedule == null)
+            if (roleId == 3)
             {
-                MessageBox.Show("Не удалось найти связанное расписание.");
-                return;
-            }
+                var selectedNutrition = MealScheduleDataGrid.SelectedItem as NutritionViewModel;
+                if (selectedNutrition == null)
+                    return;
 
-            var mealScheduleCardWindow = new MealScheduleCardWindow(mealSchedule);
-            mealScheduleCardWindow.ShowDialog();
-            UpdateGrid();
+                var mealSchedule = _mealScheduleRepository.GetByNutritionId(selectedNutrition.ID);
+                if (mealSchedule == null)
+                {
+                    MessageBox.Show("Не удалось найти связанное расписание.");
+                    return;
+                }
+
+                var mealScheduleCardWindow = new MealScheduleCardWindow(mealSchedule);
+                mealScheduleCardWindow.ShowDialog();
+                UpdateGrid();
+            }
         }
 
         private void DayOfTheWeekComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -79,9 +84,18 @@ namespace KindergartenProject.Windows
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            Close();
+            if (roleId == 1)
+            {
+                GuestWindow guestWindow = new GuestWindow();
+                guestWindow.Show();
+                Close();
+            }
+            else
+            {
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                Close();
+            }
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -143,6 +157,23 @@ namespace KindergartenProject.Windows
         private void UploadButton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void GrantAccessByRole()
+        {
+            if (roleId == 1)
+            {
+                AddButton.Visibility = Visibility.Collapsed;
+                DeleteButton.Visibility = Visibility.Collapsed;
+                UpdateButton.Visibility = Visibility.Collapsed;
+            }
+
+            else if (roleId == 2)
+            {
+                AddButton.Visibility = Visibility.Collapsed;
+                DeleteButton.Visibility = Visibility.Collapsed;
+                UpdateButton.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }

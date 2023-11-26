@@ -1,4 +1,5 @@
-﻿using KindergartenProject.Windows;
+﻿using KindergartenProject.Infrastructure.Consts;
+using KindergartenProject.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,13 +22,23 @@ namespace KindergartenProject
     /// </summary>
     public partial class MainWindow : Window
     {
+        long roleId = (long)Application.Current.Resources[UserInfoConsts.RoleId];
         public MainWindow()
         {
             InitializeComponent();
+            UserTextBlock.Text = $"Пользователь: {Application.Current.Resources[UserInfoConsts.UserName]}";
+            RoleTextBlock.Text = $"Роль: {Application.Current.Resources[UserInfoConsts.RoleName]}";
+            GrantAccessByRole();
+
         }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
+            Application.Current.Resources.Remove(UserInfoConsts.UserId);
+            Application.Current.Resources.Remove(UserInfoConsts.UserName);
+            Application.Current.Resources.Remove(UserInfoConsts.RoleId);
+            Application.Current.Resources.Remove(UserInfoConsts.RoleName);
+
             AuthWindow authWindow = new AuthWindow();
             authWindow.Show();
             Close();
@@ -66,6 +77,14 @@ namespace KindergartenProject
             MealScheduleWindow mealScheduleWindow = new MealScheduleWindow();
             mealScheduleWindow.Show();
             Close();
+        }
+
+        private void GrantAccessByRole()
+        {
+            if (roleId == 2)
+            {
+                EmployeeButton.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }
