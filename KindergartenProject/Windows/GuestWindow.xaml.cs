@@ -34,7 +34,7 @@ namespace KindergartenProject.Windows
             Application.Current.Resources.Remove(UserInfoConsts.UserName);
             Application.Current.Resources.Remove(UserInfoConsts.RoleId);
             Application.Current.Resources.Remove(UserInfoConsts.RoleName);
-            1
+            
             AuthWindow authWindow = new AuthWindow();
             authWindow.Show();
             Close();

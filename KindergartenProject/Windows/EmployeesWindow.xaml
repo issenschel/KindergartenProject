@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KindergartenProject.Windows"
         mc:Ignorable="d"
-        Title="Сотрудники" Height="450" Width="700"
-        MinHeight="450" MinWidth="700"
+        Title="Сотрудники" Height="400" Width="650"
+        MinHeight="400" MinWidth="650"
         WindowStartupLocation="CenterScreen"
         MouseDoubleClick="ModeOfTheDayDataGrid_MouseDoubleClick">
     <Viewbox Stretch="Fill">
@@ -33,12 +33,25 @@
                 <Button  x:Name="DeleteButton" Grid.Row="1" Grid.Column="1" Height="50" Width="130" Content="Удалить" FontSize="20" Background="White" BorderBrush="#FF2C78FF" Foreground="#FF2C78FF" HorizontalAlignment="Left"   Margin="0,0,0,10" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignOutlinedButton}" Click="DeleteButton_Click"/>
                 <Button x:Name="UploadButton" Grid.Row="1" Grid.Column="1" Height="50" Width="130" Content="Выгрузить" FontSize="20" Background="White" BorderBrush="#FF2C78FF" Foreground="#FF2C78FF"  HorizontalAlignment="Left"  FontFamily="Bahnschrift" Margin="0,0,0,0" Style="{DynamicResource MaterialDesignOutlinedButton}" />
             </StackPanel>
-            <DataGrid x:Name="EmployeeDataGrid" AutoGenerateColumns="False" Width="400" Height="261" HorizontalAlignment="Center" VerticalAlignment="Top" IsReadOnly="True"  CanUserReorderColumns="False" Grid.Row="2" Margin="0,0,0,0" FontFamily="Bahnschrift" BorderBrush="#FF2C78FF" Style="{DynamicResource MaterialDesignDataGrid}" MinColumnWidth="50">
+            <DataGrid x:Name="EmployeeDataGrid" AutoGenerateColumns="False" Width="500" Height="261" FontSize="13" HorizontalAlignment="Center" IsReadOnly="True" CanUserReorderColumns="False" VerticalAlignment="Top" Grid.Row="2" Margin="0,0,0,0" BorderBrush="#FF2C78FF" FontFamily="Bahnschrift" MinColumnWidth="50">
+                <DataGrid.Resources>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="HorizontalAlignment" Value="Left"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=Column.Header, RelativeSource={RelativeSource Self}}" Value="Опыт работы">
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    </Style>
+                </DataGrid.Resources>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Фио" Binding="{Binding FullName}"/>
-                    <DataGridTextColumn Header="Пост" Binding="{Binding PostName}" />
-                    <DataGridTextColumn Header="Опыт работы" Binding="{Binding Experience}" />
-                    <DataGridTextColumn Header="Логин" Binding="{Binding UserName}"/>
+                    <DataGridTextColumn Header="Фио" Width="230" Binding="{Binding FullName}"/>
+                    <DataGridTextColumn Header="Пост" Width="100" Binding="{Binding PostName}" />
+                    <DataGridTextColumn Header="Опыт работы" Width="88" Binding="{Binding Experience}" />
+                    <DataGridTextColumn Header="Логин" Width="*" Binding="{Binding UserName}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

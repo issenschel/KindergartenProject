@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KindergartenProject.Windows"
         mc:Ignorable="d"
-        Title="Расписание питания" Height="400" Width="600"
-        MinHeight="400" MinWidth="600"
+        Title="Расписание питания" Height="400" Width="650"
+        MinHeight="400" MinWidth="650"
         WindowStartupLocation="CenterScreen"
         MouseDoubleClick="MealSchedule_MouseDoubleClick">
     <Viewbox Stretch="Fill">
@@ -25,22 +25,31 @@
             </StackPanel>
             <Button x:Name="MenuButton" Grid.Row="0" Grid.Column="2" Height="40" Width="120" Content="В меню" FontSize="25" VerticalAlignment="Top" HorizontalAlignment="Right" Background="#FF2C78FF" Foreground="Black" Click="MenuButton_Click" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignToolButton}"/>
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-                <TextBlock Name="DayOfTheWeekLabel" Text="День недели" Margin="30,0,0,0" FontSize="18" FontFamily="Bahnschrift" />
-                <ComboBox x:Name="DayOfTheWeekComboBox" Width="127" BorderBrush="Black" Foreground="Black" Margin="23,0,0,0" FontFamily="Bahnschrift" DisplayMemberPath="Name"  SelectionChanged="DayOfTheWeekComboBox_SelectionChanged"/>
+                <TextBlock Name="DayOfTheWeekLabel" Text="День недели" Margin="30,0,0,0" FontSize="17" FontFamily="Bahnschrift" />
+                <ComboBox x:Name="DayOfTheWeekComboBox" Width="127" BorderBrush="Black" Foreground="Black" Margin="23,0,0,0" FontSize="17" FontFamily="Bahnschrift" DisplayMemberPath="Name"  SelectionChanged="DayOfTheWeekComboBox_SelectionChanged"/>
             </StackPanel>
-            <StackPanel Grid.Row="2" Grid.Column="2" Margin="5,10,5,0" VerticalAlignment="Center">
+            <StackPanel Grid.Row="2" Grid.Column="2" Margin="0,0,5,0" VerticalAlignment="Center">
                 <Button x:Name="AddButton" Grid.Row="1" Grid.Column="1" Height="50" Width="170" Content="Добавить" FontSize="25"  HorizontalAlignment="Left" Background="White" BorderBrush="#FF2C78FF" Foreground="#FF2C78FF" Margin="0,0,0,10" Click="AddButton_Click" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignOutlinedButton}"/>
                 <Button x:Name="UpdateButton" Grid.Row="1" Grid.Column="1" Height="50" Width="170" Content="Обновить" FontSize="25"  HorizontalAlignment="Left" Background="White" BorderBrush="#FF2C78FF" Foreground="#FF2C78FF" Margin="0,0,0,10" FontFamily="Bahnschrift" Click="UpdateButton_Click" Style="{DynamicResource MaterialDesignOutlinedButton}"/>
                 <Button  x:Name="DeleteButton" Grid.Row="1" Grid.Column="1" Height="50" Width="170" Content="Удалить" FontSize="25" Background="White" BorderBrush="#FF2C78FF" Foreground="#FF2C78FF" HorizontalAlignment="Left"   Margin="0,0,0,10" FontFamily="Bahnschrift" Click="DeleteButton_Click" Style="{DynamicResource MaterialDesignOutlinedButton}"/>
                 <Button x:Name="UploadButton" Grid.Row="1" Grid.Column="1" Height="50" Width="170" Content="Выгрузить" FontSize="25" Background="White" BorderBrush="#FF2C78FF" Foreground="#FF2C78FF" HorizontalAlignment="Left" FontFamily="Bahnschrift" Click="UploadButton_Click" Style="{DynamicResource MaterialDesignOutlinedButton}" />
             </StackPanel>
             <DataGrid x:Name="MealScheduleDataGrid" AutoGenerateColumns="False" Width="572" Height="347" IsReadOnly="True" CanUserReorderColumns="False" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,10,0" BorderBrush="#FF2C78FF" FontFamily="Bahnschrift" MinColumnWidth="50">
+                <DataGrid.Resources>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="HorizontalAlignment" Value="Left"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                    </Style>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    </Style>
+                </DataGrid.Resources>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Завтрак" Binding="{Binding BreakFastName}"/>
-                    <DataGridTextColumn Header="Полдник" Binding="{Binding BrunchName}"/>
-                    <DataGridTextColumn Header="Обед" Binding="{Binding LunchName}"/>
-                    <DataGridTextColumn Header="Ланч" Binding="{Binding AfternoonSnackName}"/>
-                    <DataGridTextColumn Header="Ужин" Binding="{Binding DinnerName}"/>
+                    <DataGridTextColumn Header="Завтрак" Width="*" Binding="{Binding BreakFastName}"/>
+                    <DataGridTextColumn Header="Полдник" Width="*" Binding="{Binding BrunchName}"/>
+                    <DataGridTextColumn Header="Обед" Width="*" Binding="{Binding LunchName}"/>
+                    <DataGridTextColumn Header="Ланч" Width="*" Binding="{Binding AfternoonSnackName}"/>
+                    <DataGridTextColumn Header="Ужин" Width="*" Binding="{Binding DinnerName}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
