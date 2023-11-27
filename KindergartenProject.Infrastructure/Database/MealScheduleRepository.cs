@@ -19,6 +19,21 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
+        public List<MealScheduleViewModel> Search(string search)
+        {
+            search = search.Trim().ToLower();
+
+            using (var context = new Context())
+            {
+                var result = context.MealsSchedules.ToList()
+                    .Where(x => x.DayOfTheWeek.ToString().Contains(search))
+                    .ToList();
+
+                return MealScheduleMapper.Map(result);
+            }
+        }
+
+
         public MealScheduleViewModel GetById(long id)
         {
             using (var context = new Context())

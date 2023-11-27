@@ -28,6 +28,20 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
+        public List<UserViewModel> Search(string search)
+        {
+            search = search.Trim().ToLower();
+
+            using (var context = new Context())
+            {
+                var result = context.Users.ToList()
+                    .Where(x => x.Login.ToLower().Contains(search))
+                    .ToList();
+
+                return UserMapper.Map(result);
+            }
+        }
+
         public UserViewModel Add(UserViewModel viewModel)
         {
             using (var context = new Context())

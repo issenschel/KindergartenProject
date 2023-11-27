@@ -22,6 +22,20 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
+        public List<ModeOfTheDayViewModel> Search(string search)
+        {
+            search = search.Trim().ToLower();
+
+            using (var context = new Context())
+            {
+                var result = context.ModesOfTheDays.ToList()
+                    .Where(x => x.Occupation.Name.ToLower().Contains(search))
+                    .ToList();
+
+                return ModeOfTheDayMapper.Map(result);
+            }
+        }
+
         public ModeOfTheDayViewModel GetById(long id)
         {
             using (var context = new Context())

@@ -19,6 +19,20 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
+        public List<OccupationViewModel> Search(string search)
+        {
+            search = search.Trim().ToLower();
+
+            using (var context = new Context())
+            {
+                var result = context.Occupations.ToList()
+                    .Where(x => x.Name.ToLower().Contains(search))
+                    .ToList();
+
+                return OccupationMapper.Map(result);
+            }
+        }
+
         public OccupationViewModel GetById(long id)
         {
             using (var context = new Context())

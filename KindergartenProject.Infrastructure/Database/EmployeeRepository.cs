@@ -21,6 +21,24 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
+        public List<EmployeeViewModel> Search(string search)
+        {
+            search = search.Trim().ToLower();
+
+            using (var context = new Context())
+            {
+                var result = context.Employees.ToList()
+                    .Where(x => x.Post.Name.ToLower().Contains(search) ||
+                                x.Name.ToLower().Contains(search) ||
+                                x.Surname.ToLower().Contains(search) ||
+                                x.Patronymic.ToLower().Contains(search) ||
+                                x.Experience.ToString().Contains(search))
+                    .ToList();
+
+                return EmployeeMapper.Map(result);
+            }
+        }
+
         public EmployeeViewModel GetById(long id)
         {
             using (var context = new Context())

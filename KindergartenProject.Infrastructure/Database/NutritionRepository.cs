@@ -18,6 +18,20 @@ namespace KindergartenProject.Infrastructure.Database
                 return NutritionMapper.Map(items);
             }
         }
+        public List<NutritionViewModel> Search(string search)
+        {
+            search = search.Trim().ToLower();
+
+            using (var context = new Context())
+            {
+                var result = context.Nutritions.ToList()
+                    .Where(x => x.Dinner.ToString().Contains(search))
+                    .ToList();
+
+                return NutritionMapper.Map(result);
+            }
+        }
+
 
         public NutritionViewModel GetById(long id)
         {

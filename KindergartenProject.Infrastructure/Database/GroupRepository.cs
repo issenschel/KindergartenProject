@@ -19,6 +19,20 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
+        public List<GroupViewModel> Search(string search)
+        {
+            search = search.Trim().ToLower();
+
+            using (var context = new Context())
+            {
+                var result = context.Groups.ToList()
+                    .Where(x => x.Name.ToLower().Contains(search))
+                    .ToList();
+
+                return GroupMapper.Map(result);
+            }
+        }
+
         public GroupViewModel GetById(long id)
         {
             using (var context = new Context())

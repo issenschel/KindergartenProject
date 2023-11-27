@@ -19,6 +19,20 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
+        public List<KindergartenViewModel> Search(string search)
+        {
+            search = search.Trim().ToLower();
+
+            using (var context = new Context())
+            {
+                var result = context.Kindergartens.ToList()
+                    .Where(x => x.Name.ToLower().Contains(search))
+                    .ToList();
+
+                return KindergartenMapper.Map(result);
+            }
+        }
+
         public KindergartenViewModel GetById(long id)
         {
             using (var context = new Context())

@@ -87,5 +87,11 @@ namespace KindergartenProject.Windows
             UpdateGrid();
         }
 
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            string search = SearchTextBox.Text;
+            List<EmployeeViewModel> searchResult = _repository.Search(search);
+            EmployeeDataGrid.ItemsSource = searchResult;
+        }
     }
 }

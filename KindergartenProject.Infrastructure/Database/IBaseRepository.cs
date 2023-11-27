@@ -13,5 +13,6 @@ namespace KindergartenProject.Infrastructure.Database
         TViewModel Update(TViewModel model);
         TViewModel Delete(long id);
         TViewModel Add(TViewModel model);
+        List <TViewModel> Search(string search);
     }
 }

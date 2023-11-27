@@ -28,6 +28,20 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
+        public List<RoleViewModel> Search(string search)
+        {
+            search = search.Trim().ToLower();
+
+            using (var context = new Context())
+            {
+                var result = context.Roles.ToList()
+                    .Where(x => x.Name.ToLower().Contains(search))
+                    .ToList();
+
+                return RoleMapper.Map(result);
+            }
+        }
+
         public RoleViewModel Add(RoleViewModel viewModel)
         {
             using (var context = new Context())

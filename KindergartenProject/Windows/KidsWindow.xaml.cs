@@ -60,7 +60,9 @@ namespace KindergartenProject.Windows
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-
+            string search = SearchTextBox.Text;
+            List<KidViewModel> searchResult = _repository.Search(search);
+            KidDataGrid.ItemsSource = searchResult;
         }
 
         private void ModeOfTheDayDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)

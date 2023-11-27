@@ -34,7 +34,7 @@
                 <Button  x:Name="DeleteButton" Grid.Row="1" Grid.Column="1" Height="50" Width="170" Content="Удалить" FontSize="25" Background="White" BorderBrush="#FF2C78FF" Foreground="#FF2C78FF" HorizontalAlignment="Left"   Margin="0,0,0,10" FontFamily="Bahnschrift" Click="DeleteButton_Click" Style="{DynamicResource MaterialDesignOutlinedButton}"/>
                 <Button x:Name="UploadButton" Grid.Row="1" Grid.Column="1" Height="50" Width="170" Content="Выгрузить" FontSize="25" Background="White" BorderBrush="#FF2C78FF" Foreground="#FF2C78FF" HorizontalAlignment="Left" FontFamily="Bahnschrift" Click="UploadButton_Click" Style="{DynamicResource MaterialDesignOutlinedButton}" />
             </StackPanel>
-            <DataGrid x:Name="MealScheduleDataGrid" AutoGenerateColumns="False" Width="572" Height="347" IsReadOnly="True" CanUserReorderColumns="False" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,10,0" BorderBrush="#FF2C78FF" FontFamily="Bahnschrift" MinColumnWidth="50">
+            <DataGrid x:Name="MealScheduleDataGrid" CanUserSortColumns="True" AutoGenerateColumns="False" Width="572" Height="347" IsReadOnly="True" CanUserReorderColumns="False" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,10,0" BorderBrush="#FF2C78FF" FontFamily="Bahnschrift" MinColumnWidth="50">
                 <DataGrid.Resources>
                     <Style TargetType="DataGridCell">
                         <Setter Property="HorizontalAlignment" Value="Left"/>
