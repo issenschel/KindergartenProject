@@ -28,6 +28,7 @@ namespace KindergartenProject.Windows
             InitializeComponent();
             var posts = _repository.GetPosts();
             PostComboBox.ItemsSource = posts;
+            PostComboBox.SelectedItem = posts.FirstOrDefault();
         }
 
         public EmployeeСardWindow(EmployeeViewModel selectedItem)

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KindergartenProject.Windows"
         mc:Ignorable="d"
-        Title="Карточка ребёнка" Height="400" Width="440"
+        Title="Карточка ребёнка" Height="440" Width="500"
         MinHeight="400" MinWidth="440"
         WindowStartupLocation="CenterScreen">
 

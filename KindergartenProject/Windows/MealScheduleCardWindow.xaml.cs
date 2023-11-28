@@ -31,6 +31,7 @@ namespace KindergartenProject.Windows
             InitializeComponent();
             var dayOfTheWeek = _mealScheduleRepository.GetDaysOfTheWeeks();
             DayofWeekComboBox.ItemsSource = dayOfTheWeek;
+            DayofWeekComboBox.SelectedItem = dayOfTheWeek.FirstOrDefault();
         }
 
         public MealScheduleCardWindow(MealScheduleViewModel schedule)

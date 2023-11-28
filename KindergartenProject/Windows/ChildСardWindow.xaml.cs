@@ -29,6 +29,7 @@ namespace KindergartenProject.Windows
             InitializeComponent();
             var groups = _repository.GetGroups();
             GroupComboBox.ItemsSource = groups;
+            GroupComboBox.SelectedItem = groups.FirstOrDefault();
         }
 
         public ChildСardWindow(KidViewModel selectedItem)

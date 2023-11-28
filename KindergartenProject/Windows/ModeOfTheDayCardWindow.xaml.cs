@@ -28,6 +28,7 @@ namespace KindergartenProject.Windows
             InitializeComponent();
             var employees = _repository.GetGroups();
             GroupComboBox.ItemsSource = employees;
+            GroupComboBox.SelectedItem = employees.FirstOrDefault();
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)

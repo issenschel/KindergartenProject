@@ -29,6 +29,7 @@ namespace KindergartenProject.Windows
             InitializeComponent();
             var employees = _repository.GetEmployees();
             EmployeeComboBox.ItemsSource = employees;
+            EmployeeComboBox.SelectedItem = employees.FirstOrDefault();
         }
 
         private void SectionButton_Click(object sender, RoutedEventArgs e)
