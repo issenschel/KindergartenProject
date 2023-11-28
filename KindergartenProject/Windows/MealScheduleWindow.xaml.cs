@@ -17,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace KindergartenProject.Windows
 {
-    /// <summary>
-    /// Логика взаимодействия для MealScheduleWindow.xaml
-    /// </summary>
     public partial class MealScheduleWindow : Window
     {
         private NutritionRepository _nutritionRepository;
@@ -27,7 +24,7 @@ namespace KindergartenProject.Windows
         private MealScheduleRepository _mealScheduleRepository;
         private DayOfTheWeekViewModel _selectedDay;
         long roleId = (long)Application.Current.Resources[UserInfoConsts.RoleId];
-
+        //Инициализация окна
         public MealScheduleWindow()
         {
             InitializeComponent();
@@ -37,7 +34,7 @@ namespace KindergartenProject.Windows
             GrantAccessByRole();
             DayOfTheWeekComboBox.ItemsSource = _dayOfTheWeekRepository.GetList();
         }
-
+        //Открытие карточки для редактирования по двойному клику
         private void MealSchedule_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (roleId == 3)
@@ -58,13 +55,13 @@ namespace KindergartenProject.Windows
                 UpdateGrid();
             }
         }
-
+        //По выбранному дню обновлять датагрид
         private void DayOfTheWeekComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             _selectedDay = DayOfTheWeekComboBox.SelectedItem as DayOfTheWeekViewModel;
             UpdateGrid();
         }
-
+        //Обновление датагрида
         private void UpdateGrid()
         {
             if (_selectedDay != null)
@@ -81,9 +78,10 @@ namespace KindergartenProject.Windows
                 MealScheduleDataGrid.ItemsSource = null;
             }
         }
-
+        //выход в меню по ролям
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
+            //если гость то в гостевое
             if (roleId == 1)
             {
                 GuestWindow guestWindow = new GuestWindow();
@@ -97,7 +95,7 @@ namespace KindergartenProject.Windows
                 Close();
             }
         }
-
+        //Добавление
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             if (MealScheduleDataGrid.SelectedItem != null)
@@ -106,7 +104,7 @@ namespace KindergartenProject.Windows
             exampleCard.ShowDialog();
             UpdateGrid();
         }
-
+        //Обновление
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
             var selectedNutrition = MealScheduleDataGrid.SelectedItem as NutritionViewModel;
@@ -124,7 +122,7 @@ namespace KindergartenProject.Windows
             mealScheduleCardWindow.ShowDialog();
             UpdateGrid();
         }
-
+        //Удаление
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             if (MealScheduleDataGrid.SelectedItem == null)
@@ -158,7 +156,7 @@ namespace KindergartenProject.Windows
         {
 
         }
-
+        //Отображение по ролям
         private void GrantAccessByRole()
         {
             if (roleId == 1)

@@ -19,13 +19,11 @@ using KindergartenProject.Infrastructure.ViewModels;
 
 namespace KindergartenProject.Windows
 {
-    /// <summary>
-    /// Логика взаимодействия для KidsWindow.xaml
-    /// </summary>
     public partial class KidsWindow : Window
     {
         private KidRepository _repository;
         long roleId = (long)Application.Current.Resources[UserInfoConsts.RoleId];
+        //Инициализация окна
         public KidsWindow()
         {
             InitializeComponent();
@@ -35,14 +33,14 @@ namespace KindergartenProject.Windows
 
 
         }
-
+        //Выход в меню
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             Close();
         }
-
+        //Добавление(открытие карточки)
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             if (KidDataGrid.SelectedItem != null)
@@ -51,20 +49,20 @@ namespace KindergartenProject.Windows
             exampleCard.ShowDialog();
             UpdateGrid();
         }
-
+        //Обновление датагрида
         private void UpdateGrid()
         {
             KidDataGrid.ItemsSource = _repository.GetList();
         }
 
-
+        //Поиск
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             string search = SearchTextBox.Text;
             List<KidViewModel> searchResult = _repository.Search(search);
             KidDataGrid.ItemsSource = searchResult;
         }
-
+        //Открытие карточки для редактирования по двойному клику
         private void ModeOfTheDayDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (roleId == 3)

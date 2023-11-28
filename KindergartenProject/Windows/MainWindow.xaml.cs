@@ -17,12 +17,10 @@ using System.Windows.Shapes;
 
 namespace KindergartenProject
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         long roleId = (long)Application.Current.Resources[UserInfoConsts.RoleId];
+        //Инициализцая окна
         public MainWindow()
         {
             InitializeComponent();
@@ -31,7 +29,7 @@ namespace KindergartenProject
             GrantAccessByRole();
 
         }
-
+        //Выход к окну авторизации и удаление ключей 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Resources.Remove(UserInfoConsts.UserId);
@@ -43,42 +41,42 @@ namespace KindergartenProject
             authWindow.Show();
             Close();
         }
-
+        //Открытие окна с категорией дети
         private void KidsButton_Click(object sender, RoutedEventArgs e)
         {
             KidsWindow kidsWindow = new KidsWindow();
             kidsWindow.Show();
             Close();
         }
-
+        //Открытие окна с категорией группы
         private void GroupButton_Click(object sender, RoutedEventArgs e)
         {
             GroupsWindow groupsWindow = new GroupsWindow();
             groupsWindow.Show();
             Close();
         }
-
+        //Открытие окна с категорией сотрудники
         private void EmployeeButton_Click(object sender, RoutedEventArgs e)
         {
             EmployeesWindow employeesWindow = new EmployeesWindow();
             employeesWindow.Show();
             Close();
         }
-
+        //Открытие окна с категорией расписание
         private void ModeOfTheDayButton_Click(object sender, RoutedEventArgs e)
         {
             ModeOfTheDayWindow modeOfTheDayWindow = new ModeOfTheDayWindow();
             modeOfTheDayWindow.Show();
             Close();
         }
-
+        //Открытие окна с категорией питание
         private void MealScheduleButton_Click(object sender, RoutedEventArgs e)
         {
             MealScheduleWindow mealScheduleWindow = new MealScheduleWindow();
             mealScheduleWindow.Show();
             Close();
         }
-
+        //Если роль сотрудник то категория сотрудники не отображаются 
         private void GrantAccessByRole()
         {
             if (roleId == 2)

@@ -16,14 +16,13 @@ using System.Windows.Shapes;
 
 namespace KindergartenProject.Windows
 {
-    /// <summary>
-    /// Логика взаимодействия для GroupCardWindow.xaml
-    /// </summary>
+
     public partial class GroupCardWindow : Window
     {
         private GroupViewModel _selectedItem = null;
         private GroupRepository _repository = new GroupRepository();
 
+        // В конструкторе происходит инициализация компонентов окна и заполнение ComboBox данными
         public GroupCardWindow()
         {
             InitializeComponent();
@@ -37,6 +36,7 @@ namespace KindergartenProject.Windows
             Close();
         }
 
+        // В конструктор передается элемент, и если он не равен null, то значения полей окна заполняются данными этого элемента
         public GroupCardWindow(GroupViewModel selectedItem)
         {
             InitializeComponent();
@@ -53,6 +53,7 @@ namespace KindergartenProject.Windows
             }
         }
 
+        //Сохранение данных
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             try

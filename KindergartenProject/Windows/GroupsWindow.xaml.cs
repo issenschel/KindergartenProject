@@ -26,6 +26,7 @@ namespace KindergartenProject.Windows
         private GroupRepository _repository;
         long roleId = (long)Application.Current.Resources[UserInfoConsts.RoleId];
 
+        //Инициализация окна
         public GroupsWindow()
         {
             InitializeComponent();
@@ -34,15 +35,17 @@ namespace KindergartenProject.Windows
             UpdateGrid();
         }
 
+        //Выход в меню
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
+            //Если гость то выход в меню гостя
             if (roleId == 1)
             {
                 GuestWindow guestWindow = new GuestWindow();
                 guestWindow.Show();
                 Close();
             }
-
+            // Если нет то выход в обычное меню
             else 
             {
                 MainWindow mainWindow = new MainWindow();
@@ -50,7 +53,7 @@ namespace KindergartenProject.Windows
                 Close();
             }
         }
-
+        //Открытие карточки для добавления
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             if (GroupsDataGrid.SelectedItem != null)
@@ -60,11 +63,12 @@ namespace KindergartenProject.Windows
             UpdateGrid();
         }
 
+        //Обновление таблицы
         private void UpdateGrid()
         {
             GroupsDataGrid.ItemsSource = _repository.GetList();
         }
-
+        //Открытие карточки для редактирования по двойному клику
         private void ModeOfTheDayDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (roleId == 3)
@@ -76,7 +80,7 @@ namespace KindergartenProject.Windows
                 UpdateGrid();
             }
         }
-
+        //Выбор поля и открытие его карточки по нажатию кнопки добавить
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
             if (GroupsDataGrid.SelectedItem == null)
@@ -85,7 +89,7 @@ namespace KindergartenProject.Windows
             exampleCard.ShowDialog();
             UpdateGrid();
         }
-
+        //Удаление поля
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             if (GroupsDataGrid.SelectedItem == null)
@@ -100,12 +104,13 @@ namespace KindergartenProject.Windows
                 MessageBox.Show("Удаление успешно");
             }
         }
-
+        //Выгрузка в Excel
         private void UploadButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
+        //Скрытие интерфейса в зависимости от роли
         private void GrantAccessByRole()
         {
             if (roleId == 1)

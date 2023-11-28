@@ -15,11 +15,9 @@ using System.Windows.Shapes;
 
 namespace KindergartenProject.Windows
 {
-    /// <summary>
-    /// Логика взаимодействия для GuestWindow.xaml
-    /// </summary>
     public partial class GuestWindow : Window
     {
+        //Инициализация окна
         public GuestWindow()
         {
             InitializeComponent();
@@ -29,6 +27,7 @@ namespace KindergartenProject.Windows
 
         }
 
+        //Удаление ключей и выход в окно авторизации 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Resources.Remove(UserInfoConsts.UserName);
@@ -39,21 +38,21 @@ namespace KindergartenProject.Windows
             authWindow.Show();
             Close();
         }
-
+        //Открытие окна группы
         private void GroupsButton_Click(object sender, RoutedEventArgs e)
         {
             GroupsWindow groupsWindow = new GroupsWindow();
             groupsWindow.Show();
             Close();
         }
-
+        //Открытие окна питания
         private void MealScheduleButton_Click(object sender, RoutedEventArgs e)
         {
             MealScheduleWindow mealScheduleWindow = new MealScheduleWindow();
             mealScheduleWindow.Show();
             Close();
         }
-
+        //Открытие окна расписания
         private void ModeOfTheDayButton_Click(object sender, RoutedEventArgs e)
         {
             ModeOfTheDayWindow modeOfTheDayWindow = new ModeOfTheDayWindow();

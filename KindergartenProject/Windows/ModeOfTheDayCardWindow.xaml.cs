@@ -16,13 +16,12 @@ using KindergartenProject.Infrastructure.ViewModels;
 
 namespace KindergartenProject.Windows
 {
-    /// <summary>
-    /// Логика взаимодействия для ModeOfTheDayCardWindow.xaml
-    /// </summary>
     public partial class ModeOfTheDayCardWindow : Window
     {
         private ModeOfTheDayViewModel _selectedItem = null;
         private ModeOfTheDayRepository _repository = new ModeOfTheDayRepository();
+
+        // В конструкторе происходит инициализация компонентов окна и заполнение ComboBox данными
         public ModeOfTheDayCardWindow()
         {
             InitializeComponent();
@@ -31,6 +30,7 @@ namespace KindergartenProject.Windows
             GroupComboBox.SelectedItem = employees.FirstOrDefault();
         }
 
+        //Сохранение данных
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -75,6 +75,7 @@ namespace KindergartenProject.Windows
             }
         }
 
+        // В конструктор передается элемент, и если он не равен null, то значения полей окна заполняются данными этого элемента
         public ModeOfTheDayCardWindow(ModeOfTheDayViewModel selectedItem)
         {
             InitializeComponent();

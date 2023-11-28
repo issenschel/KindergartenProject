@@ -16,13 +16,12 @@ using System.Windows.Shapes;
 
 namespace KindergartenProject.Windows
 {
-    /// <summary>
-    /// Логика взаимодействия для EmployeeСardWindow.xaml
-    /// </summary>
     public partial class EmployeeСardWindow : Window
     {
         private EmployeeViewModel _selectedItem = null;
         private EmployeeRepository _repository = new EmployeeRepository();
+
+        // В конструкторе происходит инициализация компонентов окна и заполнение ComboBox данными
         public EmployeeСardWindow()
         {
             InitializeComponent();
@@ -31,6 +30,7 @@ namespace KindergartenProject.Windows
             PostComboBox.SelectedItem = posts.FirstOrDefault();
         }
 
+        // В конструктор передается элемент, и если он не равен null, то значения полей окна заполняются данными этого элемента
         public EmployeeСardWindow(EmployeeViewModel selectedItem)
         {
             InitializeComponent();
@@ -115,11 +115,13 @@ namespace KindergartenProject.Windows
             }
         }
 
-
+        //Закрытие карточки
         private void SectionButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
+
+        //Очистка текста при получении фокуса
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             List<string> strings = new List<string>() { "Фамилия", "Имя", "Отчество", "Дата рождения", "Пост","Логин","Опыт работы" };

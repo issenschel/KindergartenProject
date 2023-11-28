@@ -16,16 +16,13 @@ using System.Windows.Shapes;
 
 namespace KindergartenProject.Windows
 {
-    /// <summary>
-    /// Логика взаимодействия для MealScheduleCardWindow.xaml
-    /// </summary>
     public partial class MealScheduleCardWindow : Window
     {
         private NutritionRepository _nutritionRepository = new NutritionRepository();
         private MealScheduleViewModel _selectedItem = null;
         private MealScheduleRepository _mealScheduleRepository = new MealScheduleRepository();
 
-
+        // В конструкторе происходит инициализация компонентов окна и заполнение ComboBox данными
         public MealScheduleCardWindow()
         {
             InitializeComponent();
@@ -34,6 +31,7 @@ namespace KindergartenProject.Windows
             DayofWeekComboBox.SelectedItem = dayOfTheWeek.FirstOrDefault();
         }
 
+        // В конструктор передается элемент, и если он не равен null, то значения полей окна заполняются данными этого элемента
         public MealScheduleCardWindow(MealScheduleViewModel schedule)
         {
             InitializeComponent();
@@ -56,6 +54,7 @@ namespace KindergartenProject.Windows
             }
         }
 
+        //Сохранение данных
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             try

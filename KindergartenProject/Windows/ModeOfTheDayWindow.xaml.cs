@@ -17,16 +17,13 @@ using System.Windows.Shapes;
 
 namespace KindergartenProject.Windows
 {
-    /// <summary>
-    /// Логика взаимодействия для ModeOfTheDayWindow.xaml
-    /// </summary>
     public partial class ModeOfTheDayWindow : Window
     {
         private ModeOfTheDayRepository _modeOfTheRepository;
         private GroupRepository _groupRepository;
         private GroupViewModel _selectedGroup;
         long roleId = (long)Application.Current.Resources[UserInfoConsts.RoleId];
-
+        //Инициализация
         public ModeOfTheDayWindow()
         {
             InitializeComponent();
@@ -35,13 +32,13 @@ namespace KindergartenProject.Windows
             GrantAccessByRole();
             GroupComboBox.ItemsSource = _groupRepository.GetList();
         }
-
+        //Обновление датагрида по группе
         private void GroupComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             _selectedGroup = GroupComboBox.SelectedItem as GroupViewModel;
             UpdateGrid();
         }
-
+        //Обновление датагрида
         private void UpdateGrid()
         {
             // Проверяем, выбрана ли группа
@@ -58,7 +55,7 @@ namespace KindergartenProject.Windows
 
             }
         }
-
+        //Открытие карточки для редактирования по двойному клику
         private void ModeOfTheDayDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (roleId == 3)
@@ -70,9 +67,10 @@ namespace KindergartenProject.Windows
                 UpdateGrid();
             }
         }
-
+        //Выход в меню
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
+            //выход в гостевое меню
             if (roleId == 1)
             {
                 GuestWindow guestWindow = new GuestWindow();
@@ -86,7 +84,7 @@ namespace KindergartenProject.Windows
                 Close();
             }
         }
-
+        //Добавление
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             if (ModeOfTheDayDataGrid.SelectedItem != null)
@@ -95,7 +93,7 @@ namespace KindergartenProject.Windows
             exampleCard.ShowDialog();
             UpdateGrid();
         }
-
+        //Обновление
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
             if (ModeOfTheDayDataGrid.SelectedItem == null)
@@ -104,7 +102,7 @@ namespace KindergartenProject.Windows
             exampleCard.ShowDialog();
             UpdateGrid();
         }
-
+        //Удаление
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             if (ModeOfTheDayDataGrid.SelectedItem == null)
@@ -124,7 +122,7 @@ namespace KindergartenProject.Windows
         {
 
         }
-
+        //Отображение компонентов по ролям
         private void GrantAccessByRole()
         {
             if (roleId == 1)

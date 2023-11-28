@@ -24,6 +24,8 @@ namespace KindergartenProject.Windows
         private KidViewModel _selectedItem = null;
         private KidRepository _repository = new KidRepository();
 
+
+        // В конструкторе происходит инициализация компонентов окна и заполнение ComboBox данными
         public ChildСardWindow()
         {
             InitializeComponent();
@@ -32,6 +34,7 @@ namespace KindergartenProject.Windows
             GroupComboBox.SelectedItem = groups.FirstOrDefault();
         }
 
+        // В конструктор передается элемент, и если он не равен null, то значения полей окна заполняются данными этого элемента
         public ChildСardWindow(KidViewModel selectedItem)
         {
             InitializeComponent();
@@ -50,16 +53,17 @@ namespace KindergartenProject.Windows
             }
         }
 
+        //Сохранение данных
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-
+                // Заполняем или обновляем данные в _selectedItem
                 if (_selectedItem == null)
                 {
                     _selectedItem = new KidViewModel();
                 }
-
+                // Если группа не выбрана, выбрасывается исключение.
                 if (GroupComboBox.SelectedValue == null || (long)GroupComboBox.SelectedValue == 0)
                 {
                     throw new Exception("Группа должна быть выбрана");
@@ -96,6 +100,7 @@ namespace KindergartenProject.Windows
             }
         }
 
+        //Выход в категории
         private void SectionButton_Click(object sender, RoutedEventArgs e)
         {
             Close();

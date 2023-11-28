@@ -18,13 +18,12 @@ using System.Windows.Shapes;
 
 namespace KindergartenProject.Windows
 {
-    /// <summary>
-    /// Логика взаимодействия для EmployeesWindow.xaml
-    /// </summary>
+
     public partial class EmployeesWindow : Window
     {
         private EmployeeRepository _repository;
 
+        //Инициализация окна
         public EmployeesWindow()
         {
             InitializeComponent();
@@ -33,7 +32,7 @@ namespace KindergartenProject.Windows
         }
 
 
-
+        //Выход в меню
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
@@ -41,6 +40,7 @@ namespace KindergartenProject.Windows
             Close();
         }
 
+        //Открытие карточки для добавления
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             if (EmployeeDataGrid.SelectedItem != null)
@@ -50,11 +50,13 @@ namespace KindergartenProject.Windows
             UpdateGrid();
         }
 
+        //Обновление таблицы
         private void UpdateGrid()
         {
             EmployeeDataGrid.ItemsSource = _repository.GetList();
         }
 
+        //Открытие карточки для редактирования по двойному клику
         private void ModeOfTheDayDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (EmployeeDataGrid.SelectedItem == null)
@@ -64,6 +66,7 @@ namespace KindergartenProject.Windows
             UpdateGrid();
         }
 
+        //Удаление поля
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             if (EmployeeDataGrid.SelectedItem == null)
@@ -79,6 +82,7 @@ namespace KindergartenProject.Windows
             }
         }
 
+        //Выбор поля и открытие его карточки по нажатию кнопки добавить
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
             if (EmployeeDataGrid.SelectedItem == null)
@@ -88,6 +92,7 @@ namespace KindergartenProject.Windows
             UpdateGrid();
         }
 
+        //Генерация QR-кода
         private void GenerateQRButton_Click(object sender, RoutedEventArgs e)
         {
             if (EmployeeDataGrid.SelectedItem == null)
@@ -100,7 +105,7 @@ namespace KindergartenProject.Windows
             var qrWindow = new Window()
             {
                 Title = "QR Code",
-                Width = 400, // Установите размеры окна по своему усмотрению
+                Width = 400,
                 Height = 400,
               
                 Content = new Image()
@@ -114,6 +119,7 @@ namespace KindergartenProject.Windows
             qrWindow.ShowDialog();
         }
 
+        //Поиск по таблице
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             string search = SearchTextBox.Text;
