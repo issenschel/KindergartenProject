@@ -1,5 +1,6 @@
 ﻿using KindergartenProject.Infrastructure.Consts;
 using KindergartenProject.Infrastructure.Database;
+using KindergartenProject.Infrastructure.QR.Infrastructure.QR;
 using KindergartenProject.Infrastructure.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -85,6 +86,32 @@ namespace KindergartenProject.Windows
             var exampleCard = new EmployeeСardWindow(EmployeeDataGrid.SelectedItem as EmployeeViewModel);
             exampleCard.ShowDialog();
             UpdateGrid();
+        }
+
+        private void GenerateQRButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (EmployeeDataGrid.SelectedItem == null)
+                return;
+
+            var qrManager = new QRManager();
+            var qrCode = qrManager.Generate(EmployeeDataGrid.SelectedItem as EmployeeViewModel);
+
+            // Создание нового окна
+            var qrWindow = new Window()
+            {
+                Title = "QR Code",
+                Width = 400, // Установите размеры окна по своему усмотрению
+                Height = 400,
+              
+                Content = new Image()
+                {
+                    Source = qrCode
+                },
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
+            };
+
+            // Отображение окна
+            qrWindow.ShowDialog();
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
