@@ -10,6 +10,7 @@ namespace KindergartenProject.Infrastructure.Database
 {
     public class DishRepository : IBaseRepository<DishViewModel>
     {
+        //Получает все объекты из базы данных и возвращает их список после применения маппинга
         public List<DishViewModel> GetList()
         {
             using (var context = new Context())
@@ -19,6 +20,8 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
+
+        //Выполняет поиск объектов по указанной строке.Возвращает список найденных объектов после применения маппинга
         public List<DishViewModel> Search(string search)
         {
             search = search.Trim().ToLower();
@@ -32,6 +35,7 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
+        //Получает объект из базы данных по указанному id и возвращает его после применения маппинга
         public DishViewModel GetById(long id)
         {
             using (var context = new Context())
@@ -41,6 +45,7 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
+        //Добавляет новый объект в базу данных. Производит маппинг перед добавлением, сохраняет изменения и возвращает добавленный объект после применения маппинга
         public DishViewModel Add(DishViewModel viewModel)
         {
             using (var context = new Context())
@@ -54,6 +59,7 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
+        //Обновляет существующий объект в базе данных. Ищет объект по указанному id сохраняет изменения и возвращает объект после применения маппинга
         public DishViewModel Update(DishViewModel viewModel)
         {
             using (var context = new Context())
@@ -69,7 +75,8 @@ namespace KindergartenProject.Infrastructure.Database
                 return DishMapper.Map(entity);
             }
         }
-
+        //удаляет объект из базы данных по указанному id. Ищет объект для удаления, выполняет маппинг перед удалением, удаляет объект из базы данных
+        //и возвращает удаленный объект после применения маппинга
         public DishViewModel Delete(long id)
         {
             using (var context = new Context())

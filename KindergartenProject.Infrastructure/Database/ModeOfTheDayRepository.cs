@@ -13,6 +13,7 @@ namespace KindergartenProject.Infrastructure.Database
     public class ModeOfTheDayRepository : IBaseRepository<ModeOfTheDayViewModel>
     {
         private DateTime date;
+        //Получает все объекты из базы данных и возвращает их список после применения маппинга
         public List<ModeOfTheDayViewModel> GetList()
         {
             using (var context = new Context())
@@ -22,6 +23,7 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
+        //Выполняет поиск объектов по указанной строке.Возвращает список найденных объектов после применения маппинга
         public List<ModeOfTheDayViewModel> Search(string search)
         {
             search = search.Trim().ToLower();
@@ -36,6 +38,7 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
+        //Получает объект из базы данных по указанному id и возвращает его после применения маппинга
         public ModeOfTheDayViewModel GetById(long id)
         {
             using (var context = new Context())
@@ -45,6 +48,7 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
+        //Получает объект из базы данных по указанному id и возвращает его после применения маппинга
         public List<ModeOfTheDayViewModel> GetByGroupId(long groupId)
         {
             using (var context = new Context())
@@ -54,6 +58,7 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
+        //Добавляет новый объект в базу данных. Производит маппинг перед добавлением, сохраняет изменения и возвращает добавленный объект после применения маппинга
         public ModeOfTheDayViewModel Add(ModeOfTheDayViewModel viewModel)
         {
             using (var context = new Context())
@@ -89,6 +94,7 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
+        //Обновляет существующий объект в базе данных. Ищет объект по указанному id сохраняет изменения и возвращает объект после применения маппинга
         public ModeOfTheDayViewModel Update(ModeOfTheDayViewModel viewModel)
         {
             using (var context = new Context())
@@ -135,6 +141,8 @@ namespace KindergartenProject.Infrastructure.Database
         }
 
 
+        //удаляет объект из базы данных по указанному id. Ищет объект для удаления, выполняет маппинг перед удалением, удаляет объект из базы данных
+        //и возвращает удаленный объект после применения маппинга
         public ModeOfTheDayViewModel Delete(long id)
         {
             using (var context = new Context())
@@ -152,6 +160,7 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
+        //Используется для получения группы по её названию.
         public long? GetGroupIdByName(string groupName)
         {
             using (var context = new Context())
@@ -161,6 +170,7 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
+        //Используется для получения списка групп.
         public List<GroupViewModel> GetGroups()
         {
             using (var context = new Context())

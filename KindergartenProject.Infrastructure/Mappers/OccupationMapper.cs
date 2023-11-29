@@ -9,6 +9,7 @@ namespace KindergartenProject.Infrastructure.Mappers
 {
     public static class OccupationMapper
     {
+        //Преобразует объект класса Entity в объект класса ViewModel
         public static OccupationViewModel Map(OccupationEntity entity)
         {
             var viewModel = new OccupationViewModel
@@ -19,12 +20,14 @@ namespace KindergartenProject.Infrastructure.Mappers
             return viewModel;
         }
 
+        //Принимает список объектов класса Entity и преобразует каждый объект в соответствующий объект класса
         public static List<OccupationViewModel> Map(List<OccupationEntity> entities)
         {
             var viewModels = entities.Select(x => Map(x)).ToList();
             return viewModels;
         }
 
+        //Метод Map преобразует объект класса ViewModel в объект класса Entity
         public static OccupationEntity Map(OccupationViewModel viewModel)
         {
             var entity = new OccupationEntity
@@ -35,6 +38,7 @@ namespace KindergartenProject.Infrastructure.Mappers
             return entity;
         }
 
+        //Принимает список объектов класса ViewModel и преобразует каждый объект в соответствующий объект класса
         public static List<OccupationEntity> Map(List<OccupationViewModel> viewModels)
         {
             var entities = viewModels.Select(vm => Map(vm)).ToList();

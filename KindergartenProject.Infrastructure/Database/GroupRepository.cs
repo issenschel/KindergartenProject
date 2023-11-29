@@ -10,6 +10,8 @@ namespace KindergartenProject.Infrastructure.Database
 {
     public class GroupRepository : IBaseRepository<GroupViewModel>
     {
+
+        //Получает все объекты из базы данных и возвращает их список после применения маппинга
         public List<GroupViewModel> GetList()
         {
             using (var context = new Context())
@@ -19,6 +21,7 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
+        //Выполняет поиск объектов по указанной строке.Возвращает список найденных объектов после применения маппинга
         public List<GroupViewModel> Search(string search)
         {
             search = search.Trim().ToLower();
@@ -33,6 +36,7 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
+        //Получает объект из базы данных по указанному id и возвращает его после применения маппинга
         public GroupViewModel GetById(long id)
         {
             using (var context = new Context())
@@ -42,6 +46,7 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
+        //Добавляет новый объект в базу данных. Производит маппинг перед добавлением, сохраняет изменения и возвращает добавленный объект после применения маппинга
         public GroupViewModel Add(GroupViewModel viewModel)
         {
             using (var context = new Context())
@@ -58,6 +63,7 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
+        //Обновляет существующий объект в базе данных. Ищет объект по указанному id сохраняет изменения и возвращает объект после применения маппинга
         public GroupViewModel Update(GroupViewModel viewModel)
         {
             using (var context = new Context())
@@ -80,6 +86,8 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
+        //удаляет объект из базы данных по указанному id. Ищет объект для удаления, выполняет маппинг перед удалением, удаляет объект из базы данных
+        //и возвращает удаленный объект после применения маппинга
         public GroupViewModel Delete(long id)
         {
             using (var context = new Context())
@@ -96,7 +104,7 @@ namespace KindergartenProject.Infrastructure.Database
                 return viewModel;
             }
         }
-
+        // Используется для получения списка сотрудников.
         public List<EmployeeViewModel> GetEmployees()
         {
             using (var context = new Context())

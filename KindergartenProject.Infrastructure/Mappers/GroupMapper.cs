@@ -9,6 +9,7 @@ namespace KindergartenProject.Infrastructure.Mappers
 {
     public static class GroupMapper
     {
+        //Преобразует объект класса Entity в объект класса ViewModel
         public static GroupViewModel Map(GroupEntity entity)
         {
             var viewModel = new GroupViewModel
@@ -22,12 +23,14 @@ namespace KindergartenProject.Infrastructure.Mappers
             return viewModel;
         }
 
+        //Принимает список объектов класса Entity и преобразует каждый объект в соответствующий объект класса
         public static List<GroupViewModel> Map(List<GroupEntity> entities)
         {
             var viewModels = entities.Select(x => Map(x)).ToList();
             return viewModels;
         }
 
+        //Метод Map преобразует объект класса ViewModel в объект класса Entity
         public static GroupEntity Map(GroupViewModel viewModel)
         {
             var entity = new GroupEntity
@@ -40,6 +43,7 @@ namespace KindergartenProject.Infrastructure.Mappers
             return entity;
         }
 
+        //Принимает список объектов класса ViewModel и преобразует каждый объект в соответствующий объект класса
         public static List<GroupEntity> Map(List<GroupViewModel> viewModels)
         {
             var entities = viewModels.Select(vm => Map(vm)).ToList();

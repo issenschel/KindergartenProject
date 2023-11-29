@@ -10,6 +10,7 @@ namespace KindergartenProject.Infrastructure.Database
 {
     public class NutritionRepository : IBaseRepository<NutritionViewModel>
     {
+        //Получает все объекты из базы данных и возвращает их список после применения маппинга
         public List<NutritionViewModel> GetList()
         {
             using (var context = new Context())
@@ -18,6 +19,8 @@ namespace KindergartenProject.Infrastructure.Database
                 return NutritionMapper.Map(items);
             }
         }
+
+        //Выполняет поиск объектов по указанной строке.Возвращает список найденных объектов после применения маппинга
         public List<NutritionViewModel> Search(string search)
         {
             search = search.Trim().ToLower();
@@ -32,7 +35,7 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
-
+        //Получает объект из базы данных по указанному id и возвращает его после применения маппинга
         public NutritionViewModel GetById(long id)
         {
             using (var context = new Context())
@@ -42,6 +45,7 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
+        //Добавляет новый объект в базу данных. Производит маппинг перед добавлением, сохраняет изменения и возвращает добавленный объект после применения маппинга
         public NutritionViewModel Add(NutritionViewModel viewModel)
         {
             using (var context = new Context())
@@ -105,6 +109,7 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
+        //Создание или обновление еды
         public long GetOrCreateOrUpdateDishId(Context context, string dishName, long? dishId = null)
         {
             var existingDish = context.Dishes.FirstOrDefault(d => d.Name.Equals(dishName, StringComparison.OrdinalIgnoreCase));
@@ -134,6 +139,7 @@ namespace KindergartenProject.Infrastructure.Database
             return dish.ID;
         }
 
+        //Обновляет существующий объект в базе данных. Ищет объект по указанному id сохраняет изменения и возвращает объект после применения маппинга
         public NutritionViewModel Update(NutritionViewModel viewModel)
         {
             using (var context = new Context())
@@ -186,6 +192,8 @@ namespace KindergartenProject.Infrastructure.Database
             }
         }
 
+        //удаляет объект из базы данных по указанному id. Ищет объект для удаления, выполняет маппинг перед удалением, удаляет объект из базы данных
+        //и возвращает удаленный объект после применения маппинга
         public NutritionViewModel Delete(long id)
         {
             using (var context = new Context())
