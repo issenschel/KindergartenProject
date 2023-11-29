@@ -1,9 +1,12 @@
 ﻿using KindergartenProject.Infrastructure.Consts;
 using KindergartenProject.Infrastructure.Database;
+using KindergartenProject.Infrastructure.Report;
 using KindergartenProject.Infrastructure.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -118,10 +121,28 @@ namespace KindergartenProject.Windows
             }
         }
 
+        //Выгрузка в Excel
         private void UploadButton_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                var reportManager = new ReportManager();
+                var data = reportManager.GenerateReport(ModeOfTheDayDataGrid.ItemsSource as List<ModeOfTheDayViewModel>);
+
+                var path = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), $"Расписание_{DateTime.Now.ToShortDateString()}.xlsx");
+                using (var stream = new FileStream(path, FileMode.OpenOrCreate))
+                {
+                    stream.Write(data, 0, data.Length);
+                }
+                MessageBox.Show("Выгрузка успешна");
+            }
+            catch
+            {
+                MessageBox.Show("Выгрузка неуспешна");
+            }
 
         }
+
         //Отображение компонентов по ролям
         private void GrantAccessByRole()
         {
@@ -130,6 +151,7 @@ namespace KindergartenProject.Windows
                 AddButton.Visibility = Visibility.Collapsed;
                 DeleteButton.Visibility = Visibility.Collapsed;
                 UpdateButton.Visibility = Visibility.Collapsed;
+                UploadButton.Visibility = Visibility.Collapsed;
             }
 
             else if (roleId == 2)
@@ -137,6 +159,7 @@ namespace KindergartenProject.Windows
                 AddButton.Visibility = Visibility.Collapsed;
                 DeleteButton.Visibility = Visibility.Collapsed;
                 UpdateButton.Visibility = Visibility.Collapsed;
+                UploadButton.Visibility = Visibility.Collapsed;
             }
         }
     }

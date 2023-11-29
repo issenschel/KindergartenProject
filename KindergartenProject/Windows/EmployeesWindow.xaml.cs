@@ -1,10 +1,13 @@
 ﻿using KindergartenProject.Infrastructure.Consts;
 using KindergartenProject.Infrastructure.Database;
 using KindergartenProject.Infrastructure.QR.Infrastructure.QR;
+using KindergartenProject.Infrastructure.Report;
 using KindergartenProject.Infrastructure.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -125,6 +128,27 @@ namespace KindergartenProject.Windows
             string search = SearchTextBox.Text;
             List<EmployeeViewModel> searchResult = _repository.Search(search);
             EmployeeDataGrid.ItemsSource = searchResult;
+        }
+
+        //Выгрузка в Excel
+        private void UploadButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var reportManager = new ReportManager();
+                var data = reportManager.GenerateReport(EmployeeDataGrid.ItemsSource as List<EmployeeViewModel>);
+
+                var path = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), $"Сотрудники_{DateTime.Now.ToShortDateString()}.xlsx");
+                using (var stream = new FileStream(path, FileMode.OpenOrCreate))
+                {
+                    stream.Write(data, 0, data.Length);
+                }
+                MessageBox.Show("Выгрузка успешна");
+            }
+            catch 
+            {
+                MessageBox.Show("Выгрузка неуспешна");
+            }
         }
     }
 }
