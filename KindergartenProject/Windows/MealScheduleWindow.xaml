@@ -35,21 +35,67 @@
                 <Button x:Name="UploadButton" Grid.Row="1" Grid.Column="1" Height="50" Width="170" Content="Выгрузить" FontSize="25" Background="White" BorderBrush="#FF2C78FF" Foreground="#FF2C78FF" HorizontalAlignment="Left" FontFamily="Bahnschrift" Click="UploadButton_Click" Style="{DynamicResource MaterialDesignOutlinedButton}" />
             </StackPanel>
             <DataGrid x:Name="MealScheduleDataGrid" CanUserSortColumns="True" AutoGenerateColumns="False" Width="572" Height="347" IsReadOnly="True" CanUserReorderColumns="False" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,10,0" BorderBrush="#FF2C78FF" FontFamily="Bahnschrift" MinColumnWidth="50">
-                <DataGrid.Resources>
-                    <Style TargetType="DataGridCell">
-                        <Setter Property="HorizontalAlignment" Value="Left"/>
-                        <Setter Property="VerticalAlignment" Value="Center"/>
-                    </Style>
-                    <Style TargetType="DataGridColumnHeader">
-                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                    </Style>
-                </DataGrid.Resources>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Завтрак" Width="*" Binding="{Binding BreakFastName}"/>
-                    <DataGridTextColumn Header="Полдник" Width="*" Binding="{Binding BrunchName}"/>
-                    <DataGridTextColumn Header="Обед" Width="*" Binding="{Binding LunchName}"/>
-                    <DataGridTextColumn Header="Ланч" Width="*" Binding="{Binding AfternoonSnackName}"/>
-                    <DataGridTextColumn Header="Ужин" Width="*" Binding="{Binding DinnerName}"/>
+                    <DataGridTextColumn Header="Завтрак" Width="*" Binding="{Binding BreakFastName}">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Left" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Полдник" Width="*" Binding="{Binding BrunchName}">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Left" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Обед" Width="*" Binding="{Binding LunchName}">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Left" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Ланч" Width="*" Binding="{Binding AfternoonSnackName}">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Left" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Ужин" Width="*" Binding="{Binding DinnerName}">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Left" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
