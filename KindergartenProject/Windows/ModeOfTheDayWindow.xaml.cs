@@ -34,6 +34,7 @@ namespace KindergartenProject.Windows
             _groupRepository = new GroupRepository();
             GrantAccessByRole();
             GroupComboBox.ItemsSource = _groupRepository.GetList();
+            GroupComboBox.SelectedItem = GroupComboBox.Items[0];
         }
         //Обновление датагрида по группе
         private void GroupComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

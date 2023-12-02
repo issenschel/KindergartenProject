@@ -36,6 +36,7 @@ namespace KindergartenProject.Windows
             _mealScheduleRepository = new MealScheduleRepository();
             GrantAccessByRole();
             DayOfTheWeekComboBox.ItemsSource = _dayOfTheWeekRepository.GetList();
+            DayOfTheWeekComboBox.SelectedItem = DayOfTheWeekComboBox.Items[0];
         }
         //Открытие карточки для редактирования по двойному клику
         private void MealSchedule_MouseDoubleClick(object sender, MouseButtonEventArgs e)
