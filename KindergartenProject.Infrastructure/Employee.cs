@@ -30,10 +30,6 @@ namespace KindergartenProject.Infrastructure
 
         [Required]
         [StringLength(2147483647)]
-        public string FullName { get; set; }
-
-        [Required]
-        [StringLength(2147483647)]
         public string DateOfBirth { get; set; }
 
         public long Experience { get; set; }

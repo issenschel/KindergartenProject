@@ -1,0 +1,32 @@
+﻿<Window x:Class="KindergartenProject.Windows.AuthWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KindergartenProject.Windows"
+        mc:Ignorable="d"
+        Title="Окно авторизации" Height="250" Width="300"
+        MinHeight="250" MinWidth="300"
+        WindowStartupLocation="CenterScreen">
+    <Viewbox Stretch="Fill">
+        <Grid>
+            <Grid.ColumnDefinitions/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="GuestButton" Grid.Row="0" Margin="0,0,0,0" Width="Auto" Height="Auto" Content="Войти как гость" FontSize="9" VerticalAlignment="Top" HorizontalAlignment="Right" Background="#FF2C78FF" Foreground="Black" Click="GuestButton_Click" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignToolButton}"/>
+            <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,10">
+                <TextBlock Name="LoginTextBlock" Text="Логин" FontSize="10" Margin="0,5,5,0" FontFamily="Bahnschrift"/>
+                <TextBox x:Name="LoginTextBox" Width="110" Height="Auto"  Margin="0,0,0,0"  FontFamily="Bahnschrift" VerticalContentAlignment="Bottom" FontSize="9"/>
+            </StackPanel>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,0,4,10">
+                <TextBlock Name="PasswordTextBlock" Text="Пароль" FontSize="10" Margin="0,5,5,0" FontFamily="Bahnschrift"/>
+                <PasswordBox x:Name="PasswordBox" Width="110" Height="Auto"  Margin="0,0,0,0" FontFamily="Bahnschrift" FontSize="9"/>
+            </StackPanel>
+            <Button  x:Name="AuthButton" Grid.Row="4"  Width="158" Height="18" Content="Войти" FontSize="9" VerticalAlignment="Top" HorizontalAlignment="Center" Background="#FF2C78FF" Foreground="Black"  Click="AuthButton_Click" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignToolButton}"/>
+        </Grid>
+    </Viewbox>
+</Window>

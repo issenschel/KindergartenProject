@@ -1,0 +1,50 @@
+﻿<Window x:Class="KindergartenProject.Windows.EmployeeСardWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KindergartenProject.Windows"
+        mc:Ignorable="d"
+        Title="Карточка сотрудника" Height="500" Width="430"
+        MinHeight="500" MinWidth="430"
+        WindowStartupLocation="CenterScreen">
+    <Viewbox Stretch="Fill">
+        <Grid>
+            <Grid.ColumnDefinitions/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.1*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="1.2*"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="SectionButton" Grid.Row="0" Height="Auto" Width="Auto" Content="К разделу" FontSize="15" VerticalAlignment="Top" Margin="0,0,0,0" HorizontalAlignment="Right" Background="#FF2C78FF" Foreground="Black" Click="SectionButton_Click" FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignToolButton}" />
+            <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,5,5">
+                <TextBox x:Name="SurenameTextBox" Width="150" Height="Auto" VerticalContentAlignment="Center" FontFamily="Bahnschrift" FontSize="13" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Text="Фамилия"/>
+            </StackPanel>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,10,5">
+                <TextBox x:Name="NameTextBox" Width="150" Height="Auto" Margin="0,0,0,0" FontFamily="Bahnschrift" VerticalContentAlignment="Center" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" FontSize="13" Text="Имя"/>
+            </StackPanel>
+            <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,10,5">
+                <TextBox x:Name="PatronymicTextBox" Width="150" Height="Auto" FontFamily="Bahnschrift" Margin="0,0,0,0" VerticalContentAlignment="Center" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" FontSize="13" Text="Отчество"/>
+            </StackPanel>
+            <StackPanel Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,10,5">
+                <TextBox x:Name="BirthdayTextBox" Width="150" Height="Auto" FontFamily="Bahnschrift"  Margin="0,0,0,0" VerticalContentAlignment="Center" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" FontSize="13" Text="Дата рождения"/>
+            </StackPanel>
+            <StackPanel Grid.Row="5" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,10,5">
+                <TextBox x:Name="ExperienceTextBox" Width="150" Height="Auto" FontFamily="Bahnschrift" Margin="0,0,0,0" VerticalContentAlignment="Center" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"  FontSize="13" Text="Опыт работы"/>
+            </StackPanel>
+            <StackPanel Grid.Row="7" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,10,5">
+                <ComboBox x:Name="PostComboBox" Width="150" Height="Auto" FontFamily="Bahnschrift" Margin="0,0,0,0" SelectedValuePath="ID"  VerticalContentAlignment="Center" DisplayMemberPath="Name" FontSize="13" />
+            </StackPanel>
+            <StackPanel Grid.Row="6" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,10,5">
+                <TextBox x:Name="LoginTextBox" Width="150" Height="Auto" Margin="0,0,0,0" VerticalContentAlignment="Center" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" FontSize="13" Text="Логин" FontFamily="Bahnschrift"/>
+            </StackPanel>
+            <Button x:Name="SaveButton" Grid.Row="8" Height="30" Width="310" Content="Сохранить" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#FF2C78FF" Foreground="Black" Margin="0,5,0,0"  FontFamily="Bahnschrift" Style="{DynamicResource MaterialDesignToolButton}" Click="SaveButton_Click"/>
+        </Grid>
+    </Viewbox>
+</Window>
